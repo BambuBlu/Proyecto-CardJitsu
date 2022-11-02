@@ -45,8 +45,8 @@ int main(){
     cout << endl;
     switch (opcion){
     case 1:
-        opcion = 1;
-        modo1 = Modalidad(opcion);
+    opcion = 1;
+    modo1 = Modalidad(opcion);
         switch (modo1){
             case 1:
         JugadorVSCPU (nombrejugador);
@@ -54,6 +54,8 @@ int main(){
             case 2:
         break;
             default:
+            cout << endl << "------------------NO CONTAMOS CON ESA MODALIDAD DE JUEGO-------------------";
+            rlutil::anykey();
         break;
         }
         case 2:

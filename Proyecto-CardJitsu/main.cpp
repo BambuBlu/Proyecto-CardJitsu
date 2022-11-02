@@ -2,6 +2,10 @@
 #include "rlutil.h"
 using namespace std;
 
+/* Esto es un comment de prueba para git */
+//Este es otro comment pero diferente
+///Y este es otro pero diferente
+
 int main(){
     int opcion;
     int modo1;

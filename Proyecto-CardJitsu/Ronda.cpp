@@ -274,14 +274,14 @@ cout<<"Carta # "<<ManoCPU_N[indice2]<<" "<<ManoCPU_CE[indice2][0]<<" "<<ManoCPU_
         }
     }
     }
-    if(CartatiradaCE[1]==("NIEVE")&&CartatiradaCE_CPU[1]==("FUEGO")){
+    if(CartatiradaCE[0]==("NIEVE")&&CartatiradaCE_CPU[0]==("FUEGO")){
     cout<<">>FUEGO le gana a NIEVE,Perdiste la ronda "<<endl<<endl;
     }
 //NIEVE VS AGUA/NIEVE VS NIEVE---------------------------------------------------------------------------------------------------------------------------//
-    if(CartatiradaCE[1]==("NIEVE")&&CartatiradaCE_CPU[1]==("AGUA")){
+    if(CartatiradaCE[0]==("NIEVE")&&CartatiradaCE_CPU[0]==("AGUA")){
     cout<<">>NIEVE le gana a AGUA,Ganaste la ronda"<<endl<<endl;
     }
-    else{ if (CartatiradaCE[1]==("NIEVE")&&CartatiradaCE_CPU[1]==("NIEVE")){
+    else{ if (CartatiradaCE[0]==("NIEVE")&&CartatiradaCE_CPU[0]==("NIEVE")){
         if (CartatiradaN>CartatiradaN_CPU){
             cout<<">>Ganaste la ronda por mayor numero"<<endl<<endl;
         }
@@ -289,17 +289,17 @@ cout<<"Carta # "<<ManoCPU_N[indice2]<<" "<<ManoCPU_CE[indice2][0]<<" "<<ManoCPU_
         }
     }
     }
-       if(CartatiradaCE[1]==("AGUA")&&CartatiradaCE_CPU[1]==("NIEVE")){
+       if(CartatiradaCE[0]==("AGUA")&&CartatiradaCE_CPU[0]==("NIEVE")){
     cout<<">>NIEVE le gana a AGUA,Perdiste la ronda "<<endl<<endl;
        }
 //AGUA VS FUEGO/AGUA VS AGUA------------------------------------------------------------------------------------------------------------------------//
 
-    if(CartatiradaCE[1]==("AGUA")&&CartatiradaCE_CPU[1]==("FUEGO")){
+    if(CartatiradaCE[0]==("AGUA")&&CartatiradaCE_CPU[0]==("FUEGO")){
     cout<<">>NIEVE le gana a AGUA,Ganaste la ronda"<<endl<<endl;
     }
 
 
-    else{ if(CartatiradaCE[1]==("AGUA")&&CartatiradaCE_CPU[1]==("AGUA")){
+    else{ if(CartatiradaCE[0]==("AGUA")&&CartatiradaCE_CPU[0]==("AGUA")){
         if (CartatiradaN>CartatiradaN_CPU){
             cout<<">>Ganaste la ronda por mayor numero"<<endl<<endl;
         }
@@ -307,7 +307,7 @@ cout<<"Carta # "<<ManoCPU_N[indice2]<<" "<<ManoCPU_CE[indice2][0]<<" "<<ManoCPU_
         }
     }
     }
-   if(CartatiradaCE[1]==("FUEGO")&&CartatiradaCE_CPU[1]==("AGUA")){
+   if(CartatiradaCE[0]==("FUEGO")&&CartatiradaCE_CPU[0]==("AGUA")){
     cout<<">>AGUA le gana a FUEGO,Perdiste la ronda "<<endl<<endl;
     }
 

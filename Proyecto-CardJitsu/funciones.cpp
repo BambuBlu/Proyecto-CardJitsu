@@ -51,6 +51,7 @@ void Opcion0(int opcion){
 }
 void JugadorVSCPU (char nombrejugador[]){
     rlutil::cls();
+    rlutil::locate (4,5);
     cout << nombrejugador << "  VS CPU";
     rlutil::anykey();
 

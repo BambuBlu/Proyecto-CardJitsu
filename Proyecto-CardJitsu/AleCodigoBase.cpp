@@ -5,7 +5,6 @@ using namespace std;
 void cargarMaso(string vec1[],int tam1,string vec2[],int tam2,int vec3[],int tam3){
 
 
-
 int indice=1;
 
     for(int x=0;x<tam1;x++){
@@ -49,8 +48,7 @@ int main(){
 
     string Elemento[60]{},CartaJugada;
 
-    string Color[60]{},ManoCPU_CE[4][2]{},ManoJugador_CE[4][2]{},
-    CartatiradaCE[2],CartatiradaCE_CPU[2];
+    string Color[60]{},ManoCPU_CE[4][2]{},ManoJugador_CE[4][2]{},CartatiradaCE[2],CartatiradaCE_CPU[2];
 
     int ManoCPU_N[4]{},ManoJugador_N[4]{},indice2,Carta1,Carta2,Carta3,Carta4,CartaCPU1,CartatiradaN,CartatiradaN_CPU;
     int CartaCPU2,CartaCPU3,CartaCPU4,indice=1,Numero[60]{};
@@ -65,6 +63,8 @@ srand(time(0));
      ManoJugador_CE[0][0]=Color[Carta1];
      ManoJugador_CE[0][1]=Elemento[Carta1];
      ManoJugador_N[0]=Numero[Carta1];
+     cout<<Carta1<<endl;
+
 
     Carta2=rand()%60+1;
 
@@ -141,7 +141,7 @@ srand(time(0));
     ManoCPU_N[3]=Numero[CartaCPU4];
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------//
-rlutil::cls();
+//rlutil::cls();
 cout<<"Tus cartas de esta ronda son :"<<endl<<endl;
         cout<<"A Carta # "<<Numero[Carta1]<<" "<<Color[Carta1]<<" "<<Elemento[Carta1]<<endl;
     cout<<"B Carta # "<<Numero[Carta2]<<" "<<Color[Carta2]<<" "<<Elemento[Carta2]<<endl;

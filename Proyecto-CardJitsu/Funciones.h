@@ -2,15 +2,26 @@
 #define FUNCIONES_H_INCLUDED
 #include <cstdlib>
 #include <iostream>
-#include <string.h>
-#include <string>
+#include<cstdio>
+#include<ctime>
 
-int Modalidad(int opcion);
-void JugadorVSCPU(char nombrejugador[]);
-void Opcion2(int opcion);
-void Opcion3(int opcion);
-void Opcion4(int opcion);
-void Opcion0(int opcion);
+using namespace std;
+
+void Mode();
+void PlayerVsCpu();
+void CpuVsCpu();
+void SetDeck(bool mazo[], int mano_jugador1[], int mano_jugador2[]);
+void LoadDeck(string elemento[], string color[], int numero[]);
+int TakeCardFromDeck(bool mazo[],int mano[]);
+void TakeCard(int mano[], int card_id);
+void ShowHand(string elemento[], string color[], int numero[], int mano[]);
+bool StartRoundMenu(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano_jugador[60]);
+bool PlayRoundMenu(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano_jugador[60]);
+
+void BestScore(string nombrejugador);
+void Credits();
+void Rules();
+void ExitGame();
 
 
 

@@ -180,25 +180,62 @@ void TakeCard(int mano[60], int card_id)
 
 void ShowHand(string elemento[60], string color[60], int numero[60], int mano[60])
 {
-        cout<<"Las cartas en mano son :"<<endl<<endl;
+    int mano_ordenada[60];
 
-        for(int i = 0 ; i < 60 ; i++)
-        {
-            if(mano[i] != -1)
-            {
-                if(elemento[mano[i]]=="FUEGO")
-                {
-                    cout<<elemento[i]<<": #"<<numero[i]<<" / "<<color[i];
-                }
-            }
-        }
+    mano_ordenada[60] = SortHand(elemento, numero, mano);
 
-
-
-        rlutil::anykey();
-        rlutil::cls();
+    for(int i = 0; i < 60; i++)
+    {
+        cout<<elemento[mano_ordenada[i]]<<": #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<endl;
+    }
 }
 
+
+int SortHand(string elemento[60], int numero[60], int mano[60])
+{
+    int mano_ordenada[60];
+    for(int i = 0; i < 60; i++)
+    {
+        mano_ordenada[i] = mano[i];
+    }
+
+    int valor_temporal;
+
+    for(int n = 0; n < 60; n++)
+    {
+        for(int i = 1; i < 60; i++)
+        {
+            if(IsCardHigher(mano_ordenada[i], mano_ordenada[i-1], elemento, numero))
+            {
+                valor_temporal = mano_ordenada[i];
+                mano_ordenada[i] = mano_ordenada[i-1];
+                mano_ordenada[i-1] = valor_temporal;
+            }
+        }
+    }
+
+    return (mano_ordenada[60]);
+}
+
+
+bool IsCardHigher(int carta_a, int carta_b, string elemento[60], int numero[60])
+{
+    string elemento_a = elemento[carta_a];
+    string elemento_b = elemento[carta_b];
+
+    if(carta_a == -1 || carta_b == -1)
+    {
+        return(carta_a != -1);
+    }
+    else if(elemento_a == elemento_b)
+    {
+        return(numero[carta_a] > numero[carta_b]);
+    }
+    else
+    {
+        return((elemento_a == "NIEVE") || (elemento_b != "NIEVE" && elemento_a == "FUEGO"));
+    }
+}
 
 bool StartRoundMenu(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano_jugador[60])
 {
@@ -236,15 +273,18 @@ bool PlayRoundMenu(string elemento[60], string color[60], int numero[60], bool m
     switch(mode)
     {
         case 1:
+            agarrar_carta = false;
             break;
         case 2:
             ShowHand(elemento, color, numero, mano_jugador);
+            agarrar_carta = false;
             break;
         case 3:
-            agarrar_carta = false;
+            agarrar_carta = true;
             break;
         default:
             cout<<"Ingrese una opcion correcta";
+            agarrar_carta = false;
             rlutil::anykey();
     }
     return (agarrar_carta);

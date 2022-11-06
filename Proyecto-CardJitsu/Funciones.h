@@ -15,8 +15,10 @@ void LoadDeck(string elemento[], string color[], int numero[]);
 int TakeCardFromDeck(bool mazo[],int mano[]);
 void TakeCard(int mano[], int card_id);
 void ShowHand(string elemento[], string color[], int numero[], int mano[]);
-bool StartRoundMenu(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano_jugador[60]);
-bool PlayRoundMenu(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano_jugador[60]);
+int SortHand(string elemento[], int numero[], int mano[]);
+bool IsCardHigher(int carta_a, int carta_b, string elemento[], int numero[]);
+bool StartRoundMenu(string elemento[], string color[], int numero[], bool mazo[], int mano_jugador[]);
+bool PlayRoundMenu(string elemento[], string color[], int numero[], bool mazo[], int mano_jugador[]);
 
 void BestScore(string nombrejugador);
 void Credits();

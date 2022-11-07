@@ -15,6 +15,8 @@ int main()
     string nombre_jugador;
     rlutil::setBackgroundColor(rlutil::color::CYAN);
     rlutil::cls();
+    rlutil::setColor(rlutil::color::WHITE);
+    Nombrejuego();
     Recuadro();
     rlutil::locate (35,14);
     cout << "Nombre del jugador: ";
@@ -24,11 +26,9 @@ int main()
 
     while(true)
     {
-        /* Puede poner parte grafica aca */
         rlutil::setColor (rlutil::color::BLACK);
         rlutil::cls();
-        rlutil::locate (54, 10);
-        cout << "CARD-JITSU++" << endl;
+        Nombrejuego();
         rlutil::locate (45, 11);
         cout << "---------------------------" << endl;
         rlutil::locate (45, 12);

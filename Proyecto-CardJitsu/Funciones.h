@@ -36,6 +36,7 @@ void SalirDelJuego();
 /// Diseño
 
 void Recuadro();
+void Nombrejuego();
 
 
 

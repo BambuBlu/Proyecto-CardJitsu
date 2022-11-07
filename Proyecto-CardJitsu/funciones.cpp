@@ -5,6 +5,8 @@
 #include<array>
 #include "funciones.h"
 #include "rlutil.h"
+#include <time.h>
+#include <time.h>
 
 using namespace std;
 
@@ -477,5 +479,37 @@ void SalirDelJuego()
     rlutil::locate(49,13);
     cout << "Gracias por juegar  :)" << endl;
     cout<<endl<<endl<<endl;
+}
+
+void Recuadro (){
+ for (int x=0;x<=40;x++){
+    rlutil::locate (30+x,10);
+    cout << "<<";
+    Sleep (20);
+    }
+    for (int x=0;x<=6;x++){
+    rlutil::locate (30,11+x);
+    cout << "||";
+    Sleep (50);
+    }
+    for (int x=0;x<=6;x++){
+    rlutil::locate (70,11+x);
+    cout << "||";
+    Sleep (50);
+    }
+    for (int x=0;x<=40;x++){
+    rlutil::locate (30+x,18);
+    cout << ">>";
+    Sleep (20);
+    }
+}
+void Nombrejuego(){
+    cout << "#########      #####       ######  ########        ############    ##    ###########                                  " << endl;
+    cout << "##            ##   ##      #    #  ##     ##            ##                   ##                " << endl;
+    cout << "##           ##     ##     ######  ##      ##           ##         ##        ##                  "   << endl;
+    cout << "##          ###########    ###     ##       ##      ##  ##         ##        ##                        " << endl;
+    cout << "##          ##       ##    ## #    ##      ##       ##  ##         ##        ##                             " << endl;
+    cout << "##          ##       ##    ##  #   ##     ##         ## ##         ##        ##                                  " << endl;
+    cout << "#########   ##       ##    ##   #  ########           ####         ##        ##                                       "  << endl;
 }
 

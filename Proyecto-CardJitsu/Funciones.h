@@ -5,6 +5,7 @@
 #include<cstdio>
 #include<ctime>
 #include<array>
+#include <time.h>
 
 using namespace std;
 
@@ -31,6 +32,10 @@ void MejorPuntaje(string nombrejugador);
 void Creditos();
 void Reglas();
 void SalirDelJuego();
+
+/// Diseño
+
+void Recuadro();
 
 
 

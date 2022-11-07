@@ -13,17 +13,10 @@ int main()
 {
     int opcion=0;
     string nombre_jugador;
-
-    /* Puede poner parte grafica aca */
     rlutil::setBackgroundColor(rlutil::color::CYAN);
     rlutil::cls();
-    rlutil::locate (40,13);
-    /*
-    for (int x=0; x<200; x++){
-        rlutil::locate()
-        cout <<
-    }
-    */
+    Recuadro();
+    rlutil::locate (35,14);
     cout << "Nombre del jugador: ";
     cin>>nombre_jugador;
     rlutil::setBackgroundColor (rlutil::color::GREY);

@@ -56,6 +56,7 @@ int main()
             break;
             case 2:
                 BestScore(nombre_jugador);
+                rlutil::setBackgroundColor (rlutil::color::GREY);
             break;
             case 3:
                 Credits();

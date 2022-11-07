@@ -21,14 +21,16 @@ int main()
     rlutil::locate (35,14);
     cout << "Nombre del jugador: ";
     cin>>nombre_jugador;
-    rlutil::setBackgroundColor (rlutil::color::GREY);
     rlutil::hidecursor();
 
     while(true)
     {
+        rlutil::setBackgroundColor (rlutil::color::GREY);
         rlutil::setColor (rlutil::color::BLACK);
         rlutil::cls();
         Nombrejuego();
+        rlutil::locate (45, 10);
+        cout << "#" << nombre_jugador;
         rlutil::locate (45, 11);
         cout << "---------------------------" << endl;
         rlutil::locate (45, 12);
@@ -53,6 +55,7 @@ int main()
 
         switch (opcion){
             case 1:
+                rlutil::setBackgroundColor(rlutil::color::WHITE);
                 Modo();
             break;
             case 2:

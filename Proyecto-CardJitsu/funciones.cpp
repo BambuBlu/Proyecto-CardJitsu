@@ -13,13 +13,20 @@ using namespace std;
 
 void Modo()
 {
-    /* Puede poner parte grafica aca */
     int modo=0;
     rlutil::cls();
+    rlutil::setColor(rlutil::color::BLACK);
+    Nombrejuego();
+    rlutil::setBackgroundColor(rlutil::color::BLACK);
+    rlutil::setColor(rlutil::color::WHITE);
+    rlutil::locate(50,10);
     cout<<"1- Jugadora VS CPU"<<endl;
+    rlutil::locate(50,12);
     cout<<"2- CPU VS CPU"<<endl;
-    cout<<endl<<"Que modalidad desea jugar?--> ";
+    rlutil::locate(42,14);
+    cout<<"Que modalidad desea jugar?--> ";
     cin>>modo;
+    rlutil::cls();
     switch(modo)
     {
         case 1:

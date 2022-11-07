@@ -55,7 +55,7 @@
 	"funciones.h"
 	"rlutil.h"
 
-1667778900 source:e:\facultad\utn\materias\laboratorio i\cuatrimestre actual\proyecto-cardjitsu\proyecto-cardjitsu\proyecto-cardjitsu\funciones.cpp
+1667793004 source:e:\facultad\utn\materias\laboratorio i\cuatrimestre actual\proyecto-cardjitsu\proyecto-cardjitsu\proyecto-cardjitsu\funciones.cpp
 	<cstdlib>
 	<iostream>
 	<cstdio>
@@ -64,7 +64,7 @@
 	"funciones.h"
 	"rlutil.h"
 
-1667780027 e:\facultad\utn\materias\laboratorio i\cuatrimestre actual\proyecto-cardjitsu\proyecto-cardjitsu\proyecto-cardjitsu\funciones.h
+1667792241 e:\facultad\utn\materias\laboratorio i\cuatrimestre actual\proyecto-cardjitsu\proyecto-cardjitsu\proyecto-cardjitsu\funciones.h
 	<cstdlib>
 	<iostream>
 	<cstdio>
@@ -85,7 +85,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1667761091 source:e:\facultad\utn\materias\laboratorio i\cuatrimestre actual\proyecto-cardjitsu\proyecto-cardjitsu\proyecto-cardjitsu\main.cpp
+1667792242 source:e:\facultad\utn\materias\laboratorio i\cuatrimestre actual\proyecto-cardjitsu\proyecto-cardjitsu\proyecto-cardjitsu\main.cpp
 	<cstdlib>
 	<iostream>
 	<cstdio>

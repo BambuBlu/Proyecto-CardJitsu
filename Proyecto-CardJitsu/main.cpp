@@ -14,6 +14,7 @@ int main()
     int opcion=0;
     string nombre_jugador;
 
+    /* Puede poner parte grafica aca */
     rlutil::setBackgroundColor(rlutil::color::CYAN);
     rlutil::cls();
     rlutil::locate (40,13);
@@ -24,6 +25,7 @@ int main()
 
     while(true)
     {
+        /* Puede poner parte grafica aca */
         rlutil::setColor (rlutil::color::BLACK);
         rlutil::cls();
         rlutil::locate (54, 10);
@@ -52,19 +54,20 @@ int main()
 
         switch (opcion){
             case 1:
-                Mode();
+                Modo();
             break;
             case 2:
-                BestScore(nombre_jugador);
+                MejorPuntaje(nombre_jugador);
             break;
             case 3:
-                Credits();
+                Creditos();
                 break;
             case 4:
-                Rules();
+                Reglas();
                 break;
             case 0:
-                ExitGame();
+                /* Lo explico en la funcion pero ojo que hay que preguntarle si quiere salir al jugador ( S/N ) */
+                SalirDelJuego();
                 return 0;
                 break;
             default:

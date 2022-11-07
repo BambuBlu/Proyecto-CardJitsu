@@ -18,6 +18,12 @@ int main()
     rlutil::setBackgroundColor(rlutil::color::CYAN);
     rlutil::cls();
     rlutil::locate (40,13);
+    /*
+    for (int x=0; x<200; x++){
+        rlutil::locate()
+        cout <<
+    }
+    */
     cout << "Nombre del jugador: ";
     cin>>nombre_jugador;
     rlutil::setBackgroundColor (rlutil::color::GREY);
@@ -58,6 +64,7 @@ int main()
             break;
             case 2:
                 MejorPuntaje(nombre_jugador);
+                rlutil::setBackgroundColor (rlutil::color::GREY);
             break;
             case 3:
                 Creditos();

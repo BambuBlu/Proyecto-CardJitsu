@@ -27,15 +27,21 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1667355151 source:c:\users\mi pc\desktop\laboratorio 1\parcial 2 git\proyecto-cardjitsu\proyecto-cardjitsu\funciones.cpp
+1667791558 source:c:\users\mi pc\desktop\laboratorio 1\parcial 2 git\proyecto-cardjitsu\proyecto-cardjitsu\funciones.cpp
+	<cstdlib>
+	<iostream>
+	<cstdio>
+	<ctime>
+	<array>
 	"funciones.h"
 	"rlutil.h"
 
-1667355023 c:\users\mi pc\desktop\laboratorio 1\parcial 2 git\proyecto-cardjitsu\proyecto-cardjitsu\funciones.h
+1667780568 c:\users\mi pc\desktop\laboratorio 1\parcial 2 git\proyecto-cardjitsu\proyecto-cardjitsu\funciones.h
 	<cstdlib>
 	<iostream>
-	<string.h>
-	<string>
+	<cstdio>
+	<ctime>
+	<array>
 
 1667263386 c:\users\mi pc\desktop\laboratorio 1\parcial 2 git\proyecto-cardjitsu\proyecto-cardjitsu\rlutil.h
 	<iostream>
@@ -51,7 +57,12 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1667357554 source:c:\users\mi pc\desktop\laboratorio 1\parcial 2 git\proyecto-cardjitsu\proyecto-cardjitsu\main.cpp
+1667790550 source:c:\users\mi pc\desktop\laboratorio 1\parcial 2 git\proyecto-cardjitsu\proyecto-cardjitsu\main.cpp
+	<cstdlib>
+	<iostream>
+	<cstdio>
+	<ctime>
+	<array>
 	"funciones.h"
 	"rlutil.h"
 

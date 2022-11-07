@@ -2,6 +2,7 @@
 #include <iostream>
 #include<cstdio>
 #include<ctime>
+#include<array>
 #include "funciones.h"
 #include "rlutil.h"
 
@@ -33,49 +34,39 @@ void Mode()
 
 void PlayerVsCpu()
 {
-    cout<<"Entra en PlayerVsCpu"<<endl;
-    rlutil::anykey();
-    string elemento[60]; string color[60];
-    int numero[60]; int mano_jugador[60]; int mano_cpu[60];
+    string elemento[60]; string color[60]; string descripciones_cartas_desafio[10];
+    int numero[60]; int mano_jugador[60]; int mano_cpu[60]; bool cartas_desafio[10]; int desafios_elegidos[2];
     bool mazo[60]; bool ganador = true; bool agarrar_carta = true;
 
 
-
-    SetDeck(mazo, mano_jugador, mano_cpu);
-
-
+    SetDeck(mazo, mano_jugador, mano_cpu, cartas_desafio);
+    SetChallengeCard(cartas_desafio, desafios_elegidos);
     LoadDeck(elemento, color, numero);
-
+    LoadChallenge(descripciones_cartas_desafio);
 
     for(int i = 0; i < 3; i++)
     {
         int card_id = TakeCardFromDeck(mazo, mano_jugador);
     }
 
-
-
     for(int i = 0; i < 3; i++)
     {
         int card_id = TakeCardFromDeck(mazo, mano_cpu);
     }
 
-    cout<<"Esta atras del while"<<endl;
-    rlutil::anykey();
-
-    while(ganador = true)
+    while((ganador = true))
     {
-        srand(time(0));
         int mode=0;
         rlutil::cls();
         cout<<"1- Ver carta de desafio"<<endl;
         cout<<"2- Ver cartas de elementos"<<endl;
         if(agarrar_carta)
         {
-            agarrar_carta = StartRoundMenu(elemento, color, numero, mazo, mano_jugador);;
+            agarrar_carta = StartRoundMenu(elemento, color, numero, mazo, mano_jugador, desafios_elegidos, descripciones_cartas_desafio);;
         }
         else
         {
-            agarrar_carta = PlayRoundMenu(elemento, color, numero, mazo, mano_jugador);
+            agarrar_carta = PlayRoundMenu(elemento, color, numero, mazo, mano_jugador, desafios_elegidos, descripciones_cartas_desafio);
         }
     }
 }
@@ -101,37 +92,37 @@ void LoadDeck(string elemento[60], string color[60], int numero[60])
 
         if(x >= 0 && x < 20)
         {
-            color[x]="FUEGO";
+            elemento[x]="FUEGO";
         }
 
         if(x >= 20 && x < 40)
         {
-            color[x]="AGUA";
+            elemento[x]="AGUA";
         }
 
         if(x >= 40 && x < 60)
         {
-            color[x]="NIEVE";
+            elemento[x]="NIEVE";
         }
 
-        if(x >= 0 && x < 5 || x >= 20 && x < 25 || x >= 40 && x < 45 )
+        if((x >= 0 && x < 5) || (x >= 20 && x < 25) || (x >= 40 && x < 45))
         {
-            elemento[x]="VERDE";
+            color[x]="VERDE";
         }
 
-        if(x >= 5 && x < 10 || x >= 25 && x < 30 || x >= 45 && x < 50 )
+        if((x >= 5 && x < 10) || (x >= 25 && x < 30) || (x >= 45 && x < 50))
         {
-            elemento[x]="AZUL";
+            color[x]="AZUL";
         }
 
-        if(x >= 10 && x < 15 || x >= 30 && x < 35 || x >= 50 && x < 55 )
+        if((x >= 10 && x < 15) || (x >= 30 && x < 35) || (x >= 50 && x < 55))
         {
-            elemento[x]="ROJO";
+            color[x]="ROJO";
         }
 
-        if(x >= 15 && x < 20 || x >= 35 && x < 40 || x >= 55 && x < 60 )
+        if((x >= 15 && x < 20) || (x >= 35 && x < 40) || (x >= 55 && x < 60))
         {
-            elemento[x]="AMARILLO";
+            color[x]="AMARILLO";
 
         }
     }
@@ -139,23 +130,116 @@ void LoadDeck(string elemento[60], string color[60], int numero[60])
 }
 
 
-void SetDeck(bool mazo[60], int mano_jugador1[60], int mano_jugador2[60])
+void LoadChallenge(string descripciones_cartas_desafio[10])
 {
-    for(int i = 0 ; i < 60 ; i++)
+    descripciones_cartas_desafio[0] = "Ganar una carta de Nieve.";
+    descripciones_cartas_desafio[1] = "Ganar una carta de Fuego.";
+    descripciones_cartas_desafio[2] = "Ganar una carta de Agua.";
+    descripciones_cartas_desafio[3] = "Ganar dos cartas rojas.";
+    descripciones_cartas_desafio[4] = "Ganar dos cartas amarillas.";
+    descripciones_cartas_desafio[5] = "Ganar dos cartas verdes.";
+    descripciones_cartas_desafio[6] = "Ganar dos cartas azules.";
+    descripciones_cartas_desafio[7] = "Ganar una carta con el mismo elemento que el adversario.";
+    descripciones_cartas_desafio[8] = "Ganar dos cartas con el mismo numero.";
+    descripciones_cartas_desafio[9] = "Ganar dos rondas de manera consecutiva.";
+}
+
+
+void SetDeck(bool mazo[60], int mano_jugador1[60], int mano_jugador2[60], bool cartas_desafio[10])
+{
+    for(int i = 0; i < 60; i++)
     {
         mazo[i]=true;
         mano_jugador1[i] = -1;
         mano_jugador2[i] = -1;
     }
+
+    for(int i = 0; i<10; i++)
+    {
+        cartas_desafio[i] = true;
+    }
+}
+
+
+void SetChallengeCard(bool cartas_desafio[10], int desafios_elegidos[2])
+{
+    SelectChallenge(cartas_desafio, desafios_elegidos, 0);
+
+    RandomChallenge(cartas_desafio, desafios_elegidos, 1);
+
+    cout<<"carta_desafio: [";
+    for(int i=0; i<10; i++)
+    {
+        cout<<cartas_desafio[i]<<",";
+    }
+    cout<<"]"<<endl;
+    rlutil::anykey();
+}
+
+
+void SelectChallenge(bool cartas_desafio[10], int desafios_elegidos[2], int id)
+{
+    int id_desafio;
+    while(true)
+    {
+        cout<<"-Elige una carta desafio-"<<endl<<endl;
+        cout<<"1 - Ganar una carta de Nieve."<<endl;
+        cout<<"2 - Ganar una carta de Fuego."<<endl;
+        cout<<"3 - Ganar una carta de Agua."<<endl;
+        cout<<"4 - Ganar dos cartas rojas."<<endl;
+        cout<<"5 - Ganar dos cartas amarillas."<<endl;
+        cout<<"6 - Ganar dos cartas verdes."<<endl;
+        cout<<"7 - Ganar dos cartas azules."<<endl;
+        cout<<"8 - Ganar una carta con el mismo elemento que el adversario."<<endl;
+        cout<<"9 - Ganar dos cartas con el mismo numero."<<endl;
+        cout<<"10 - Ganar dos rondas de manera consecutiva."<<endl<<endl;
+        cin>>id_desafio;
+        id_desafio -= 1;
+
+        if(SelectChallengeIfPossible(id_desafio, desafios_elegidos, id, cartas_desafio))
+        {
+            break;
+        }
+        else
+        {
+            cout<<"El desafio seleccionado ya esta tomado, elija otro"<<endl;
+        }
+    }
+}
+
+
+void RandomChallenge(bool cartas_desafio[10], int desafios_elegidos[2], int id)
+{
+    srand(time(0));
+    int id_desafio = rand()%10;
+    cout<<id_desafio<<endl;
+
+    while(!SelectChallengeIfPossible(id_desafio, desafios_elegidos, id, cartas_desafio))
+    {
+        id_desafio = rand()%10;
+    }
+}
+
+
+bool SelectChallengeIfPossible(int id_desafio, int desafios_elegidos[2], int id, bool cartas_desafio[10])
+{
+    bool not_taken = id_desafio >= 0 && id_desafio < 10 && cartas_desafio[id_desafio];
+    if(not_taken)
+        {
+            desafios_elegidos[id] = id_desafio;
+            cartas_desafio[id_desafio] = false;
+        }
+    return not_taken;
 }
 
 
 int TakeCardFromDeck(bool mazo[60],int mano[60])
 {
     int card_id;
+    srand(time(0));
     do
     {
-        card_id=rand()%60;
+        card_id = rand()%60;
     } while(!mazo[card_id]);
 
     mazo[card_id] = false;
@@ -180,20 +264,56 @@ void TakeCard(int mano[60], int card_id)
 
 void ShowHand(string elemento[60], string color[60], int numero[60], int mano[60])
 {
-    int mano_ordenada[60];
-
-    mano_ordenada[60] = SortHand(elemento, numero, mano);
+    std::array<int,60> mano_ordenada = {SortHand(elemento, numero, mano)};
 
     for(int i = 0; i < 60; i++)
     {
-        cout<<elemento[mano_ordenada[i]]<<": #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<endl;
+        if(mano_ordenada[i] != -1)
+        {
+            if(elemento[mano_ordenada[i]] == "NIEVE")
+            {
+                cout<<"NIEVE: #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<" || ";
+            }
+
+        }
     }
+    cout<<endl;
+    for(int i = 0; i < 60; i++)
+    {
+        if(mano_ordenada[i] != -1)
+        {
+            if(elemento[mano_ordenada[i]] == "FUEGO")
+            {
+                cout<<"FUEGO: #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<" || ";
+            }
+
+        }
+    }
+    cout<<endl;
+    for(int i = 0; i < 60; i++)
+    {
+        if(mano_ordenada[i] != -1)
+        {
+            if(elemento[mano_ordenada[i]] == "AGUA")
+            {
+                cout<<"AGUA: #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<" || ";
+            }
+
+        }
+    }
+    rlutil::anykey();
 }
 
 
-int SortHand(string elemento[60], int numero[60], int mano[60])
+void ShowChallengeCard(int desafios_elegidos[2], string descripciones_cartas_desafio[10], int id)
 {
-    int mano_ordenada[60];
+    cout<<"La carta de desafio es: "<<descripciones_cartas_desafio[desafios_elegidos[id]];
+    rlutil::anykey();
+}
+
+std::array<int,60> SortHand(string elemento[60], int numero[60], int mano[60])
+{
+    std::array<int,60> mano_ordenada;
     for(int i = 0; i < 60; i++)
     {
         mano_ordenada[i] = mano[i];
@@ -213,31 +333,34 @@ int SortHand(string elemento[60], int numero[60], int mano[60])
             }
         }
     }
-
-    return (mano_ordenada[60]);
+    return mano_ordenada;
 }
 
 
 bool IsCardHigher(int carta_a, int carta_b, string elemento[60], int numero[60])
 {
-    string elemento_a = elemento[carta_a];
-    string elemento_b = elemento[carta_b];
 
     if(carta_a == -1 || carta_b == -1)
     {
         return(carta_a != -1);
     }
-    else if(elemento_a == elemento_b)
-    {
-        return(numero[carta_a] > numero[carta_b]);
-    }
     else
     {
-        return((elemento_a == "NIEVE") || (elemento_b != "NIEVE" && elemento_a == "FUEGO"));
+        string elemento_a = elemento[carta_a];
+        string elemento_b = elemento[carta_b];
+        if(elemento_a == elemento_b)
+        {
+            return(numero[carta_a] < numero[carta_b]);
+        }
+        else
+        {
+            return((elemento_a == "NIEVE") || (elemento_b != "NIEVE" && elemento_a == "FUEGO"));
+        }
     }
+
 }
 
-bool StartRoundMenu(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano_jugador[60])
+bool StartRoundMenu(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano_jugador[60], int desafios_elegidos[2], string descripciones_cartas_desafio[10])
 {
     int mode;
     bool agarrar_carta;
@@ -247,9 +370,11 @@ bool StartRoundMenu(string elemento[60], string color[60], int numero[60], bool 
     switch(mode)
     {
         case 1:
+            ShowChallengeCard(desafios_elegidos, descripciones_cartas_desafio, 0);
             break;
         case 2:
             ShowHand(elemento, color, numero, mano_jugador);
+            agarrar_carta = true;
             break;
         case 3:
             TakeCardFromDeck(mazo, mano_jugador);
@@ -263,7 +388,7 @@ bool StartRoundMenu(string elemento[60], string color[60], int numero[60], bool 
 }
 
 
-bool PlayRoundMenu(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano_jugador[60])
+bool PlayRoundMenu(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano_jugador[60], int desafios_elegidos[2], string descripciones_cartas_desafio[10])
 {
     int mode;
     bool agarrar_carta;
@@ -273,6 +398,7 @@ bool PlayRoundMenu(string elemento[60], string color[60], int numero[60], bool m
     switch(mode)
     {
         case 1:
+            ShowChallengeCard(desafios_elegidos, descripciones_cartas_desafio, 0);
             agarrar_carta = false;
             break;
         case 2:

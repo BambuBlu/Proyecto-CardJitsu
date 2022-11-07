@@ -2,6 +2,7 @@
 #include <iostream>
 #include<cstdio>
 #include<ctime>
+#include<array>
 #include "funciones.h"
 #include "rlutil.h"
 

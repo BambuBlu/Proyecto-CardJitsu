@@ -62,7 +62,7 @@ void PlayerVsCpu()
         cout<<"2- Ver cartas de elementos"<<endl;
         if(agarrar_carta)
         {
-            agarrar_carta = StartRoundMenu(elemento, color, numero, mazo, mano_jugador, desafios_elegidos, descripciones_cartas_desafio);;
+            agarrar_carta = StartRoundMenu(elemento, color, numero, mazo, mano_jugador, desafios_elegidos, descripciones_cartas_desafio);
         }
         else
         {

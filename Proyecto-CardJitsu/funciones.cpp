@@ -534,6 +534,7 @@ rlutil::setColor(rlutil::color::WHITE);
     }
 }
 void Nombrejuego(){
+    rlutil::hidecursor();
     cout << "     #########      #####       ######  ########             ############    ##    ###########   #######   ##   ## " << endl;
     cout << "     ##            ##   ##      #    #  ##     ##                 ##                   ##        ##        ##   ## " << endl;
     cout << "     ##           ##     ##     ######  ##      ##                ##         ##        ##        ##        ##   ## " << endl;
@@ -541,5 +542,16 @@ void Nombrejuego(){
     cout << "     ##          ##       ##    ## #    ##      ##            ##  ##         ##        ##             ##   ##   ## " << endl;
     cout << "     ##          ##       ##    ##  #   ##     ##              ## ##         ##        ##             ##   ##   ## " << endl;
     cout << "     #########   ##       ##    ##   #  ########                ####         ##        ##        #######   ####### " << endl;
+
+}
+void Cargando(){
+rlutil::locate(51,8);
+    cout << "Cargando...";
+    for (int x=0;x<109;x++){
+        rlutil::locate (6+x,8);
+        cout << "_";
+        Sleep(20);
+    }
+
 }
 

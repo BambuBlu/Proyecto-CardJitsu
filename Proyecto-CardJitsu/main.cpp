@@ -18,6 +18,7 @@ int main()
     rlutil::cls();
     rlutil::setColor(rlutil::color::WHITE);
     Nombrejuego();
+    Cargando();
     Recuadro();
     rlutil::showcursor();
     rlutil::locate (44,14);

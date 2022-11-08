@@ -38,6 +38,7 @@ void SalirDelJuego();
 
 void Recuadro();
 void Nombrejuego();
+void Cargando();
 
 
 

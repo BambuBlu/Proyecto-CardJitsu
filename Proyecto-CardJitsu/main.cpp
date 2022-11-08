@@ -13,12 +13,14 @@ int main()
 {
     int opcion=0;
     string nombre_jugador;
-    rlutil::setBackgroundColor(rlutil::color::CYAN);
+    int decision;
+    rlutil::setBackgroundColor(rlutil::color::BLACK);
     rlutil::cls();
     rlutil::setColor(rlutil::color::WHITE);
     Nombrejuego();
     Recuadro();
-    rlutil::locate (35,14);
+    rlutil::showcursor();
+    rlutil::locate (44,14);
     cout << "Nombre del jugador: ";
     cin>>nombre_jugador;
     rlutil::hidecursor();
@@ -69,9 +71,14 @@ int main()
                 Reglas();
                 break;
             case 0:
-                /* Lo explico en la funcion pero ojo que hay que preguntarle si quiere salir al jugador ( S/N ) */
+                decision = Seguroquieressalir();
+                if (decision){
                 SalirDelJuego();
                 return 0;
+                }
+                else{
+                    rlutil::cls;
+                }
                 break;
             default:
                 break;

@@ -471,42 +471,64 @@ void Creditos()
     rlutil::anykey();
     rlutil::setBackgroundColor (rlutil::color::GREY);
 }
-
-
-void SalirDelJuego()
-{
-    /* Puede poner parte grafica aca */
-    /* Ojo que hay que preguntarle al jugador si realmente
-       quiere salir del juego ( S/N o como se quiera). Para tener en cuenta */
+bool Seguroquieressalir(){
+    bool desicion;
     rlutil::setBackgroundColor(rlutil::color::BLACK);
     rlutil::cls();
     rlutil::setColor(rlutil::color::WHITE);
-    rlutil::locate(52,10);
+    Recuadro();
+    rlutil::locate(44,13);
+    cout << "¿Seguro quieres salir del juego? ";
+    rlutil::locate(44,14);
+    cout << "Si sales, se perdera tu progreso ";
+    rlutil::locate(48,15);
+    cout << "Te dejo que lo pienses";
+    rlutil::locate(48,17);
+    cout << "1-Si             0-No";
+    rlutil::setColor(rlutil::color::BLACK);
+    cin >> desicion;
+    if (desicion){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+
+
+}
+
+void SalirDelJuego()
+{
+    rlutil::setBackgroundColor(rlutil::color::BLACK);
+    rlutil::cls();
+    rlutil::setColor(rlutil::color::WHITE);
+    rlutil::locate(50,10);
     cout << "Hasta luego...." << endl;
-    rlutil::locate(49,13);
+    rlutil::locate(47,13);
     cout << "Gracias por juegar  :)" << endl;
     cout<<endl<<endl<<endl;
 }
 
 void Recuadro (){
+rlutil::hidecursor();
 rlutil::setColor(rlutil::color::WHITE);
  for (int x=0;x<=40;x++){
-    rlutil::locate (30+x,10);
+    rlutil::locate (39+x,10);
     cout << "<<";
     Sleep (20);
     }
     for (int x=0;x<=6;x++){
-    rlutil::locate (30,11+x);
+    rlutil::locate (39,11+x);
     cout << "||";
     Sleep (50);
     }
     for (int x=0;x<=6;x++){
-    rlutil::locate (70,11+x);
+    rlutil::locate (79,11+x);
     cout << "||";
     Sleep (50);
     }
     for (int x=0;x<=40;x++){
-    rlutil::locate (30+x,18);
+    rlutil::locate (39+x,18);
     cout << ">>";
     Sleep (20);
     }
@@ -514,7 +536,7 @@ rlutil::setColor(rlutil::color::WHITE);
 void Nombrejuego(){
     cout << "     #########      #####       ######  ########             ############    ##    ###########   #######   ##   ## " << endl;
     cout << "     ##            ##   ##      #    #  ##     ##                 ##                   ##        ##        ##   ## " << endl;
-    cout << "     ##           ##     ##     ######  ##      ##   ######       ##         ##        ##        ##        ##   ## " << endl;
+    cout << "     ##           ##     ##     ######  ##      ##                ##         ##        ##        ##        ##   ## " << endl;
     cout << "     ##          ###########    ###     ##       ##  ######   ##  ##         ##        ##        #######   ##   ## " << endl;
     cout << "     ##          ##       ##    ## #    ##      ##            ##  ##         ##        ##             ##   ##   ## " << endl;
     cout << "     ##          ##       ##    ##  #   ##     ##              ## ##         ##        ##             ##   ##   ## " << endl;

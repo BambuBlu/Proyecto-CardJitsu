@@ -6,6 +6,7 @@
 #include<ctime>
 #include<array>
 #include<map>
+#include <time.h>
 
 using namespace std;
 
@@ -41,7 +42,14 @@ bool JugarRondaMenu(string elemento[], string color[], int numero[], bool mazo[]
 void MejorPuntaje(string nombrejugador);
 void Creditos();
 void Reglas();
+bool Seguroquieressalir();
 void SalirDelJuego();
+
+/// Diseño
+
+void Recuadro();
+void Nombrejuego();
+void Cargando();
 
 
 

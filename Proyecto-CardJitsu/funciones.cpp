@@ -6,19 +6,28 @@
 #include<map>
 #include "funciones.h"
 #include "rlutil.h"
+#include <time.h>
+#include <time.h>
 
 using namespace std;
 
 
 void Modo()
 {
-    /* Puede poner parte grafica aca */
     int modo=0;
     rlutil::cls();
+    rlutil::setColor(rlutil::color::BLACK);
+    Nombrejuego();
+    rlutil::setBackgroundColor(rlutil::color::BLACK);
+    rlutil::setColor(rlutil::color::WHITE);
+    rlutil::locate(50,10);
     cout<<"1- Jugadora VS CPU"<<endl;
+    rlutil::locate(50,12);
     cout<<"2- CPU VS CPU"<<endl;
-    cout<<endl<<"Que modalidad desea jugar?--> ";
+    rlutil::locate(42,14);
+    cout<<"Que modalidad desea jugar?--> ";
     cin>>modo;
+    rlutil::cls();
     switch(modo)
     {
         case 1:
@@ -808,20 +817,87 @@ void Creditos()
     rlutil::anykey();
     rlutil::setBackgroundColor (rlutil::color::GREY);
 }
-
-
-void SalirDelJuego()
-{
-    /* Puede poner parte grafica aca */
-    /* Ojo que hay que preguntarle al jugador si realmente
-       quiere salir del juego ( S/N o como se quiera). Para tener en cuenta */
+bool Seguroquieressalir(){
+    bool desicion;
     rlutil::setBackgroundColor(rlutil::color::BLACK);
     rlutil::cls();
     rlutil::setColor(rlutil::color::WHITE);
-    rlutil::locate(52,10);
+    Recuadro();
+    rlutil::locate(44,13);
+    cout << "¿Seguro quieres salir del juego? ";
+    rlutil::locate(44,14);
+    cout << "Si sales, se perdera tu progreso ";
+    rlutil::locate(48,15);
+    cout << "Te dejo que lo pienses";
+    rlutil::locate(48,17);
+    cout << "1-Si             0-No";
+    rlutil::setColor(rlutil::color::BLACK);
+    cin >> desicion;
+    if (desicion){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+
+
+}
+
+void SalirDelJuego()
+{
+    rlutil::setBackgroundColor(rlutil::color::BLACK);
+    rlutil::cls();
+    rlutil::setColor(rlutil::color::WHITE);
+    rlutil::locate(50,10);
     cout << "Hasta luego...." << endl;
-    rlutil::locate(49,13);
+    rlutil::locate(47,13);
     cout << "Gracias por juegar  :)" << endl;
     cout<<endl<<endl<<endl;
+}
+
+void Recuadro (){
+rlutil::hidecursor();
+rlutil::setColor(rlutil::color::WHITE);
+ for (int x=0;x<=40;x++){
+    rlutil::locate (39+x,10);
+    cout << "<<";
+    Sleep (20);
+    }
+    for (int x=0;x<=6;x++){
+    rlutil::locate (39,11+x);
+    cout << "||";
+    Sleep (50);
+    }
+    for (int x=0;x<=6;x++){
+    rlutil::locate (79,11+x);
+    cout << "||";
+    Sleep (50);
+    }
+    for (int x=0;x<=40;x++){
+    rlutil::locate (39+x,18);
+    cout << ">>";
+    Sleep (20);
+    }
+}
+void Nombrejuego(){
+    rlutil::hidecursor();
+    cout << "     #########      #####       ######  ########             ############    ##    ###########   #######   ##   ## " << endl;
+    cout << "     ##            ##   ##      #    #  ##     ##                 ##                   ##        ##        ##   ## " << endl;
+    cout << "     ##           ##     ##     ######  ##      ##                ##         ##        ##        ##        ##   ## " << endl;
+    cout << "     ##          ###########    ###     ##       ##  ######   ##  ##         ##        ##        #######   ##   ## " << endl;
+    cout << "     ##          ##       ##    ## #    ##      ##            ##  ##         ##        ##             ##   ##   ## " << endl;
+    cout << "     ##          ##       ##    ##  #   ##     ##              ## ##         ##        ##             ##   ##   ## " << endl;
+    cout << "     #########   ##       ##    ##   #  ########                ####         ##        ##        #######   ####### " << endl;
+
+}
+void Cargando(){
+rlutil::locate(51,8);
+    cout << "Cargando...";
+    for (int x=0;x<109;x++){
+        rlutil::locate (6+x,8);
+        cout << "_";
+        Sleep(20);
+    }
+
 }
 

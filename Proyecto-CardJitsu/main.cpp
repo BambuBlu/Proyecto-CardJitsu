@@ -15,29 +15,27 @@ int main()
 {
     int opcion=0;
     string nombre_jugador;
-
-    /* Puede poner parte grafica aca */
-    rlutil::setBackgroundColor(rlutil::color::CYAN);
+    int decision;
+    rlutil::setBackgroundColor(rlutil::color::BLACK);
     rlutil::cls();
-    rlutil::locate (40,13);
-    /*
-    for (int x=0; x<200; x++){
-        rlutil::locate()
-        cout <<
-    }
-    */
+    rlutil::setColor(rlutil::color::WHITE);
+    Nombrejuego();
+    Cargando();
+    Recuadro();
+    rlutil::showcursor();
+    rlutil::locate (44,14);
     cout << "Nombre del jugador: ";
     cin>>nombre_jugador;
-    rlutil::setBackgroundColor (rlutil::color::GREY);
     rlutil::hidecursor();
 
     while(true)
     {
-        /* Puede poner parte grafica aca */
+        rlutil::setBackgroundColor (rlutil::color::GREY);
         rlutil::setColor (rlutil::color::BLACK);
         rlutil::cls();
-        rlutil::locate (54, 10);
-        cout << "CARD-JITSU++" << endl;
+        Nombrejuego();
+        rlutil::locate (45, 10);
+        cout << "#" << nombre_jugador;
         rlutil::locate (45, 11);
         cout << "---------------------------" << endl;
         rlutil::locate (45, 12);
@@ -62,6 +60,7 @@ int main()
 
         switch (opcion){
             case 1:
+                rlutil::setBackgroundColor(rlutil::color::WHITE);
                 Modo();
             break;
             case 2:
@@ -75,9 +74,14 @@ int main()
                 Reglas();
                 break;
             case 0:
-                /* Lo explico en la funcion pero ojo que hay que preguntarle si quiere salir al jugador ( S/N ) */
+                decision = Seguroquieressalir();
+                if (decision){
                 SalirDelJuego();
                 return 0;
+                }
+                else{
+                    rlutil::cls;
+                }
                 break;
             default:
                 break;

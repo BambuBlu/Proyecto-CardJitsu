@@ -3,10 +3,12 @@
 #include<cstdio>
 #include<ctime>
 #include<array>
+#include<map>
 #include "funciones.h"
 #include "rlutil.h"
 
 using namespace std;
+
 
 
 int main()

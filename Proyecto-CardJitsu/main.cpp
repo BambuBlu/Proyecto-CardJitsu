@@ -4,6 +4,7 @@
 #include<ctime>
 #include<array>
 #include<map>
+#include <time.h>
 #include "funciones.h"
 #include "rlutil.h"
 

@@ -4,10 +4,11 @@
 #include<ctime>
 #include<array>
 #include<map>
+#include <time.h>
 #include "funciones.h"
 #include "rlutil.h"
-#include <time.h>
-#include <time.h>
+
+
 
 using namespace std;
 

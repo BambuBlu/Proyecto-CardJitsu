@@ -114,3 +114,48 @@
 	"funciones.h"
 	"rlutil.h"
 
+1668361214 source:c:\users\aleja\onedrive\escritorio\juego\proyecto-cardjitsu\proyecto-cardjitsu\funciones.cpp
+	<cstdlib>
+	<iostream>
+	<cstdio>
+	<ctime>
+	<array>
+	<map>
+	<time.h>
+	"funciones.h"
+	"rlutil.h"
+
+1668373849 c:\users\aleja\onedrive\escritorio\juego\proyecto-cardjitsu\proyecto-cardjitsu\funciones.h
+	<cstdlib>
+	<iostream>
+	<cstdio>
+	<ctime>
+	<array>
+	<map>
+	<time.h>
+
+1667357770 c:\users\aleja\onedrive\escritorio\juego\proyecto-cardjitsu\proyecto-cardjitsu\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1668361214 source:c:\users\aleja\onedrive\escritorio\juego\proyecto-cardjitsu\proyecto-cardjitsu\main.cpp
+	<cstdlib>
+	<iostream>
+	<cstdio>
+	<ctime>
+	<array>
+	<map>
+	<time.h>
+	"funciones.h"
+	"rlutil.h"
+

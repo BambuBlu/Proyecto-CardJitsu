@@ -22,6 +22,7 @@ bool SeleccionarDesafioSiEsPosible(int id_desafio, int desafios_elegidos[], int 
 void CartasJugadasJugadorCpu(string elemento[], string color[], int numero[], bool mazo[], int mano_jugador[], int mano_cpu[]);
 int JugarCartaJugador(string elemento[], string color[], int numero[], int mano[], int id, int cantidad_cartas);
 int JugarCartaCpu(string elemento[], string color[], int numero[], bool mazo[], int mano[], int id);
+void ElGanadorEs(int carta_seleccionada[],string elemento[], string color[], int numero[] );
 int ObtenerSeleccionCartaCpu(std::array<int,60> mano_ordenada, string elemento[], string color[], int numero[], int id, int carta_seleccionada);
 void EliminarCartasMano( int cartas_reservadas[], std::array<int,60> mano_ordenada, int mano_jugable[], int id);
 int SeleccionarCartaAleatoria(int mano[], int carta_seleccionada);

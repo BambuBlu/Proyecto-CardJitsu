@@ -852,7 +852,6 @@ void Reglas()
 
 void Creditos()
 {
-    /* Puede poner parte grafica aca */
     rlutil::setBackgroundColor(rlutil::color::BLACK);
     rlutil::cls();
     rlutil::setColor(rlutil::color::LIGHTMAGENTA);

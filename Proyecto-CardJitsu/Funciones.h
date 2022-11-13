@@ -11,6 +11,8 @@
 using namespace std;
 
 
+/// Jugabilidad
+
 void Modo();
 void JugadorVsCpu();
 void CpuVsCpu();

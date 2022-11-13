@@ -49,8 +49,8 @@ void JugadorVsCpu()
     rlutil::cls();
 
     string elemento[60]; string color[60]; string descripciones_cartas_desafio[10];
-    int numero[60]; int mano_jugador[60]; int mano_cpu[60]; bool cartas_desafio[10]; int desafios_elegidos[2]; int cantidad_cartas = 0;
-    bool mazo[60]; bool ganador = true; bool agarrar_carta = true;
+    int numero[60]; int mano_jugador[60]; int mano_cpu[60]; int desafios_elegidos[2]; int cantidad_cartas = 0;
+    bool mazo[60]; bool ganador = true; bool agarrar_carta = true; bool cartas_desafio[10];
 
 
     ColocarMazo(mazo, mano_jugador, mano_cpu, cartas_desafio);
@@ -262,54 +262,88 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60], int numero[6
 
     cout<<"El valor de carta_seleccionada[1] es: "<<carta_seleccionada[1]<<endl;
     rlutil::anykey();
-    ElGanadorEs(carta_seleccionada,elemento, color,numero );
+
+    ElGanadorEs(carta_seleccionada, elemento, color, numero);
 }
-void ElGanadorEs(int carta_seleccionada[2],string elemento[60], string color[60], int numero[60] ){
+void ElGanadorEs(std::array<int,2>  carta_seleccionada,string elemento[60], string color[60], int numero[60] ){
+    cout<<"Ingreso a ElGanadorEs"<<endl;
+    rlutil::anykey();
   //FUEGO VS NIEVE/FUEGO VS FUEGO---------------------------------------------------------------------------------------------------------------------------//
-    if(elemento[carta_seleccionada[0]]==("FUEGO")&&elemento[carta_seleccionada[1]]==("NIEVE")){
-    cout<<">>FUEGO le gana a NIEVE,Ganaste la ronda"<<endl<<endl;
+
+    if((elemento[carta_seleccionada[0]] == "FUEGO") && (elemento[carta_seleccionada[1]] == "NIEVE"))
+    {
+        cout<<">>FUEGO le gana a NIEVE,Ganaste la ronda"<<endl<<endl;
+        rlutil::anykey();
     }
-    else{elemento[carta_seleccionada[0]]==("FUEGO")&&elemento[carta_seleccionada[1]]==("FUEGO"){
-        if (numero[carta_seleccionada[0]]>numero[carta_seleccionada[1]]){
+    else if((elemento[carta_seleccionada[0]] == "FUEGO") && (elemento[carta_seleccionada[1]] == "FUEGO"))
+    {
+        if (numero[carta_seleccionada[0]] > numero[carta_seleccionada[1]])
+        {
             cout<<">>Ganaste la ronda por mayor numero"<<endl<<endl;
+            rlutil::anykey();
         }
-        else{cout<<">>Perdiste la ronda"<<endl<<endl;
+        else
+        {
+            cout<<">>Empate, las cartas vuelven a la mano"<<endl<<endl;
+            rlutil::anykey();
         }
     }
+    else if((elemento[carta_seleccionada[0]] == "NIEVE") && (elemento[carta_seleccionada[1]] == "FUEGO"))
+    {
+        cout<<">>FUEGO le gana a NIEVE, Perdiste la ronda "<<endl<<endl;
+        rlutil::anykey();
     }
-    if (elemento[carta_seleccionada[0]]==("NIEVE")&&elemento[carta_seleccionada[1]]==("FUEGO")){
-    cout<<">>FUEGO le gana a NIEVE,Perdiste la ronda "<<endl<<endl;
-    }
+
 //NIEVE VS AGUA/NIEVE VS NIEVE---------------------------------------------------------------------------------------------------------------------------//
-    if(elemento[carta_seleccionada[0]]==("NIEVE")&&elemento[carta_seleccionada[1]]==("AGUA")){
-    cout<<">>NIEVE le gana a AGUA,Ganaste la ronda"<<endl<<endl;
+
+    if((elemento[carta_seleccionada[0]] == "NIEVE") && (elemento[carta_seleccionada[1]] == "AGUA"))
+    {
+        cout<<">>NIEVE le gana a AGUA,Ganaste la ronda"<<endl<<endl;
+        rlutil::anykey();
     }
-    else{ if (elemento[carta_seleccionada[0]]==("NIEVE")&&elemento[carta_seleccionada[1]]==("NIEVE")){
-        if (numero[carta_seleccionada[0]]>numero[carta_seleccionada[1]]){
+    else if ((elemento[carta_seleccionada[0]] == "NIEVE") && (elemento[carta_seleccionada[1]] == "NIEVE"))
+    {
+        if (numero[carta_seleccionada[0]] > numero[carta_seleccionada[1]])
+        {
             cout<<">>Ganaste la ronda por mayor numero"<<endl<<endl;
+            rlutil::anykey();
         }
-        else{cout<<">>Perdiste la ronda "<<endl<<endl;
+        else
+        {
+            cout<<">>Perdiste la ronda "<<endl<<endl;
+            rlutil::anykey();
         }
     }
+    else if((elemento[carta_seleccionada[0]] == "AGUA") && (elemento[carta_seleccionada[1]] == "NIEVE"))
+    {
+        cout<<">>NIEVE le gana a AGUA,Perdiste la ronda "<<endl<<endl;
+        rlutil::anykey();
     }
-       if(elemento[carta_seleccionada[0]]==("AGUA")&&elemento[carta_seleccionada[1]]==("NIEVE")){
-    cout<<">>NIEVE le gana a AGUA,Perdiste la ronda "<<endl<<endl;
-       }
 //AGUA VS FUEGO/AGUA VS AGUA------------------------------------------------------------------------------------------------------------------------//
-    if(elemento[carta_seleccionada[0]]==("AGUA")&&elemento[carta_seleccionada[1]]==("FUEGO")){
-    cout<<">>NIEVE le gana a AGUA,Ganaste la ronda"<<endl<<endl;
+
+    if((elemento[carta_seleccionada[0]] == "AGUA") && (elemento[carta_seleccionada[1]] == "FUEGO"))
+    {
+        cout<<">>NIEVE le gana a AGUA,Ganaste la ronda"<<endl<<endl;
+        rlutil::anykey();
     }
-    else{ if (elemento[carta_seleccionada[0]]==("AGUA")&&elemento[carta_seleccionada[1]]==("AGUA")){
-        if (numero[carta_seleccionada[0]]>numero[carta_seleccionada[1]]){
+    else if((elemento[carta_seleccionada[0]] == "AGUA") && (elemento[carta_seleccionada[1]] == "AGUA"))
+    {
+        if(numero[carta_seleccionada[0]] > numero[carta_seleccionada[1]])
+        {
             cout<<">>Ganaste la ronda por mayor numero"<<endl<<endl;
+            rlutil::anykey();
         }
-        else{cout<<">>Perdiste la ronda "<<endl<<endl;
+        else
+        {
+            cout<<">>Perdiste la ronda "<<endl<<endl;
+            rlutil::anykey();
         }
     }
+    else if((elemento[carta_seleccionada[0]] == "FUEGO") && (elemento[carta_seleccionada[1]] == "AGUA"))
+    {
+        cout<<">>NIEVE le gana a AGUA,Perdiste la ronda "<<endl<<endl;
+        rlutil::anykey();
     }
-       if(Celemento[carta_seleccionada[0]]==("FUEGO")&&elemento[carta_seleccionada[1]]==("AGUA")){
-    cout<<">>NIEVE le gana a AGUA,Perdiste la ronda "<<endl<<endl;
-       }
 
 }
 
@@ -355,8 +389,6 @@ int JugarCartaCpu(string elemento[60], string color[60], int numero[60], bool ma
     cantidad_cartas = MostrarMano(elemento, color, numero, mano, true, cantidad_cartas);
     cout<<endl;
 
-    int carta_seleccionada;
-
     carta_seleccionada = ObtenerSeleccionCartaCpu(mano_ordenada, elemento, color, numero, id, carta_seleccionada);
 
     return carta_seleccionada;
@@ -391,9 +423,6 @@ int ObtenerSeleccionCartaCpu(const std::array<int,60> mano_ordenada, string elem
                 break;
             }
         }
-
-
-
     }
     else
     {
@@ -491,7 +520,7 @@ bool CartasDeCombinacionElementos(string elemento[60], string color[60], std::ar
                         }
                         else
                         {
-                            if( color[nieve_ordenado[nieve]] != color[fuego_ordenado[fuego]])
+                            if(color[nieve_ordenado[nieve]] != color[fuego_ordenado[fuego]])
                             {
                                 if(color[fuego_ordenado[fuego]] != color[agua_ordenado[agua]])
                                 {
@@ -540,7 +569,6 @@ bool CartasDeCombinacionElementos(string elemento[60], string color[60], std::ar
             {
                 cartas_reservadas[i] = agua_ordenado[i];
             }
-
         }
     }
 

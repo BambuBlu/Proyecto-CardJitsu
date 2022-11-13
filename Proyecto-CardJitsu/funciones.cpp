@@ -4,7 +4,7 @@
 #include<ctime>
 #include<array>
 #include<map>
-#include <time.h>
+#include<time.h>
 #include "funciones.h"
 #include "rlutil.h"
 
@@ -252,6 +252,7 @@ bool SeleccionarDesafioSiEsPosible(int id_desafio, int desafios_elegidos[2], int
 void CartasJugadasJugadorCpu(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano_jugador[60], int mano_cpu[60], int cantidad_cartas)
 {
     std::array<int,2> carta_seleccionada;
+
     carta_seleccionada[0] = JugarCartaJugador(elemento, color, numero, mano_jugador, 0, cantidad_cartas);
 
     cout<<"El valor de carta_seleccionada[0] es: "<<carta_seleccionada[0]<<endl;
@@ -266,7 +267,7 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60], int numero[6
 
 int JugarCartaJugador(string elemento[60], string color[60], int numero[60], int mano[60], int id, int cantidad_cartas)
 {
-    int eleccion;
+    int carta; int eleccion;
 
     cout<<"--Elija una carta a jugar--"<<endl<<endl;
 
@@ -275,8 +276,8 @@ int JugarCartaJugador(string elemento[60], string color[60], int numero[60], int
     while(true)
     {
             cout<<endl<<endl<<"carta: ";
-            cin>>eleccion;
-            if(eleccion > 0 && eleccion <= cantidad_cartas)
+            cin>>carta;
+            if(carta > 0 && carta <= cantidad_cartas)
             {
                 break;
             }
@@ -285,7 +286,9 @@ int JugarCartaJugador(string elemento[60], string color[60], int numero[60], int
                 cout<<"Esa carta no se encuentra en el maso, pruebe de nuevo"<<endl<<endl;
             }
     }
-    eleccion -= 1;
+    carta -= 1;
+
+    eleccion = mano[carta];
 
     return eleccion;
 }

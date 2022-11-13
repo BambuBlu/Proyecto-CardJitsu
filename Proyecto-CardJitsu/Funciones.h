@@ -1,12 +1,12 @@
 #ifndef FUNCIONES_H_INCLUDED
 #define FUNCIONES_H_INCLUDED
-#include <cstdlib>
-#include <iostream>
+#include<cstdlib>
+#include<iostream>
 #include<cstdio>
 #include<ctime>
 #include<array>
 #include<map>
-#include <time.h>
+#include<time.h>
 
 using namespace std;
 

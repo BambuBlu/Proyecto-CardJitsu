@@ -1,10 +1,10 @@
-#include <cstdlib>
-#include <iostream>
+#include<cstdlib>
+#include<iostream>
 #include<cstdio>
 #include<ctime>
 #include<array>
 #include<map>
-#include <time.h>
+#include<time.h>
 #include "funciones.h"
 #include "rlutil.h"
 

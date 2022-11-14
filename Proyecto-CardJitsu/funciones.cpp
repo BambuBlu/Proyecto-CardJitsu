@@ -333,14 +333,12 @@ cout<<"+--------+            "<<endl;
 cout<<"|"<<numero[carta_seleccionada[0]]<<"       |"<<endl;
 cout<<"|        |            "<<endl;
 cout<<"|        |            "<<endl;
-cout<<"|        |            "<<endl;
 cout<<"|       "<<numero[carta_seleccionada[0]]<<"|"<<endl;
 cout<<"+--------+"<<endl<<endl;
 
 cout<<"CPU tiro # "<<numero[carta_seleccionada[1]]<<" "<<elemento[carta_seleccionada[1]]<<" "<<color[carta_seleccionada[1]]<<"||"<<endl;
 cout<<"+--------+            "<<endl;
 cout<<"|"<<numero[carta_seleccionada[1]]<<"       |"<<endl;
-cout<<"|        |            "<<endl;
 cout<<"|        |            "<<endl;
 cout<<"|        |            "<<endl;
 cout<<"|       "<<numero[carta_seleccionada[1]]<<"|"<<endl;
@@ -913,21 +911,37 @@ void Creditos()
     rlutil::anykey();
     rlutil::setBackgroundColor (rlutil::color::GREY);
 }
+void InterfazCambioDeJugador();
+
+
+
+
+
+void CambiarJugador(){
+
+
+
+}
+
+
+
+
 bool Seguroquieressalir(){
     bool desicion;
     rlutil::setBackgroundColor(rlutil::color::BLACK);
     rlutil::cls();
     rlutil::setColor(rlutil::color::WHITE);
     Recuadro();
-    rlutil::locate(44,13);
+    rlutil::locate(44,12);
     cout << "¿Seguro quieres salir del juego? ";
-    rlutil::locate(44,14);
+    rlutil::locate(44,13);
     cout << "Si sales, se perdera tu progreso ";
-    rlutil::locate(48,15);
+    rlutil::locate(48,14);
     cout << "Te dejo que lo pienses";
-    rlutil::locate(48,17);
+    rlutil::locate(48,16);
     cout << "1-Si             0-No";
-    rlutil::setColor(rlutil::color::BLACK);
+    rlutil::locate(53,17);
+    cout << "Opcion: ";
     cin >> desicion;
     if (desicion){
         return 1;
@@ -996,4 +1010,5 @@ rlutil::locate(51,8);
     }
 
 }
+
 

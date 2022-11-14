@@ -25,6 +25,10 @@ void CartasJugadasJugadorCpu(string elemento[], string color[], int numero[], bo
 int JugarCartaJugador(string elemento[], string color[], int numero[], int mano[], int id, int cantidad_cartas);
 int JugarCartaCpu(string elemento[], string color[], int numero[], bool mazo[], int mano[], int id);
 void ElGanadorEs(std::array<int,2>  carta_seleccionada,string elemento[], string color[], int numero[] );
+void SiEsFuegovsNieve(std::array<int,2>  carta_seleccionada,string elemento[], string color[], int numero[] );
+void SiEsNievevsAgua(std::array<int,2>  carta_seleccionada,string elemento[], string color[], int numero[] );
+void SiEsAguavsFuego(std::array<int,2>  carta_seleccionada,string elemento[], string color[], int numero[] );
+void SiLosElementosSonIguales(std::array<int,2>  carta_seleccionada,int numero[]);
 int ObtenerSeleccionCartaCpu(std::array<int,60> mano_ordenada, string elemento[], string color[], int numero[], int id, int carta_seleccionada);
 void EliminarCartasMano( int cartas_reservadas[], std::array<int,60> mano_ordenada, int mano_jugable[], int id);
 int SeleccionarCartaAleatoria(int mano[], int carta_seleccionada);

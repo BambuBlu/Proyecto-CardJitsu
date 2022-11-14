@@ -265,79 +265,58 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60], int numero[6
 
     ElGanadorEs(carta_seleccionada, elemento, color, numero);
 }
+
 void ElGanadorEs(std::array<int,2>  carta_seleccionada,string elemento[60], string color[60], int numero[60] ){
     cout<<"Ingreso a ElGanadorEs"<<endl;
     rlutil::anykey();
-  //FUEGO VS NIEVE/FUEGO VS FUEGO---------------------------------------------------------------------------------------------------------------------------//
+ SiEsFuegovsNieve(carta_seleccionada, elemento, color, numero);
+ SiEsNievevsAgua(carta_seleccionada, elemento, color, numero);
+ SiEsAguavsFuego(carta_seleccionada, elemento, color, numero);
+}
 
+void SiEsFuegovsNieve(std::array<int,2>  carta_seleccionada,string elemento[60], string color[60], int numero[60] ){
     if((elemento[carta_seleccionada[0]] == "FUEGO") && (elemento[carta_seleccionada[1]] == "NIEVE"))
     {
         cout<<">>FUEGO le gana a NIEVE,Ganaste la ronda"<<endl<<endl;
         rlutil::anykey();
     }
-    else if((elemento[carta_seleccionada[0]] == "FUEGO") && (elemento[carta_seleccionada[1]] == "FUEGO"))
+    else if((elemento[carta_seleccionada[0]] == elemento[carta_seleccionada[1]] ))
     {
-        if (numero[carta_seleccionada[0]] > numero[carta_seleccionada[1]])
-        {
-            cout<<">>Ganaste la ronda por mayor numero"<<endl<<endl;
-            rlutil::anykey();
-        }
-        else
-        {
-            cout<<">>Empate, las cartas vuelven a la mano"<<endl<<endl;
-            rlutil::anykey();
-        }
+       SiLosElementosSonIguales(carta_seleccionada,numero);
     }
     else if((elemento[carta_seleccionada[0]] == "NIEVE") && (elemento[carta_seleccionada[1]] == "FUEGO"))
     {
         cout<<">>FUEGO le gana a NIEVE, Perdiste la ronda "<<endl<<endl;
         rlutil::anykey();
     }
+}
 
-//NIEVE VS AGUA/NIEVE VS NIEVE---------------------------------------------------------------------------------------------------------------------------//
-
+void SiEsNievevsAgua(std::array<int,2>  carta_seleccionada,string elemento[60], string color[60], int numero[60] ){
     if((elemento[carta_seleccionada[0]] == "NIEVE") && (elemento[carta_seleccionada[1]] == "AGUA"))
     {
         cout<<">>NIEVE le gana a AGUA,Ganaste la ronda"<<endl<<endl;
         rlutil::anykey();
     }
-    else if ((elemento[carta_seleccionada[0]] == "NIEVE") && (elemento[carta_seleccionada[1]] == "NIEVE"))
+    else if ((elemento[carta_seleccionada[0]] == elemento[carta_seleccionada[1]]))
     {
-        if (numero[carta_seleccionada[0]] > numero[carta_seleccionada[1]])
-        {
-            cout<<">>Ganaste la ronda por mayor numero"<<endl<<endl;
-            rlutil::anykey();
-        }
-        else
-        {
-            cout<<">>Perdiste la ronda "<<endl<<endl;
-            rlutil::anykey();
-        }
+       SiLosElementosSonIguales(carta_seleccionada,numero);
     }
     else if((elemento[carta_seleccionada[0]] == "AGUA") && (elemento[carta_seleccionada[1]] == "NIEVE"))
     {
         cout<<">>NIEVE le gana a AGUA,Perdiste la ronda "<<endl<<endl;
         rlutil::anykey();
     }
-//AGUA VS FUEGO/AGUA VS AGUA------------------------------------------------------------------------------------------------------------------------//
+}
 
+void SiEsAguavsFuego(std::array<int,2>  carta_seleccionada,string elemento[60], string color[60], int numero[60] ){
     if((elemento[carta_seleccionada[0]] == "AGUA") && (elemento[carta_seleccionada[1]] == "FUEGO"))
     {
         cout<<">>NIEVE le gana a AGUA,Ganaste la ronda"<<endl<<endl;
         rlutil::anykey();
     }
-    else if((elemento[carta_seleccionada[0]] == "AGUA") && (elemento[carta_seleccionada[1]] == "AGUA"))
+    else if((elemento[carta_seleccionada[0]] == elemento[carta_seleccionada[1]]))
     {
-        if(numero[carta_seleccionada[0]] > numero[carta_seleccionada[1]])
-        {
-            cout<<">>Ganaste la ronda por mayor numero"<<endl<<endl;
-            rlutil::anykey();
-        }
-        else
-        {
-            cout<<">>Perdiste la ronda "<<endl<<endl;
-            rlutil::anykey();
-        }
+        SiLosElementosSonIguales(carta_seleccionada,numero);
     }
     else if((elemento[carta_seleccionada[0]] == "FUEGO") && (elemento[carta_seleccionada[1]] == "AGUA"))
     {
@@ -347,6 +326,23 @@ void ElGanadorEs(std::array<int,2>  carta_seleccionada,string elemento[60], stri
 
 }
 
+void SiLosElementosSonIguales(std::array<int,2>  carta_seleccionada,int numero[60]){
+    if(numero[carta_seleccionada[0]] > numero[carta_seleccionada[1]])
+        {
+            cout<<">>Ganaste la ronda por mayor numero"<<endl<<endl;
+            rlutil::anykey();
+        }
+        else if(numero[carta_seleccionada[0]] < numero[carta_seleccionada[1]]){
+            cout<<">>Perdiste la ronda "<<endl<<endl;
+            rlutil::anykey();
+
+        }
+        else
+        {
+           cout<<">>Empate, las cartas vuelven a la mano"<<endl<<endl;
+            rlutil::anykey();
+        }
+}
 
 int JugarCartaJugador(string elemento[60], string color[60], int numero[60], int mano[60], int id, int cantidad_cartas)
 {

@@ -844,17 +844,34 @@ bool JugarRondaMenu(string elemento[60], string color[60], int numero[60], bool 
 }
 
 
-void MejorPuntaje(string nombrejugador)
+void MejorPuntaje(string nombre_jugador[10], int cont_jugadores)
 {
-    /* Puede poner parte grafica aca */
-    /* Ojo que aun no va a devolver nada aca, diria de dejarlo para mas
-       adelante cuando este terminado la forma de juego */
-    rlutil::setBackgroundColor(rlutil::color::BROWN);
+    int y=0;
+    rlutil::setBackgroundColor(rlutil::color::BLUE);
     rlutil::cls();
-    rlutil::locate(2,2);
-    cout << "Partidas:" << endl;
-    rlutil::locate(2,3);
-    cout << "Nombre de usuario: " << nombrejugador;
+    LogoPartidas();
+    rlutil::setColor (rlutil::color::WHITE);
+    rlutil::setBackgroundColor(rlutil::color::BLACK);
+    for (int x=0; x<40; x++){
+        rlutil::locate (28,9+x);
+        cout << "#";
+    }
+    rlutil::locate (1,9);
+    cout << "############################";
+    for (int x=0; x<10;x++ ){
+    rlutil::locate(1,10+y);
+    cout << "NOMBRE DE USUARIO: ";
+    rlutil::setColor (rlutil::color::RED);
+    cout << nombre_jugador [x];
+    rlutil::setColor (rlutil::color::WHITE);
+    rlutil::locate(1,12+y);
+    cout << "PUNTOS: ";
+    rlutil::locate(1,13+y);
+    cout << "############################";
+    y += 4;
+
+
+    }
     rlutil::anykey();
 }
 
@@ -886,26 +903,72 @@ void Creditos()
     rlutil::anykey();
     rlutil::setBackgroundColor (rlutil::color::GREY);
 }
-void InterfazCambioDeJugador();
-    rlutil::hidecursor();
-    rlutil::setColor(rlutil::color::WHITE);
-    for (int x=0; x<40;x++){
-        rlutil::locate(39+x,20);
-        cout <<
 
+void InterfazCambioDeJugador(){
+    for (int x=0; x<40;x++){
+        rlutil::locate(39+x,5);
+        cout << "=";
+        Sleep(15);
+    }
+    for (int x=0; x<5; x++){
+        rlutil::locate(78,6+x);
+        cout << "|";
+        Sleep(30);
 
     }
+    for (int x=0; x<40;x++){
+        rlutil::locate(78-x,11);
+        cout << "=";
+        Sleep(15);
+    }
+    for (int x=0; x<5; x++){
+        rlutil::locate(39,12+x);
+        cout << "|";
+        Sleep(30);
 
+    }
+    for (int x=0; x<40;x++){
+        rlutil::locate(39+x,17);
+        cout << "=";
+        Sleep(15);
+    }
+    for (int x=0; x<5; x++){
+        rlutil::locate(39,6+x);
+        cout << "|";
+        Sleep(30);
+    }
+    for (int x=0; x<5; x++){
+        rlutil::locate(78,12+x);
+        cout << "|";
+        Sleep(30);
 
-
-
-
-void CambiarJugador(){
-
-
-
+    }
 }
 
+void CambiarJugador(string nombre_jugador[20], int cont_jugadores){
+    string nuevo_nombre;
+    rlutil::setBackgroundColor(rlutil::color::BLACK);
+    rlutil::cls();
+    rlutil::hidecursor();
+    rlutil::setColor(rlutil::color::WHITE);
+    InterfazCambioDeJugador();
+    rlutil::locate(44,6);
+    cout << "HAS ELEGIDO CAMBIAR DE JUGADOR";
+    Sleep (20);
+    rlutil::locate(41,8);
+    cout << "Todo el progreso del jugador anterior";
+    Sleep (20);    rlutil::locate(46,10);
+    cout << "Se gurdara en";
+    rlutil::setColor (rlutil::color::LIGHTBLUE);
+    cout << " Estadisticas";
+    Sleep (20);
+    rlutil::setColor(rlutil::color::WHITE);
+    rlutil::locate(45,14);
+    cout << "Nombre del jugador: ";
+    cin>>nuevo_nombre;
+    nombre_jugador[cont_jugadores] = nuevo_nombre;
+
+}
 
 
 
@@ -923,8 +986,11 @@ bool Seguroquieressalir(){
     cout << "Te dejo que lo pienses";
     rlutil::locate(48,16);
     cout << "1-Si             0-No";
+    rlutil::setColor(rlutil::color::BLACK);
+    rlutil::setBackgroundColor (rlutil::color::WHITE);
     rlutil::locate(54,17);
     cout << "Opcion: ";
+    rlutil::locate(61,17);
     cin >> desicion;
     if (desicion){
         return 1;
@@ -981,6 +1047,22 @@ void Nombrejuego(){
     cout << "     ##          ##       ##    ## #    ##      ##            ##  ##         ##        ##             ##   ##   ## " << endl;
     cout << "     ##          ##       ##    ##  #   ##     ##              ## ##         ##        ##             ##   ##   ## " << endl;
     cout << "     #########   ##       ##    ##   #  ########                ####         ##        ##        #######   ####### " << endl;
+
+}
+void LogoPartidas(){
+rlutil::setColor(rlutil::color::WHITE);
+rlutil::setBackgroundColor(rlutil::color::BLACK);
+rlutil::locate (30,2);
+cout << "######   #####   ###### ####### ##  ######     #####    ######" << endl;
+rlutil::locate (30,3);
+cout << "##  ##  ##   ##  ##  ##    #        ##   ##   ##   ##   #     " << endl;
+rlutil::locate (30,4);
+cout << "###### ######### ######    #    ##  ##    ## #########  ######" << endl;
+rlutil::locate (30,5);
+cout << "##     ##     ## ####      #    ##  ##   ##  ##     ##       #" << endl;
+rlutil::locate (30,6);cout << "##     ##     ## ## ##     #    ##  ######   ##     ##  ######" << endl;
+rlutil::setBackgroundColor(rlutil::color::BLUE);
+
 
 }
 void Cargando(){

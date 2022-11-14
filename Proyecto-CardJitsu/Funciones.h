@@ -46,12 +46,12 @@ bool EmpezarRondaMenu(string elemento[], string color[], int numero[], bool mazo
 bool JugarRondaMenu(string elemento[], string color[], int numero[], bool mazo[], int mano_jugador[], int mano_cpu[], int desafios_elegidos[], string descripciones_cartas_desafio[], int cantidad_cartas);
 void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada,string elemento[], string color[], int numero[]);
 
-void MejorPuntaje(string nombrejugador);
+void MejorPuntaje(string nombre_jugador[], int cont_jugadores);
 void Creditos();
 void Reglas();
 bool Seguroquieressalir();
 void SalirDelJuego();
-void CambiarJugador();
+void CambiarJugador(string nombre_jugador[], int cont_jugadores);
 
 /// Diseño
 
@@ -59,6 +59,7 @@ void Recuadro();
 void Nombrejuego();
 void Cargando();
 void InterfazCambioDeJugador();
+void LogoPartidas();
 
 
 

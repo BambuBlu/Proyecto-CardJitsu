@@ -14,8 +14,8 @@ using namespace std;
 
 int main()
 {
-    int opcion=0;
-    string nombre_jugador;
+    int opcion=0, cont_jugadores=0;
+    string nombre_jugador[10]={};
     int decision;
     rlutil::setBackgroundColor(rlutil::color::BLACK);
     rlutil::cls();
@@ -26,7 +26,7 @@ int main()
     rlutil::showcursor();
     rlutil::locate (44,14);
     cout << "Nombre del jugador: ";
-    cin>>nombre_jugador;
+    cin>>nombre_jugador[cont_jugadores];
     rlutil::hidecursor();
 
     while(true)
@@ -36,7 +36,7 @@ int main()
         rlutil::cls();
         Nombrejuego();
         rlutil::locate (45, 10);
-        cout << "#" << nombre_jugador;
+        cout << "#" << nombre_jugador [cont_jugadores];
         rlutil::locate (45, 11);
         cout << "---------------------------" << endl;
         rlutil::locate (45, 12);
@@ -68,7 +68,7 @@ int main()
                 Modo();
             break;
             case 2:
-                MejorPuntaje(nombre_jugador);
+                MejorPuntaje(nombre_jugador, cont_jugadores);
                 rlutil::setBackgroundColor (rlutil::color::GREY);
             break;
             case 3:
@@ -78,7 +78,8 @@ int main()
                 Reglas();
                 break;
             case 5:
-
+                cont_jugadores++;
+                CambiarJugador(nombre_jugador, cont_jugadores);
                 break;
             case 0:
                 decision = Seguroquieressalir();

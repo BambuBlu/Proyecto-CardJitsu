@@ -269,6 +269,7 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60], int numero[6
 void ElGanadorEs(std::array<int,2>  carta_seleccionada,string elemento[60], string color[60], int numero[60] ){
     cout<<"Ingreso a ElGanadorEs"<<endl;
     rlutil::anykey();
+ MostrarCartasEnfrentadas(carta_seleccionada, elemento, color, numero);
  SiEsFuegovsNieve(carta_seleccionada, elemento, color, numero);
  SiEsNievevsAgua(carta_seleccionada, elemento, color, numero);
  SiEsAguavsFuego(carta_seleccionada, elemento, color, numero);
@@ -279,6 +280,7 @@ void SiEsFuegovsNieve(std::array<int,2>  carta_seleccionada,string elemento[60],
     {
         cout<<">>FUEGO le gana a NIEVE,Ganaste la ronda"<<endl<<endl;
         rlutil::anykey();
+
     }
     else if((elemento[carta_seleccionada[0]] == elemento[carta_seleccionada[1]] ))
     {
@@ -311,7 +313,7 @@ void SiEsNievevsAgua(std::array<int,2>  carta_seleccionada,string elemento[60], 
 void SiEsAguavsFuego(std::array<int,2>  carta_seleccionada,string elemento[60], string color[60], int numero[60] ){
     if((elemento[carta_seleccionada[0]] == "AGUA") && (elemento[carta_seleccionada[1]] == "FUEGO"))
     {
-        cout<<">>NIEVE le gana a AGUA,Ganaste la ronda"<<endl<<endl;
+        cout<<">>AGUA le gana a FUEGO,Ganaste la ronda"<<endl<<endl;
         rlutil::anykey();
     }
     else if((elemento[carta_seleccionada[0]] == elemento[carta_seleccionada[1]]))
@@ -320,12 +322,30 @@ void SiEsAguavsFuego(std::array<int,2>  carta_seleccionada,string elemento[60], 
     }
     else if((elemento[carta_seleccionada[0]] == "FUEGO") && (elemento[carta_seleccionada[1]] == "AGUA"))
     {
-        cout<<">>NIEVE le gana a AGUA,Perdiste la ronda "<<endl<<endl;
+        cout<<">>AGUA le gana a FUEGO,Perdiste la ronda "<<endl<<endl;
         rlutil::anykey();
     }
 
 }
+void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada,string elemento[60], string color[60], int numero[60]){
+cout<<"tiraste # "<<numero[carta_seleccionada[0]]<<" "<<elemento[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]]<<"||"<<endl;
+cout<<"+--------+            "<<endl;
+cout<<"|"<<numero[carta_seleccionada[0]]<<"       |"<<endl;
+cout<<"|        |            "<<endl;
+cout<<"|        |            "<<endl;
+cout<<"|        |            "<<endl;
+cout<<"|       "<<numero[carta_seleccionada[0]]<<"|"<<endl;
+cout<<"+--------+"<<endl<<endl;
 
+cout<<"CPU tiro # "<<numero[carta_seleccionada[1]]<<" "<<elemento[carta_seleccionada[1]]<<" "<<color[carta_seleccionada[1]]<<"||"<<endl;
+cout<<"+--------+            "<<endl;
+cout<<"|"<<numero[carta_seleccionada[1]]<<"       |"<<endl;
+cout<<"|        |            "<<endl;
+cout<<"|        |            "<<endl;
+cout<<"|        |            "<<endl;
+cout<<"|       "<<numero[carta_seleccionada[1]]<<"|"<<endl;
+cout<<"+--------+"<<endl<<endl;
+}
 void SiLosElementosSonIguales(std::array<int,2>  carta_seleccionada,int numero[60]){
     if(numero[carta_seleccionada[0]] > numero[carta_seleccionada[1]])
         {
@@ -375,7 +395,6 @@ int JugarCartaJugador(string elemento[60], string color[60], int numero[60], int
 
 int JugarCartaCpu(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano[60], int id)
 {
-    int carta_seleccionada;
 
     AgarrarCartaDelMazo(mazo, mano);
 
@@ -385,6 +404,7 @@ int JugarCartaCpu(string elemento[60], string color[60], int numero[60], bool ma
     int cantidad_cartas = 0;
     cantidad_cartas = MostrarMano(elemento, color, numero, mano, true, cantidad_cartas);
     cout<<endl;
+    int carta_seleccionada;
     carta_seleccionada = ObtenerSeleccionCartaCpu(mano_ordenada, elemento, color, numero, id, carta_seleccionada);
 
     return carta_seleccionada;

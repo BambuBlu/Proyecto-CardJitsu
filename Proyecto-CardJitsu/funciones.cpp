@@ -912,6 +912,14 @@ void Creditos()
     rlutil::setBackgroundColor (rlutil::color::GREY);
 }
 void InterfazCambioDeJugador();
+    rlutil::hidecursor();
+    rlutil::setColor(rlutil::color::WHITE);
+    for (int x=0; x<40;x++){
+        rlutil::locate(39+x,20);
+        cout <<
+
+
+    }
 
 
 
@@ -940,7 +948,7 @@ bool Seguroquieressalir(){
     cout << "Te dejo que lo pienses";
     rlutil::locate(48,16);
     cout << "1-Si             0-No";
-    rlutil::locate(53,17);
+    rlutil::locate(54,17);
     cout << "Opcion: ";
     cin >> desicion;
     if (desicion){

@@ -375,6 +375,7 @@ int JugarCartaJugador(string elemento[60], string color[60], int numero[60], int
 
 int JugarCartaCpu(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano[60], int id)
 {
+    int carta_seleccionada;
 
     AgarrarCartaDelMazo(mazo, mano);
 
@@ -384,7 +385,6 @@ int JugarCartaCpu(string elemento[60], string color[60], int numero[60], bool ma
     int cantidad_cartas = 0;
     cantidad_cartas = MostrarMano(elemento, color, numero, mano, true, cantidad_cartas);
     cout<<endl;
-
     carta_seleccionada = ObtenerSeleccionCartaCpu(mano_ordenada, elemento, color, numero, id, carta_seleccionada);
 
     return carta_seleccionada;

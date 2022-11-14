@@ -298,7 +298,7 @@ void ComparativaCartasJugadas(std::array<int,2>  carta_seleccionada, string elem
 }
 
 
-void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada,string elemento[60], string color[60], int numero[60])
+void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada, string elemento[60], string color[60], int numero[60])
 {
     cout<<"tiraste # "<<numero[carta_seleccionada[0]]<<" "<<elemento[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]]<<"||"<<endl;
     cout<<"+--------+            "<<endl;
@@ -319,8 +319,7 @@ void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada,string eleme
     cout<<"+--------+"<<endl<<endl;
 }
 
-
-void SiLosElementosSonIguales(std::array<int,2>  carta_seleccionada,int numero[60])
+void SiLosElementosSonIguales(std::array<int,2>  carta_seleccionada, int numero[60])
 {
     if(numero[carta_seleccionada[0]] > numero[carta_seleccionada[1]])
         {
@@ -454,8 +453,6 @@ int SeleccionarCartaAleatoria(int mano[60], int carta_seleccionada)
 
     return carta_seleccionada;
 }
-
-
 
 
 bool CartasDeCombinacionElementos(string elemento[60], string color[60], std::array<int,60> mano_ordenada, bool combinacion_ganadora,int cartas_reservadas[3])
@@ -889,21 +886,37 @@ void Creditos()
     rlutil::anykey();
     rlutil::setBackgroundColor (rlutil::color::GREY);
 }
+void InterfazCambioDeJugador();
+
+
+
+
+
+void CambiarJugador(){
+
+
+
+}
+
+
+
+
 bool Seguroquieressalir(){
     bool desicion;
     rlutil::setBackgroundColor(rlutil::color::BLACK);
     rlutil::cls();
     rlutil::setColor(rlutil::color::WHITE);
     Recuadro();
-    rlutil::locate(44,13);
+    rlutil::locate(44,12);
     cout << "¿Seguro quieres salir del juego? ";
-    rlutil::locate(44,14);
+    rlutil::locate(44,13);
     cout << "Si sales, se perdera tu progreso ";
-    rlutil::locate(48,15);
+    rlutil::locate(48,14);
     cout << "Te dejo que lo pienses";
-    rlutil::locate(48,17);
+    rlutil::locate(48,16);
     cout << "1-Si             0-No";
-    rlutil::setColor(rlutil::color::BLACK);
+    rlutil::locate(53,17);
+    cout << "Opcion: ";
     cin >> desicion;
     if (desicion){
         return 1;
@@ -972,4 +985,5 @@ rlutil::locate(51,8);
     }
 
 }
+
 

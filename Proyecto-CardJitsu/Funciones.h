@@ -44,18 +44,21 @@ std::array<int,60> OrdenarMano(string elemento[], int numero[], int mano[]);
 bool LaCartaEsMayor(int carta_a, int carta_b, string elemento[], int numero[]);
 bool EmpezarRondaMenu(string elemento[], string color[], int numero[], bool mazo[], int mano_jugador[], int desafios_elegidos[], string descripciones_cartas_desafio[], int cantidad_cartas);
 bool JugarRondaMenu(string elemento[], string color[], int numero[], bool mazo[], int mano_jugador[], int mano_cpu[], int desafios_elegidos[], string descripciones_cartas_desafio[], int cantidad_cartas);
+void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada,string elemento[], string color[], int numero[]);
 
 void MejorPuntaje(string nombrejugador);
 void Creditos();
 void Reglas();
 bool Seguroquieressalir();
 void SalirDelJuego();
+void CambiarJugador();
 
 /// Diseño
 
 void Recuadro();
 void Nombrejuego();
 void Cargando();
+void InterfazCambioDeJugador();
 
 
 

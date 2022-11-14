@@ -47,13 +47,16 @@ int main()
         cout << "2- ESTADISTICAS" << endl;
         rlutil::locate (45, 14);        rlutil::setColor (rlutil::color::LIGHTGREEN);
         cout << "3- CREDITOS" << endl;
-        rlutil::locate (45, 15);        rlutil::setColor (rlutil::color::WHITE);
+        rlutil::locate (45, 15);
+        rlutil::setColor (rlutil::color::WHITE);
         cout << "4- REGLAS DEL JUEGO" << endl;
-        rlutil::locate (45, 16);
+        rlutil::locate (45, 16);        rlutil::setColor (rlutil::color::DARKGREY);
+        cout << "5- CAMBIAR JUGADOR" << endl;
+        rlutil::locate (45, 17);
         rlutil::setColor (rlutil::color::BLACK);
         cout << "---------------------------" << endl;
-        rlutil::locate (45, 17);        rlutil::setColor (rlutil::color::MAGENTA);        cout << "0- SALIR" << endl;
-        rlutil::locate (45, 18);
+        rlutil::locate (45, 18);        rlutil::setColor (rlutil::color::MAGENTA);        cout << "0- SALIR" << endl;
+        rlutil::locate (45, 19);
         rlutil::setColor (rlutil::color::BLACK);
         cout << "OPCION: ";
         cin >> opcion;
@@ -73,6 +76,9 @@ int main()
                 break;
             case 4:
                 Reglas();
+                break;
+            case 5:
+
                 break;
             case 0:
                 decision = Seguroquieressalir();

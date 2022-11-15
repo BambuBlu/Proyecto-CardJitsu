@@ -16,6 +16,7 @@ int main()
 {
     int opcion=0, cont_jugadores=1;
     string nombre_jugador[10]={};
+    int Puntos_Jugador[10]={};
     int decision;
     rlutil::setBackgroundColor(rlutil::color::BLACK);
     rlutil::cls();
@@ -65,7 +66,7 @@ int main()
         switch (opcion){
             case 1:
                 rlutil::setBackgroundColor(rlutil::color::WHITE);
-                Modo();
+                Modo(Puntos_Jugador,cont_jugadores);
             break;
             case 2:
                 MejorPuntaje(nombre_jugador, cont_jugadores);

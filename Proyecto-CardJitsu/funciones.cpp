@@ -373,35 +373,43 @@ void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada, string elem
     cout<<"|       "<<numero[carta_seleccionada[1]]<<"|"<<endl;
     cout<<"+--------+"<<endl<<endl;
 }
-void LogoCarta(string elemento,string color){
-char L;
-if (color=="ROJO"){
-         rlutil::setColor(rlutil::color::RED);
-}
-        else if (color=="VERDE"){
-                  rlutil::setColor(rlutil::color::GREEN);
-        }
-                 else if (color=="AMARILLO"){
-                           rlutil::setColor(rlutil::color::YELLOW);
-                 }
-                          else{
-                              rlutil::setColor(rlutil::color::BLUE);
-                              };
 
 
-if (elemento=="FUEGO")
+void LogoCarta(string elemento,string color)
+{
+    char logo;
+
+    if (color == "ROJO")
     {
-         L='F';
-}
-else if (elemento=="NIEVE")
+        rlutil::setColor(rlutil::color::RED);
+    }
+    else if (color == "VERDE")
     {
-         L='N';
-}
-else {
-     L='A';
-}
-cout<<L;
-rlutil::setColor(rlutil::color::WHITE);
+        rlutil::setColor(rlutil::color::GREEN);
+    }
+    else if (color == "AMARILLO")
+    {
+        rlutil::setColor(rlutil::color::YELLOW);
+    }
+    else
+    {
+        rlutil::setColor(rlutil::color::BLUE);
+    }
+
+    if (elemento == "FUEGO")
+    {
+        logo='F';
+    }
+    else if (elemento == "NIEVE")
+    {
+        logo='N';
+    }
+    else
+    {
+        logo='A';
+    }
+    cout<<logo;
+    rlutil::setColor(rlutil::color::WHITE);
 }
 
 

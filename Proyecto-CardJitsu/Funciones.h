@@ -44,7 +44,8 @@ std::array<int,60> OrdenarMano(string elemento[], int numero[], int mano[]);
 bool LaCartaEsMayor(int carta_a, int carta_b, string elemento[], int numero[]);
 bool EmpezarRondaMenu(string elemento[], string color[], int numero[], bool mazo[], int mano_jugador[], int desafios_elegidos[], string descripciones_cartas_desafio[], int cantidad_cartas);
 bool JugarRondaMenu(string elemento[], string color[], int numero[], bool mazo[], int mano_jugador[], int mano_cpu[], int desafios_elegidos[], string descripciones_cartas_desafio[], int cantidad_cartas);
-void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada,string elemento[], string color[], int numero[]);
+void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada, string elemento[60], string color[60], int numero[60]);
+void LogoCarta(string elemento,string color);
 
 void MejorPuntaje(string nombre_jugador[], int cont_jugadores);
 void Creditos();

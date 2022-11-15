@@ -194,22 +194,64 @@ void ColocarCartasDesafio(bool cartas_desafio[10], int desafios_elegidos[2])
 
 void SeleccionarDesafio(bool cartas_desafio[10], int desafios_elegidos[2], int id)
 {
+    rlutil::setBackgroundColor(rlutil::color::BLACK);
+    rlutil::cls();
     int id_desafio;
+    char mensaje1[]= "A continuacion", mensaje2[] = "Elige una carta desafio";
     while(true)
     {
-        /* Puede poner parte grafica aca */
-        cout<<"-Elige una carta desafio-"<<endl<<endl;
+        rlutil::cls();
+        rlutil::setColor (rlutil::color::WHITE);
+        rlutil::locate (50,3);
+        for (int x=0; x<14;x++){
+            cout << mensaje1 [x];
+            Sleep(20);
+        }
+        rlutil::locate (47,4);
+        for (int x=0; x<23;x++){
+            cout << mensaje2 [x];
+            Sleep(20);
+
+        }
+            Sleep(20);        rlutil::locate (1,7);
+        rlutil::setColor (rlutil::color::CYAN);
         cout<<"1 - Ganar una carta de Nieve."<<endl;
+            Sleep(20);        rlutil::locate (1,8);
+        rlutil::setColor (rlutil::color::LIGHTRED);
         cout<<"2 - Ganar una carta de Fuego."<<endl;
+            Sleep(20);
+        rlutil::locate (1,9);
+        rlutil::setColor (rlutil::color::BLUE);
         cout<<"3 - Ganar una carta de Agua."<<endl;
+            Sleep(20);        rlutil::locate (1,10);
+        rlutil::setColor (rlutil::color::LIGHTRED);
         cout<<"4 - Ganar dos cartas rojas."<<endl;
+            Sleep(20);
+        rlutil::locate (1,11);        rlutil::setColor (rlutil::color::YELLOW);
         cout<<"5 - Ganar dos cartas amarillas."<<endl;
+            Sleep(20);        rlutil::locate (1,12);
+        rlutil::setColor (rlutil::color::GREEN);
         cout<<"6 - Ganar dos cartas verdes."<<endl;
+            Sleep(20);
+        rlutil::locate (1,13);
+        rlutil::setColor (rlutil::color::BLUE);
         cout<<"7 - Ganar dos cartas azules."<<endl;
+            Sleep(20);
+        rlutil::locate (1,14);
+        rlutil::setColor (rlutil::color::MAGENTA);
         cout<<"8 - Ganar una carta con el mismo elemento que el adversario."<<endl;
+            Sleep(20);
+        rlutil::locate (1,15);
+        rlutil::setColor (rlutil::color::DARKGREY);
         cout<<"9 - Ganar dos cartas con el mismo numero."<<endl;
+            Sleep(20);
+        rlutil::locate (1,16);
+        rlutil::setColor (rlutil::color::LIGHTRED);
         cout<<"10 - Ganar dos rondas de manera consecutiva."<<endl<<endl;
-        cout<<"Desafio N -> ";
+            Sleep(20);
+        rlutil::locate (1,18);
+        rlutil::setColor (rlutil::color::WHITE);
+        cout<<"Desafio N ----> ";
         cin>>id_desafio;
         id_desafio -= 1;
 
@@ -219,8 +261,13 @@ void SeleccionarDesafio(bool cartas_desafio[10], int desafios_elegidos[2], int i
         }
         else
         {
-            /* Puede poner parte grafica aca */
+            rlutil::setColor(rlutil::color::LIGHTRED);
             cout<<"No se puede tomar la carta de desafio seleccionada"<<endl;
+            rlutil::locate(35,22);
+            rlutil::setColor(rlutil::color::WHITE);
+            cout<<"<PRESIONA CUALQUIER TECLA PARA INTEALO DE NUEVO>"<<endl;
+            rlutil::anykey();
+
         }
     }
 }

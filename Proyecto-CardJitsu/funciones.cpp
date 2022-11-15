@@ -347,10 +347,14 @@ void ComparativaCartasJugadas(std::array<int,2>  carta_seleccionada, string elem
 
 void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada, string elemento[60], string color[60], int numero[60])
 {
+
     cout<<"tiraste # "<<numero[carta_seleccionada[0]]<<" "<<elemento[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]]<<"||"<<endl;
     cout<<"+--------+            "<<endl;
     cout<<"|"<<numero[carta_seleccionada[0]]<<"       |"<<endl;
     cout<<"|        |            "<<endl;
+    cout<<"|   ";
+    LogoCarta(elemento[carta_seleccionada[0]],color[carta_seleccionada[0]]);
+    cout<<"    |            "<<endl;
     cout<<"|        |            "<<endl;
     cout<<"|        |            "<<endl;
     cout<<"|       "<<numero[carta_seleccionada[0]]<<"|"<<endl;
@@ -360,11 +364,44 @@ void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada, string elem
     cout<<"+--------+            "<<endl;
     cout<<"|"<<numero[carta_seleccionada[1]]<<"       |"<<endl;
     cout<<"|        |            "<<endl;
-    cout<<"|        |            "<<endl;
+    cout<<"|   ";
+    LogoCarta(elemento[carta_seleccionada[1]],color[carta_seleccionada[1]]);
+    cout<<"    |            "<<endl;
     cout<<"|        |            "<<endl;
     cout<<"|       "<<numero[carta_seleccionada[1]]<<"|"<<endl;
     cout<<"+--------+"<<endl<<endl;
 }
+void LogoCarta(string elemento,string color){
+char L;
+if (color=="ROJO"){
+         rlutil::setColor(rlutil::color::RED);
+}
+        else if (color=="VERDE"){
+                  rlutil::setColor(rlutil::color::GREEN);
+        }
+                 else if (color=="AMARILLO"){
+                           rlutil::setColor(rlutil::color::YELLOW);
+                 }
+                          else{
+                              rlutil::setColor(rlutil::color::BLUE);
+                              };
+
+
+if (elemento=="FUEGO")
+    {
+         L='F';
+}
+else if (elemento=="NIEVE")
+    {
+         L='N';
+}
+else {
+     L='A';
+}
+cout<<L;
+rlutil::setColor(rlutil::color::WHITE);
+}
+
 
 void SiLosElementosSonIguales(std::array<int,2>  carta_seleccionada, int numero[60])
 {
@@ -384,6 +421,7 @@ void SiLosElementosSonIguales(std::array<int,2>  carta_seleccionada, int numero[
             rlutil::anykey();
         }
 }
+
 
 
 int JugarCartaJugador(string elemento[60], string color[60], int numero[60], int mano[60], int id, int cantidad_cartas)

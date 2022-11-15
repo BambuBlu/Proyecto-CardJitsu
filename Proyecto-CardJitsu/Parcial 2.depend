@@ -117,7 +117,7 @@
 	"funciones.h"
 	"rlutil.h"
 
-1668361214 source:c:\users\aleja\onedrive\escritorio\juego\proyecto-cardjitsu\proyecto-cardjitsu\funciones.cpp
+1668473581 source:c:\users\aleja\onedrive\escritorio\juego\proyecto-cardjitsu\proyecto-cardjitsu\funciones.cpp
 	<cstdlib>
 	<iostream>
 	<cstdio>
@@ -128,7 +128,7 @@
 	"funciones.h"
 	"rlutil.h"
 
-1668386855 c:\users\aleja\onedrive\escritorio\juego\proyecto-cardjitsu\proyecto-cardjitsu\funciones.h
+1668473941 c:\users\aleja\onedrive\escritorio\juego\proyecto-cardjitsu\proyecto-cardjitsu\funciones.h
 	<cstdlib>
 	<iostream>
 	<cstdio>
@@ -151,7 +151,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1668361214 source:c:\users\aleja\onedrive\escritorio\juego\proyecto-cardjitsu\proyecto-cardjitsu\main.cpp
+1668473581 source:c:\users\aleja\onedrive\escritorio\juego\proyecto-cardjitsu\proyecto-cardjitsu\main.cpp
 	<cstdlib>
 	<iostream>
 	<cstdio>

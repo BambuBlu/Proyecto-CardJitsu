@@ -36,7 +36,7 @@ int main()
         rlutil::cls();
         Nombrejuego();
         rlutil::locate (45, 10);
-        cout << "#" << nombre_jugador [cont_jugadores];
+        cout << "#" << nombre_jugador [cont_jugadores-1];
         rlutil::locate (45, 11);
         cout << "---------------------------" << endl;
         rlutil::locate (45, 12);
@@ -50,7 +50,7 @@ int main()
         rlutil::locate (45, 15);
         rlutil::setColor (rlutil::color::WHITE);
         cout << "4- REGLAS DEL JUEGO" << endl;
-        rlutil::locate (45, 16);        rlutil::setColor (rlutil::color::DARKGREY);
+        rlutil::locate (45, 16);        rlutil::setColor (rlutil::color::LIGHTCYAN);
         cout << "5- CAMBIAR JUGADOR" << endl;
         rlutil::locate (45, 17);
         rlutil::setColor (rlutil::color::BLACK);

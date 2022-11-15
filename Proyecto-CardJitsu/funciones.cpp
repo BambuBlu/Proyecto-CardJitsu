@@ -917,7 +917,7 @@ void InterfazCambioDeJugador(){
     for (int x=0; x<5; x++){
         rlutil::locate(78,6+x);
         cout << "|";
-        Sleep(30);
+        Sleep(40);
 
     }
     for (int x=0; x<40;x++){
@@ -928,7 +928,7 @@ void InterfazCambioDeJugador(){
     for (int x=0; x<5; x++){
         rlutil::locate(39,12+x);
         cout << "|";
-        Sleep(30);
+        Sleep(40);
 
     }
     for (int x=0; x<40;x++){
@@ -939,12 +939,12 @@ void InterfazCambioDeJugador(){
     for (int x=0; x<5; x++){
         rlutil::locate(39,6+x);
         cout << "|";
-        Sleep(30);
+        Sleep(40);
     }
     for (int x=0; x<5; x++){
         rlutil::locate(78,12+x);
         cout << "|";
-        Sleep(30);
+        Sleep(40);
 
     }
 }

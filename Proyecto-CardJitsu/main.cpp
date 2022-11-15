@@ -14,7 +14,7 @@ using namespace std;
 
 int main()
 {
-    int opcion=0, cont_jugadores=0;
+    int opcion=0, cont_jugadores=1;
     string nombre_jugador[10]={};
     int decision;
     rlutil::setBackgroundColor(rlutil::color::BLACK);
@@ -26,7 +26,7 @@ int main()
     rlutil::showcursor();
     rlutil::locate (44,14);
     cout << "Nombre del jugador: ";
-    cin>>nombre_jugador[cont_jugadores];
+    cin>>nombre_jugador[cont_jugadores-1];
     rlutil::hidecursor();
 
     while(true)

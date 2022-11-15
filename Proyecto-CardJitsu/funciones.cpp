@@ -846,19 +846,21 @@ bool JugarRondaMenu(string elemento[60], string color[60], int numero[60], bool 
 
 void MejorPuntaje(string nombre_jugador[10], int cont_jugadores)
 {
-    int y=0;
+    int y=0, celdas_jugadores = 4;
+    celdas_jugadores *= cont_jugadores;
     rlutil::setBackgroundColor(rlutil::color::BLUE);
     rlutil::cls();
     LogoPartidas();
     rlutil::setColor (rlutil::color::WHITE);
     rlutil::setBackgroundColor(rlutil::color::BLACK);
-    for (int x=0; x<40; x++){
+    for (int x=0; x<celdas_jugadores; x++){
         rlutil::locate (28,9+x);
         cout << "#";
     }
     rlutil::locate (1,9);
     cout << "############################";
-    for (int x=0; x<10;x++ ){
+    for (int x=0; x<cont_jugadores;x++){
+    if (nombre_jugador[x]!= ""){
     rlutil::locate(1,10+y);
     cout << "NOMBRE DE USUARIO: ";
     rlutil::setColor (rlutil::color::RED);
@@ -869,8 +871,10 @@ void MejorPuntaje(string nombre_jugador[10], int cont_jugadores)
     rlutil::locate(1,13+y);
     cout << "############################";
     y += 4;
+    }
+    else{
 
-
+    }
     }
     rlutil::anykey();
 }
@@ -966,7 +970,7 @@ void CambiarJugador(string nombre_jugador[20], int cont_jugadores){
     rlutil::locate(45,14);
     cout << "Nombre del jugador: ";
     cin>>nuevo_nombre;
-    nombre_jugador[cont_jugadores] = nuevo_nombre;
+    nombre_jugador[cont_jugadores-1] = nuevo_nombre;
 
 }
 

@@ -24,10 +24,10 @@ bool SeleccionarDesafioSiEsPosible(int id_desafio, int desafios_elegidos[], int 
 void CartasJugadasJugadorCpu(string elemento[], string color[], int Puntos_Jugador[],int cont_jugadores, int numero[], bool mazo[], int mano_jugador[], int mano_cpu[]);
 int JugarCartaJugador(string elemento[], string color[], int numero[], int mano[], int id, int cantidad_cartas);
 int JugarCartaCpu(string elemento[], string color[], int numero[], bool mazo[], int mano[], int id);
-bool ComparativaCartasJugadas(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[],int cont_jugadores, string elemento[], string color[], int numero[], string elemento1, string elemento2);
+bool ComparativaCartasJugadas(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[],int cont_jugadores, int mano_jugador[], int mano_cpu[], string elemento[], string color[], int numero[], string elemento1, string elemento2);
 void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada,string elemento[], string color[], int numero[]);
-void ElGanadorEs(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[],int cont_jugadores,string elemento[], string color[], int numero[] );
-void SiLosElementosSonIguales(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[],int cont_jugadores,int numero[]);
+void ElGanadorEs(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[],int cont_jugadores,int mano_jugador[],int mano_cpu[],string elemento[], string color[], int numero[] );
+void SiLosElementosSonIguales(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[],int mano_jugador[], int mano_cpu[],int cont_jugadores,int numero[]);
 int ObtenerSeleccionCartaCpu(std::array<int,60> mano_ordenada, string elemento[], string color[], int numero[], int id, int carta_seleccionada);
 void EliminarCartasMano( int cartas_reservadas[], std::array<int,60> mano_ordenada, int mano_jugable[], int id);
 int SeleccionarCartaAleatoria(int mano[], int carta_seleccionada);
@@ -46,7 +46,9 @@ bool EmpezarRondaMenu(string elemento[], string color[], int numero[], bool mazo
 bool JugarRondaMenu(string elemento[], string color[],int Puntos_Jugador[], int cont_jugadores, int numero[], bool mazo[], int mano_jugador[], int mano_cpu[], int desafios_elegidos[], string descripciones_cartas_desafio[], int cantidad_cartas);
 void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada, string elemento[60], string color[60], int numero[60]);
 void LogoCarta(string elemento,string color);
-
+void RetirarCartaPerdida(int carta_seleccionada,int mano[]);
+void RobarCartaGanada(int carta_seleccionada,int mano[]);
+void DevolverPorEmpate(std::array<int,2>  carta_seleccionada,int mano_jugador[],int mano_cpu[]);
 void MejorPuntaje(string nombre_jugador[], int cont_jugadores);
 void Creditos();
 void Reglas();

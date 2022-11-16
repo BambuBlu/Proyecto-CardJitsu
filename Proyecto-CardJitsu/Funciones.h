@@ -24,7 +24,7 @@ bool SeleccionarDesafioSiEsPosible(int id_desafio, int desafios_elegidos[], int 
 void CartasJugadasJugadorCpu(string elemento[], string color[], int Puntos_Jugador[],int cont_jugadores, int numero[], bool mazo[], int mano_jugador[], int mano_cpu[]);
 int JugarCartaJugador(string elemento[], string color[], int numero[], int mano[], int id, int cantidad_cartas);
 int JugarCartaCpu(string elemento[], string color[], int numero[], bool mazo[], int mano[], int id);
-void ComparativaCartasJugadas(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[],int cont_jugadores, string elemento[], string color[], int numero[], string elemento1, string elemento2);
+bool ComparativaCartasJugadas(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[],int cont_jugadores, string elemento[], string color[], int numero[], string elemento1, string elemento2);
 void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada,string elemento[], string color[], int numero[]);
 void ElGanadorEs(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[],int cont_jugadores,string elemento[], string color[], int numero[] );
 void SiLosElementosSonIguales(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[],int cont_jugadores,int numero[]);

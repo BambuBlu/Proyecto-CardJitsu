@@ -315,35 +315,47 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60], int Puntos_J
 
 void ElGanadorEs(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[10],int cont_jugadores,string elemento[60], string color[60], int numero[60] )
 {
-    cout<<"Ingreso a ElGanadorEs"<<endl;
     rlutil::anykey();
 
     MostrarCartasEnfrentadas(carta_seleccionada, elemento, color, numero);
 
-    ComparativaCartasJugadas(carta_seleccionada, Puntos_Jugador, cont_jugadores, elemento, color, numero, "FUEGO", "NIEVE");
-    ComparativaCartasJugadas(carta_seleccionada, Puntos_Jugador, cont_jugadores, elemento, color, numero, "NIEVE", "AGUA");
-    ComparativaCartasJugadas(carta_seleccionada, Puntos_Jugador, cont_jugadores, elemento, color, numero, "AGUA", "FUEGO");
+
+    if(ComparativaCartasJugadas(carta_seleccionada, Puntos_Jugador, cont_jugadores, elemento, color, numero, "FUEGO", "NIEVE"))
+    {
+        if(ComparativaCartasJugadas(carta_seleccionada, Puntos_Jugador, cont_jugadores, elemento, color, numero, "NIEVE", "AGUA"))
+        {
+            ComparativaCartasJugadas(carta_seleccionada, Puntos_Jugador, cont_jugadores, elemento, color, numero, "AGUA", "FUEGO");
+        }
+    }
 }
 
 
-void ComparativaCartasJugadas(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[10],int cont_jugadores,string elemento[60], string color[60], int numero[60], string elemento1, string elemento2)
+bool ComparativaCartasJugadas(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[10],int cont_jugadores,string elemento[60], string color[60], int numero[60], string elemento1, string elemento2)
 {
+    bool ganador = true;
+
     if((elemento[carta_seleccionada[0]] == elemento1) && (elemento[carta_seleccionada[1]] == elemento2))
     {
         cout<<">>"<<elemento1<<" le gana a "<<elemento2<<",Ganaste la ronda"<<endl<<endl;
         Puntos_Jugador[cont_jugadores-1]+=1;
         rlutil::anykey();
+
+        ganador = false;
     }
     else if((elemento[carta_seleccionada[0]] == elemento[carta_seleccionada[1]] ))
     {
        SiLosElementosSonIguales(carta_seleccionada,Puntos_Jugador, cont_jugadores,numero);
+       ganador = false;
     }
     else if((elemento[carta_seleccionada[0]] == elemento2) && (elemento[carta_seleccionada[1]] == elemento1))
     {
         cout<<">>"<<elemento1<<" le gana a "<<elemento2<<", Perdiste la ronda "<<endl<<endl;
         Puntos_Jugador[cont_jugadores-1]-=1;
         rlutil::anykey();
+        ganador = false;
     }
+
+    return ganador;
 }
 
 
@@ -441,6 +453,8 @@ int JugarCartaJugador(string elemento[60], string color[60], int numero[60], int
 {
     int carta; int eleccion;
 
+    std::array<int,60> mano_ordenada = {OrdenarMano(elemento, numero, mano)};
+
     cout<<"--Elija una carta a jugar--"<<endl<<endl;
 
     cantidad_cartas = MostrarMano(elemento, color, numero, mano, true, cantidad_cartas);
@@ -460,7 +474,7 @@ int JugarCartaJugador(string elemento[60], string color[60], int numero[60], int
     }
     carta -= 1;
 
-    eleccion = mano[carta];
+    eleccion = mano_ordenada[carta];
 
     return eleccion;
 }
@@ -799,6 +813,7 @@ int MostrarMano(string elemento[60], string color[60], int numero[60], int mano[
 
         }
     }
+
     if(!seleccion)
     {
         rlutil::anykey();

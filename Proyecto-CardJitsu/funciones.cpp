@@ -321,11 +321,11 @@ void ElGanadorEs(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[10],i
 
 
 
-    if(ComparativaCartasJugadas(carta_seleccionada, Puntos_Jugador, cont_jugadores, elemento, color, numero, "FUEGO", "NIEVE"))
+    if(ComparativaCartasJugadas(carta_seleccionada, Puntos_Jugador, cont_jugadores, mano_jugador, mano_cpu, elemento, color, numero, "FUEGO", "NIEVE"))
     {
-        if(ComparativaCartasJugadas(carta_seleccionada, Puntos_Jugador, cont_jugadores, elemento, color, numero, "NIEVE", "AGUA"))
+        if(ComparativaCartasJugadas(carta_seleccionada, Puntos_Jugador, cont_jugadores, mano_jugador, mano_cpu, elemento, color, numero, "NIEVE", "AGUA"))
         {
-            ComparativaCartasJugadas(carta_seleccionada, Puntos_Jugador, cont_jugadores, elemento, color, numero, "AGUA", "FUEGO");
+            ComparativaCartasJugadas(carta_seleccionada, Puntos_Jugador, cont_jugadores, mano_jugador, mano_cpu, elemento, color, numero, "AGUA", "FUEGO");
         }
     }
 }

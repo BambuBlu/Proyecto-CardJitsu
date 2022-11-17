@@ -39,6 +39,7 @@ void CargarDesafio(string descripciones_cartas_desafio[]);
 int AgarrarCartaDelMazo(bool mazo[],int mano[]);
 void AgarrarCarta(int mano[], int card_id);
 int MostrarMano(string elemento[], string color[], int numero[], int mano[], bool seleccion, int cantidad_cartas);
+void DibujarCartasDeMano( std::array<int,60> mano_ordenada,string elemento[], string color[], int numero[],int i);
 void MostrarCartaDesafio(int desafios_elegidos[], string descripciones_cartas_desafio[], int id);
 std::array<int,60> OrdenarMano(string elemento[], int numero[], int mano[]);
 bool LaCartaEsMayor(int carta_a, int carta_b, string elemento[], int numero[]);

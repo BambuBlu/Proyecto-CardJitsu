@@ -363,11 +363,56 @@ bool ComparativaCartasJugadas(std::array<int,2>  carta_seleccionada, int Puntos_
     return ganador;
 }
 
+void DibujarCartasDeMano( std::array<int,60> mano_ordenada,string elemento[60], string color[60], int numero[60],int i){
+       if (color[mano_ordenada[i]] == "ROJO")
+    {
+        rlutil::setColor(rlutil::color::RED);
+    }
+    else if (color[mano_ordenada[i]] == "VERDE")
+    {
+        rlutil::setColor(rlutil::color::GREEN);
+    }
+    else if (color[mano_ordenada[i]]  == "AMARILLO")
+    {
+        rlutil::setColor(rlutil::color::YELLOW);
+    }
+    else if(color[mano_ordenada[i]]  == "AZUL")
+    {
+        rlutil::setColor(rlutil::color::BLUE);
+    }
+    cout<<"+--------+            "<<endl;
+    cout<<"|"<<numero[mano_ordenada[i]]<<"       |"<<endl;
+    cout<<"|        |            "<<endl;
+    cout<<"|   ";
+    LogoCarta(elemento[mano_ordenada[i]],color[mano_ordenada[i]]);
+    cout<<"    |            "<<endl;
+    cout<<"|        |            "<<endl;
+    cout<<"|        |            "<<endl;
+    cout<<"|       "<<numero[mano_ordenada[i]]<<"|"<<endl;
+    cout<<"+--------+"<<endl;
+    rlutil::setColor(rlutil::color::WHITE);
+
+}
 
 
 void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada, string elemento[60], string color[60], int numero[60])
 {
-
+   if (color[carta_seleccionada[0]] == "ROJO")
+    {
+        rlutil::setColor(rlutil::color::RED);
+    }
+    else if (color[carta_seleccionada[0]] == "VERDE")
+    {
+        rlutil::setColor(rlutil::color::GREEN);
+    }
+    else if (color[carta_seleccionada[0]] == "AMARILLO")
+    {
+        rlutil::setColor(rlutil::color::YELLOW);
+    }
+    else if(color[carta_seleccionada[0]]  == "AZUL")
+    {
+        rlutil::setColor(rlutil::color::BLUE);
+    }
     cout<<"tiraste # "<<numero[carta_seleccionada[0]]<<" "<<elemento[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]]<<"||"<<endl;
     cout<<"+--------+            "<<endl;
     cout<<"|"<<numero[carta_seleccionada[0]]<<"       |"<<endl;
@@ -379,6 +424,23 @@ void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada, string elem
     cout<<"|        |            "<<endl;
     cout<<"|       "<<numero[carta_seleccionada[0]]<<"|"<<endl;
     cout<<"+--------+"<<endl<<endl;
+    rlutil::setColor(rlutil::color::WHITE);
+    if (color[carta_seleccionada[1]] == "ROJO")
+    {
+        rlutil::setColor(rlutil::color::RED);
+    }
+    else if (color[carta_seleccionada[1]] == "VERDE")
+    {
+        rlutil::setColor(rlutil::color::GREEN);
+    }
+    else if (color[carta_seleccionada[1]] == "AMARILLO")
+    {
+        rlutil::setColor(rlutil::color::YELLOW);
+    }
+    else if(color[carta_seleccionada[1]]  == "AZUL")
+    {
+        rlutil::setColor(rlutil::color::BLUE);
+    }
 
     cout<<"CPU tiro # "<<numero[carta_seleccionada[1]]<<" "<<elemento[carta_seleccionada[1]]<<" "<<color[carta_seleccionada[1]]<<"||"<<endl;
     cout<<"+--------+            "<<endl;
@@ -390,29 +452,13 @@ void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada, string elem
     cout<<"|        |            "<<endl;
     cout<<"|       "<<numero[carta_seleccionada[1]]<<"|"<<endl;
     cout<<"+--------+"<<endl<<endl;
+    rlutil::setColor(rlutil::color::WHITE);
 }
 
 
 void LogoCarta(string elemento,string color)
 {
     char logo;
-
-    if (color == "ROJO")
-    {
-        rlutil::setColor(rlutil::color::RED);
-    }
-    else if (color == "VERDE")
-    {
-        rlutil::setColor(rlutil::color::GREEN);
-    }
-    else if (color == "AMARILLO")
-    {
-        rlutil::setColor(rlutil::color::YELLOW);
-    }
-    else
-    {
-        rlutil::setColor(rlutil::color::BLUE);
-    }
 
     if (elemento == "FUEGO")
     {
@@ -427,7 +473,7 @@ void LogoCarta(string elemento,string color)
         logo='A';
     }
     cout<<logo;
-    rlutil::setColor(rlutil::color::WHITE);
+
 }
 
 
@@ -786,20 +832,29 @@ int MostrarMano(string elemento[60], string color[60], int numero[60], int mano[
     {
         if(mano_ordenada[i] != -1)
         {
+
             if(elemento[mano_ordenada[i]] == "NIEVE")
             {
+                DibujarCartasDeMano( mano_ordenada, elemento, color, numero, i);
                 carta_numero++;
                 nieve = true;
 
                 if(seleccion)
                 {
+
                     cout<<"("<<carta_numero<<") ";
-                    cout<<"NIEVE: #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<" || ";
+
+                    cout<<"NIEVE: #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<" || "<<endl;
+
                     cantidad_cartas++;
+
+
                 }
                 else
                 {
-                    cout<<"NIEVE: #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<" || ";
+
+                    cout<<"NIEVE: #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<" || "<<endl;
+
                 }
             }
 
@@ -813,20 +868,28 @@ int MostrarMano(string elemento[60], string color[60], int numero[60], int mano[
     {
         if(mano_ordenada[i] != -1)
         {
+
             if(elemento[mano_ordenada[i]] == "FUEGO")
             {
+                DibujarCartasDeMano( mano_ordenada, elemento, color, numero, i);
                 carta_numero++;
                 fuego = true;
 
                 if(seleccion)
                 {
+
                     cout<<"("<<carta_numero<<") ";
-                    cout<<"FUEGO: #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<" || ";
+                    cout<<"FUEGO: #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<" || "<<endl;
+
                     cantidad_cartas++;
+
                 }
                 else
                 {
-                    cout<<"FUEGO: #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<" || ";
+
+                    cout<<"FUEGO: #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<" || "<<endl;
+
+
                 }
             }
 
@@ -839,20 +902,25 @@ int MostrarMano(string elemento[60], string color[60], int numero[60], int mano[
     for(int i = 0; i < 60; i++)
     {
         if(mano_ordenada[i] != -1)
+
         {
             if(elemento[mano_ordenada[i]] == "AGUA")
             {
+                DibujarCartasDeMano( mano_ordenada, elemento, color, numero, i);
                 carta_numero++;
 
                 if(seleccion)
                 {
                     cout<<"("<<carta_numero<<") ";
-                    cout<<"AGUA: #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<" || ";
+                    cout<<"AGUA: #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<" || "<<endl;
+
                     cantidad_cartas++;
                 }
                 else
                 {
-                    cout<<"AGUA: #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<" || ";
+
+                    cout<<"AGUA: #"<<numero[mano_ordenada[i]]<<" "<<color[mano_ordenada[i]]<<" || "<<endl;
+
                 }
 
             }

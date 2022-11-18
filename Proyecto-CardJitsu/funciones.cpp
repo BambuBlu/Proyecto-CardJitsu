@@ -23,8 +23,8 @@ void Modo(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugador[10])
     rlutil::setColor(rlutil::color::WHITE);
     rlutil::locate(50,10);
     cout<<"1- Jugador VS CPU"<<endl;
-    rlutil::locate(50,12);
-    cout<<"2- CPU VS CPU"<<endl;
+    rlutil::locate(47,12);
+    cout<<"2- CPU VS CPU (COMING SOON)"<<endl;
     rlutil::locate(42,14);
     cout<<"Que modalidad desea jugar?--> ";
     cin>>modo;
@@ -69,8 +69,7 @@ void JugadorVsCpu(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugad
     }
 
     rlutil::cls();
-
-    /* Puede poner parte grafica aca */
+    rlutil::setColor(rlutil::color::WHITE);
     cout<<"--Tus cartas en mano son--"<<endl<<endl;
     cantidad_cartas = MostrarMano(elemento, color, numero, mano_jugador, false, cantidad_cartas);
     cout<<endl<<endl;
@@ -85,8 +84,8 @@ void JugadorVsCpu(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugad
         /*
         cout<<"El valor de navegacion[0] es: "<<navegacion[0]<<endl<<endl;
         */
-        rlutil::setColor(rlutil::color::BLACK);
-        rlutil::setBackgroundColor(rlutil::color::GREY);
+        rlutil::setColor(rlutil::color::WHITE);
+        rlutil::setBackgroundColor(rlutil::color::BLACK);
         rlutil::locate (40,6);
         cout<<"Card-Jitsu++"<<endl;
         rlutil::locate (40,7);
@@ -246,11 +245,11 @@ void ColocarCartasDesafio(bool cartas_desafio[10], int desafios_elegidos[2])
     else if(seleccion == 2)
     {
         SeleccionarDesafio(cartas_desafio, desafios_elegidos, 0);
-        rlutil::setBackgroundColor(rlutil::color::GREY);
+        rlutil::setBackgroundColor(rlutil::color::BLACK);
     }
 
     DesafioAleatorio(cartas_desafio, desafios_elegidos, 1);
-        rlutil::setBackgroundColor(rlutil::color::GREY);
+        rlutil::setBackgroundColor(rlutil::color::BLACK);
 }
 
 
@@ -670,6 +669,7 @@ void LogoCarta(string elemento,string color)
 
 int JugarCartaJugador(string elemento[60], string color[60], int numero[60], int mano[60], int id, int cantidad_cartas)
 {
+    rlutil::cls();
     int carta; int eleccion;
 
     std::array<int,60> mano_ordenada = {OrdenarMano(elemento, numero, mano)};
@@ -1110,7 +1110,7 @@ int MostrarMano(string elemento[60], string color[60], int numero[60], int mano[
 
 void MostrarCartaDesafio(int desafios_elegidos[2], string descripciones_cartas_desafio[10], int id)
 {
-    /* Puede poner parte grafica aca */
+    rlutil::setColor(rlutil::color::DARKGREY);
     cout<<"La carta de desafio es: "<<descripciones_cartas_desafio[desafios_elegidos[id]];
     rlutil::anykey();
 }

@@ -22,7 +22,7 @@ void Modo(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugador[10])
     rlutil::setBackgroundColor(rlutil::color::BLACK);
     rlutil::setColor(rlutil::color::WHITE);
     rlutil::locate(50,10);
-    cout<<"1- Jugadora VS CPU"<<endl;
+    cout<<"1- Jugador VS CPU"<<endl;
     rlutil::locate(50,12);
     cout<<"2- CPU VS CPU"<<endl;
     rlutil::locate(42,14);
@@ -80,15 +80,22 @@ void JugadorVsCpu(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugad
 
     while(navegacion[0])
     {
-        /* Puede poner parte grafica aca */
-        /* Ojo que esta unido tambien a las rondas a empezar */
-        rlutil::cls();
-        cout<<"El valor de navegacion[0] es: "<<navegacion[0]<<endl<<endl;
 
+        rlutil::cls();
+        /*
+        cout<<"El valor de navegacion[0] es: "<<navegacion[0]<<endl<<endl;
+        */
+        rlutil::setColor(rlutil::color::WHITE);
+        rlutil::setBackgroundColor(rlutil::color::DARKGREY);
+        rlutil::locate (40,6);
         cout<<"Card-Jitsu++"<<endl;
+        rlutil::locate (40,7);
         cout<<"-----------------------------------------"<<endl;
-        cout<<nombre_jugador[cont_jugadores-1]<<" Vs CPU"<<"         "<<"Ronda #"<<ronda<<endl;
+        rlutil::locate (40,8);
+        cout<<nombre_jugador[cont_jugadores-1]<<" Vs CPU"<<"                    "<<"Ronda #"<<ronda<<endl;
+        rlutil::locate (40,9);
         cout<<"1- Ver carta de desafio"<<endl;
+        rlutil::locate (40,10);
         cout<<"2- Ver cartas de elementos"<<endl;
         if(navegacion[1])
         {
@@ -204,8 +211,16 @@ void ColocarCartasDesafio(bool cartas_desafio[10], int desafios_elegidos[2])
 
     while(true)
     {
+        rlutil::setBackgroundColor(rlutil::color::WHITE);
+        rlutil::setColor(rlutil::color::BLACK);
+        rlutil::locate(35,8);
         cout<<"Desea un desafio aleatorio o desea seleccionar uno?"<<endl;
-        cout<<"1 - Aleatorio"<<endl<<"2 - Elegir desafio"<<endl;
+        rlutil::locate(50,10);
+        cout<<"1 - Aleatorio";
+        rlutil::locate(50,11);
+        cout<<"2 - Elegir desafio"<<endl;
+        rlutil::locate(44,13);
+        cout<<"Que modalidad desea jugar?--> ";
         cin>>seleccion;
 
         if(seleccion <= 2 && seleccion >= 1)
@@ -222,13 +237,16 @@ void ColocarCartasDesafio(bool cartas_desafio[10], int desafios_elegidos[2])
     if(seleccion == 1)
     {
         DesafioAleatorio(cartas_desafio, desafios_elegidos, 0);
+        rlutil::setBackgroundColor(rlutil::color::DARKGREY);
     }
     else if(seleccion == 2)
     {
         SeleccionarDesafio(cartas_desafio, desafios_elegidos, 0);
+        rlutil::setBackgroundColor(rlutil::color::DARKGREY);
     }
 
     DesafioAleatorio(cartas_desafio, desafios_elegidos, 1);
+        rlutil::setBackgroundColor(rlutil::color::DARKGREY);
 }
 
 
@@ -1133,11 +1151,11 @@ bool LaCartaEsMayor(int carta_a, int carta_b, string elemento[60], int numero[60
 
 void EmpezarRondaMenu(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano_jugador[60], int desafios_elegidos[2], string descripciones_cartas_desafio[10], int cantidad_cartas, int ronda, bool navegacion[2])
 {
-    /* Puede poner parte grafica aca */
     int modo;
-
-    cout<<"3- Robar carta elemento de la pila"<<endl;
-    cout<<endl<<"Que desea hacer?--> ";
+    rlutil::locate(40,11);
+    cout<<"3- Robar carta elemento de la pila";
+    rlutil::locate(40,12);
+    cout<<"Que desea hacer?--> ";
     cin>>modo;
     switch(modo)
     {
@@ -1176,9 +1194,10 @@ void JugarRondaMenu(string elemento[60], string color[60],int Puntos_Jugador[10]
 {
     /* Puede poner parte grafica aca */
     int modo;
-
-    cout<<"3- Jugar una carta"<<endl;
-    cout<<endl<<"Que desea hacer?--> ";
+    rlutil::locate(40,11);
+    cout<<"3- Jugar una carta";
+    rlutil::locate(40,12);
+    cout<<"Que desea hacer?--> ";
     cin>>modo;
     switch(modo)
     {
@@ -1520,7 +1539,7 @@ void SalirDelJuego()
     rlutil::locate(50,10);
     cout << "Hasta luego...." << endl;
     rlutil::locate(47,13);
-    cout << "Gracias por juegar  :)" << endl;
+    cout << "Gracias por jugar  :)" << endl;
     cout<<endl<<endl<<endl;
 }
 

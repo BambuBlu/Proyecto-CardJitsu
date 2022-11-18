@@ -1253,8 +1253,150 @@ void MejorPuntaje(string nombre_jugador[10], int cont_jugadores)
 
 void Reglas()
 {
-    /* Puede poner parte grafica aca */
-    /* Directamente hay que explicarlas de forma resumida */
+rlutil::setBackgroundColor(rlutil::color::GREEN);
+rlutil::cls();
+rlutil::setColor(rlutil::color::WHITE);
+
+
+Nombrejuego();
+Recuadro ();
+rlutil::locate (55,14);
+cout<<"REGLAS";
+rlutil::locate (55,30);
+cout<<"Continuar(Enter)";
+rlutil::anykey();
+rlutil::cls();
+
+rlutil::setColor(rlutil::color::MAGENTA);
+rlutil::locate (55,1);
+cout<<"Card Jitsu ++ "<<endl;
+rlutil::locate (40,2);
+cout<<"*************************************************"<<endl<<endl<<endl;
+rlutil::setColor(rlutil::color::BLACK);
+cout<<">>El objetivo general del juego es lograr una combinacion de cartas de elementos"<<endl;
+cout<<"y cumplir con la carta desafio obtenida al comienzo de la partida. El primer jugador"<<endl;
+cout<<"en cumplir ambos hitos gana el juego."<<endl<<endl;
+
+rlutil::locate (55,30);
+cout<<"Continuar(Enter)";
+rlutil::anykey();
+rlutil::cls();
+
+rlutil::setColor(rlutil::color::MAGENTA);
+rlutil::locate (55,1);
+cout<<"Cartas desafio"<<endl;
+rlutil::locate (40,2);
+cout<<"*************************************************"<<endl<<endl<<endl;
+rlutil::setColor(rlutil::color::BLACK);
+cout<<">> En total existen diez cartas en el mazo de desafios,cada una con un desafio distinto a cumplir."<<endl;
+cout<<"dicha carta se levanta solo una vez por partida."<<endl;
+cout<<"los diez desafios existentes son :"<<endl<<endl;
+
+cout<<"1 - Ganar una carta de Nieve."<<endl;
+cout<<"2 - Ganar una carta de Fuego."<<endl;
+cout<<"3 - Ganar una carta de Agua."<<endl;
+cout<<"4 - Ganar dos cartas rojas."<<endl;
+cout<<"5 - Ganar dos cartas amarillas."<<endl;
+cout<<"6 - Ganar dos cartas verdes."<<endl;
+cout<<"7 - Ganar dos cartas azules."<<endl;
+cout<<"8 - Ganar una carta con el mismo elemento que el adversario."<<endl;
+cout<<"9 - Ganar dos cartas con el mismo numero."<<endl;
+cout<<"10 - Ganar dos rondas de manera consecutiva."<<endl;
+
+rlutil::locate (55,30);
+cout<<"Continuar(Enter)";
+rlutil::anykey();
+rlutil::cls();
+
+rlutil::setColor(rlutil::color::MAGENTA);
+rlutil::locate (55,1);
+cout<<"Cartas de elementos"<<endl;
+rlutil::locate (40,2);
+cout<<"*************************************************"<<endl<<endl<<endl;
+rlutil::setColor(rlutil::color::BLACK);
+
+cout<<">> Estas cartas se caracterizan por tener un elemento (fuego, nieve o agua), un color"<<endl;
+cout<<"(rojo, amarillo, verde y azul) y un número (de 1 a 5). En total son 60 naipes."<<endl;
+cout<<"Estas cartas son necesarias para jugar en las rondas de elementos."<<endl;
+
+rlutil::locate (55,30);
+cout<<"Continuar(Enter)";
+rlutil::anykey();
+rlutil::cls();
+
+rlutil::setColor(rlutil::color::MAGENTA);
+rlutil::locate (55,1);
+cout<<"Como se juega?"<<endl;
+rlutil::locate (40,2);
+cout<<"*************************************************"<<endl<<endl<<endl;
+rlutil::setColor(rlutil::color::BLACK);
+cout<<"-Cada uno de los dos jugadores debera tomar una carta de la pila de cartas desafios y guardarla."<<endl;
+cout<<"-Cada jugador comienza la partida con tres cartas elemento."<<endl;
+cout<<"-Cada jugador juega una carta de elementos de su preferencia y se determina quien gana esa ronda."<<endl;
+cout<<"-Un jugador nunca puede tener menos de tres cartas en su mano."<<endl;
+
+
+rlutil::locate (55,30);
+cout<<"Continuar(Enter)";
+rlutil::anykey();
+rlutil::cls();
+
+rlutil::setColor(rlutil::color::MAGENTA);
+rlutil::locate (50,1);
+cout<<"Que carta le gana a que carta?"<<endl;
+rlutil::locate (40,2);
+cout<<"************************************************"<<endl<<endl<<endl;
+rlutil::setColor(rlutil::color::BLACK);
+cout<<">> Para determinar esto se siguen las siguientes reglas:"<<endl<<endl;
+cout<<"-El fuego vence a la nieve."<<endl;
+cout<<"-La nieve vence al agua."<<endl;
+cout<<"-El agua vence al fuego."<<endl;
+cout<<"-Si se enfrentan cartas del mismo elemento,gana la que tenga mayor numero."<<endl;
+
+rlutil::locate (55,30);
+cout<<"Continuar(Enter)";
+rlutil::anykey();
+rlutil::cls();
+
+rlutil::setColor(rlutil::color::MAGENTA);
+rlutil::locate (42,1);
+cout<<"Obtener una combinacion de elementos ganadora"<<endl;
+rlutil::locate (40,2);
+cout<<"*************************************************"<<endl<<endl<<endl;
+rlutil::setColor(rlutil::color::BLACK);
+cout<<">> Para obtener una combinacion de elementos ganadora, un jugador debe lograr alguna de las siguientes situaciones:"<<endl<<endl;
+cout<<"-Tener tres cartas de distinto elemento y distinto color."<<endl;
+cout<<"-Tener tres cartas del mismo elemento."<<endl;
+
+rlutil::locate (55,30);
+cout<<"Continuar(Enter)";
+rlutil::anykey();
+rlutil::cls();
+rlutil::setColor(rlutil::color::MAGENTA);
+rlutil::locate (55,1);
+cout<<"Valor de los puntos"<<endl;
+rlutil::locate (40,2);
+cout<<"*************************************************"<<endl<<endl<<endl;
+rlutil::setColor(rlutil::color::BLACK);
+cout<<">> Una vez finalizada la partida, se determinan los puntos de victoria de la misma. Los mismos se calculan";
+cout<<"de la siguiente manera:"<<endl<<endl;
+cout<<"+3 PDV por haber ganado la partida."<<endl;
+cout<<"-1 PDV si el contrario obtuvo una combinacion de elementos ganadora."<<endl;
+cout<<"-1 PDV si el contrario cumplio el objetivo de su carta desafio."<<endl;
+cout<<"+1 PDV por cada ronda ganada en el juego al adversario."<<endl;
+cout<<"+5 PDV por cada ronda ganada en el juego con un elemento igual al del adversario."<<endl;
+rlutil::locate (40,30);
+cout<<"Continuar(Enter)";
+rlutil::anykey();
+rlutil::cls();
+rlutil::locate (40,14);
+Recuadro ();
+rlutil::setColor(rlutil::color::MAGENTA);
+rlutil::locate (50,14);
+cout<<"Ahora si,a jugar!";
+rlutil::locate (52,15);
+cout<<"Buena suerte!";
+rlutil::anykey();
 
 }
 

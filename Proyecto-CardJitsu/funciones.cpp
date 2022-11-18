@@ -91,15 +91,15 @@ void JugadorVsCpu(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugad
         cout<<"1- Ver carta de desafio"<<endl;
         rlutil::locate (40,10);
         cout<<"2- Ver cartas de elementos"<<endl;
-        if(navegacion[1])
+        switch(navegacion[1])
         {
-            EmpezarRondaMenu(elemento, color, numero, mazo, mano_jugador, desafios_elegidos, descripciones_cartas_desafio, cantidad_cartas, ronda, navegacion);
-        }
-        else
-        {
-
-            JugarRondaMenu(Puntos_Jugador, elemento,  color, cont_jugadores, numero, mazo, mano_jugador, mano_cpu, desafios_elegidos, descripciones_cartas_desafio, cont_desafios, cantidad_cartas, navegacion, hitos_partida, nombre_jugador,cartas_desafio_ganadas);
-            ronda ++;
+            case 1:
+                EmpezarRondaMenu(elemento, color, numero, mazo, mano_jugador, desafios_elegidos, descripciones_cartas_desafio, cantidad_cartas, ronda, navegacion);
+                break;
+            case 0:
+                JugarRondaMenu(Puntos_Jugador, elemento,  color, cont_jugadores, numero, mazo, mano_jugador, mano_cpu, desafios_elegidos, descripciones_cartas_desafio, cont_desafios, cantidad_cartas, navegacion, hitos_partida, nombre_jugador,cartas_desafio_ganadas);
+                ronda ++;
+                break;
         }
     }
 }
@@ -431,6 +431,8 @@ void CartasJugadasJugadorCpu(int Puntos_Jugador[], string elemento[60], string c
             hitos_partida[1] -= 1;
         }
 
+        rlutil::cls();
+
         HitoFinal(Puntos_Jugador, hitos_partida, nombre_jugador, 0, cont_jugadores);
 
         navegacion[0] = false;
@@ -448,6 +450,8 @@ void CartasJugadasJugadorCpu(int Puntos_Jugador[], string elemento[60], string c
             hitos_partida[6] -= 1;
         }
 
+        rlutil::cls();
+
         HitoFinal(Puntos_Jugador, hitos_partida, nombre_jugador, 1, cont_jugadores);
 
         navegacion[0] = false;
@@ -458,6 +462,7 @@ void CartasJugadasJugadorCpu(int Puntos_Jugador[], string elemento[60], string c
 int ElGanadorEs(int Puntos_Jugador [], std::array<int,2>  carta_seleccionada,int cont_jugadores,int mano_jugador[60],int mano_cpu[60],string elemento[60], string color[60], int numero[60], int desafios_elegidos[2])
 {
     rlutil::anykey();
+    rlutil::cls();
 
     MostrarCartasEnfrentadas(carta_seleccionada, elemento, color, numero);
 
@@ -465,7 +470,7 @@ int ElGanadorEs(int Puntos_Jugador [], std::array<int,2>  carta_seleccionada,int
     if(elemento_mayor == 0)
     {
         bool no_igual = numero[carta_seleccionada[0]] != numero[carta_seleccionada[1]];
-        return (-1 + 2 * (int)(carta_seleccionada[0] < numero[carta_seleccionada[1]])) * (int) no_igual;
+        return (-1 + 2 * (int)(numero[carta_seleccionada[0]] > numero[carta_seleccionada[1]])) * (int) no_igual;
     }
     else
     {

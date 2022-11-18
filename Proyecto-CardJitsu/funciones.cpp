@@ -102,7 +102,7 @@ void JugadorVsCpu(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugad
         }
         else
         {
-            JugarRondaMenu(elemento,  color, cont_jugadores, numero, mazo, mano_jugador, mano_cpu, desafios_elegidos, descripciones_cartas_desafio, cont_desafios, cantidad_cartas, navegacion, hitos_partida, nombre_jugador);
+            JugarRondaMenu(Puntos_Jugador, elemento,  color, cont_jugadores, numero, mazo, mano_jugador, mano_cpu, desafios_elegidos, descripciones_cartas_desafio, cont_desafios, cantidad_cartas, navegacion, hitos_partida, nombre_jugador);
             ronda ++;
         }
 
@@ -357,7 +357,7 @@ bool SeleccionarDesafioSiEsPosible(int id_desafio, int desafios_elegidos[2], int
 }
 
 
-void CartasJugadasJugadorCpu(string elemento[60], string color[60],int cont_jugadores, int numero[60], bool mazo[60], int mano_jugador[60], int mano_cpu[60], int cantidad_cartas, int desafios_elegidos[2], int cont_desafios[2], bool navegacion[2], int hitos_partida[10], string nombre_jugador[10])
+void CartasJugadasJugadorCpu(int Puntos_Jugador[], string elemento[60], string color[60],int cont_jugadores, int numero[60], bool mazo[60], int mano_jugador[60], int mano_cpu[60], int cantidad_cartas, int desafios_elegidos[2], int cont_desafios[2], bool navegacion[2], int hitos_partida[10], string nombre_jugador[10])
 {
     std::array<int,2> carta_seleccionada;
 
@@ -365,7 +365,7 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60],int cont_juga
     carta_seleccionada[1] = JugarCartaCpu(elemento, color, numero, mazo, mano_cpu, 1);
 
 
-    int resultado = ElGanadorEs(carta_seleccionada, cont_jugadores, mano_jugador, mano_cpu, elemento, color, numero, desafios_elegidos);
+    int resultado = ElGanadorEs(Puntos_Jugador, carta_seleccionada, cont_jugadores, mano_jugador, mano_cpu, elemento, color, numero, desafios_elegidos);
     int cartas_reservadas[3];
 
     bool gano_player = false;
@@ -445,7 +445,7 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60],int cont_juga
             hitos_partida[1] -= 1;
         }
 
-        HitoFinal(hitos_partida, nombre_jugador, 0, cont_jugadores);
+        HitoFinal(Puntos_Jugador, hitos_partida, nombre_jugador, 0, cont_jugadores);
 
         cout<<"Ganaste"<<endl;
         rlutil::anykey();
@@ -467,7 +467,7 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60],int cont_juga
             hitos_partida[6] -= 1;
         }
 
-        HitoFinal(hitos_partida, nombre_jugador, 1, cont_jugadores);
+        HitoFinal(Puntos_Jugador, hitos_partida, nombre_jugador, 1, cont_jugadores);
 
         cout<<"Perdiste"<<endl;
         rlutil::anykey();
@@ -479,7 +479,7 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60],int cont_juga
 }
 
 
-int ElGanadorEs(std::array<int,2>  carta_seleccionada,int cont_jugadores,int mano_jugador[60],int mano_cpu[60],string elemento[60], string color[60], int numero[60], int desafios_elegidos[2])
+int ElGanadorEs(int Puntos_Jugador [], std::array<int,2>  carta_seleccionada,int cont_jugadores,int mano_jugador[60],int mano_cpu[60],string elemento[60], string color[60], int numero[60], int desafios_elegidos[2])
 {
     rlutil::anykey();
 
@@ -997,8 +997,6 @@ int MostrarMano(string elemento[60], string color[60], int numero[60], int mano[
     bool fuego = false; bool nieve = false;
     std::array<int,60> mano_ordenada = {OrdenarMano(elemento, numero, mano)};
 
-    /* Puede poner parte grafica aca */
-
     for(int i = 0; i < 60; i++)
     {
         if(mano_ordenada[i] != -1)
@@ -1206,7 +1204,7 @@ void EmpezarRondaMenu(string elemento[60], string color[60], int numero[60], boo
 }
 
 
-void JugarRondaMenu(string elemento[60], string color[60], int cont_jugadores, int numero[60], bool mazo[60], int mano_jugador[60], int mano_cpu[60], int desafios_elegidos[2], string descripciones_cartas_desafio[10], int cont_desafios[2], int cantidad_cartas, bool navegacion[2], int hitos_partida[10], string nombre_jugador[10])
+void JugarRondaMenu(int Puntos_Jugador [10], string elemento[60], string color[60], int cont_jugadores, int numero[60], bool mazo[60], int mano_jugador[60], int mano_cpu[60], int desafios_elegidos[2], string descripciones_cartas_desafio[10], int cont_desafios[2], int cantidad_cartas, bool navegacion[2], int hitos_partida[10], string nombre_jugador[10])
 {
     int modo;
     rlutil::locate(40,11);
@@ -1229,7 +1227,7 @@ void JugarRondaMenu(string elemento[60], string color[60], int cont_jugadores, i
             navegacion[1] = false;
             break;
         case 3:
-            CartasJugadasJugadorCpu(elemento, color, cont_jugadores, numero, mazo, mano_jugador, mano_cpu, cantidad_cartas, desafios_elegidos, cont_desafios, navegacion, hitos_partida, nombre_jugador);
+            CartasJugadasJugadorCpu(Puntos_Jugador, elemento, color, cont_jugadores, numero, mazo, mano_jugador, mano_cpu, cantidad_cartas, desafios_elegidos, cont_desafios, navegacion, hitos_partida, nombre_jugador);
             cout<<"El valor de navegacion[0] es: "<<navegacion[0]<<endl<<endl;
             rlutil::anykey();
             navegacion[1] = true;
@@ -1242,7 +1240,7 @@ void JugarRondaMenu(string elemento[60], string color[60], int cont_jugadores, i
 }
 
 
-void HitoFinal(int hitos_partida[10], string nombre_jugador[10], int jugador, int cont_jugadores)
+void HitoFinal(int Puntos_Jugador[10], int hitos_partida[10], string nombre_jugador[10], int jugador, int cont_jugadores)
 {
     int hitos_resultado = 0;
 
@@ -1264,6 +1262,7 @@ void HitoFinal(int hitos_partida[10], string nombre_jugador[10], int jugador, in
             cout<<"TOTAL                                 "<<hitos_resultado<<" PDV"<<endl<<endl;
             cout<<"Ganador"<<nombre_jugador[cont_jugadores-1]<<" con "<<hitos_resultado<<" puntos de victoria!!"<<endl;
             rlutil::anykey();
+            Puntos_Jugador[cont_jugadores-1]= hitos_resultado;
 
             break;
         case 1:
@@ -1288,7 +1287,7 @@ void HitoFinal(int hitos_partida[10], string nombre_jugador[10], int jugador, in
 }
 
 
-void MejorPuntaje(string nombre_jugador[10], int cont_jugadores)
+void MejorPuntaje(int Puntos_Jugador[10], string nombre_jugador[10], int cont_jugadores)
 {
     int y=0, celdas_jugadores = 4;
     celdas_jugadores *= cont_jugadores;
@@ -1304,23 +1303,23 @@ void MejorPuntaje(string nombre_jugador[10], int cont_jugadores)
     rlutil::locate (1,9);
     cout << "############################";
     for (int x=0; x<cont_jugadores;x++){
-    if (nombre_jugador[x]!= ""){
-    rlutil::locate(1,10+y);
-    cout << "NOMBRE DE USUARIO: ";
-    rlutil::setColor (rlutil::color::RED);
-    cout << nombre_jugador [x];
-    rlutil::setColor (rlutil::color::WHITE);
-    rlutil::locate(1,12+y);
-    cout << "PUNTOS: ";
-    rlutil::locate(1,13+y);
-    cout << "############################";
-    y += 4;
-    }
-    else{
+        if (nombre_jugador[x]!= ""){
+        rlutil::locate(1,10+y);
+        cout << "NOMBRE DE USUARIO: ";
+        rlutil::setColor (rlutil::color::RED);
+        cout << nombre_jugador [x];
+        rlutil::setColor (rlutil::color::WHITE);
+        rlutil::locate(1,12+y);
+        cout << "PUNTOS: " << Puntos_Jugador [x];
+        rlutil::locate(1,13+y);
+        cout << "############################";
+        y += 4;
+        }
+        else{
 
-    }
-    }
-    rlutil::anykey();
+        }
+        }
+        rlutil::anykey();
 }
 
 

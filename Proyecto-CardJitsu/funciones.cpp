@@ -22,7 +22,7 @@ void Modo(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugador[10])
     rlutil::setBackgroundColor(rlutil::color::BLACK);
     rlutil::setColor(rlutil::color::WHITE);
     rlutil::locate(50,10);
-    cout<<"1- Jugadora VS CPU"<<endl;
+    cout<<"1- Jugador VS CPU"<<endl;
     rlutil::locate(50,12);
     cout<<"2- CPU VS CPU"<<endl;
     rlutil::locate(42,14);
@@ -80,15 +80,22 @@ void JugadorVsCpu(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugad
 
     while(navegacion[0])
     {
-        /* Puede poner parte grafica aca */
-        /* Ojo que esta unido tambien a las rondas a empezar */
-        rlutil::cls();
-        cout<<"El valor de navegacion[0] es: "<<navegacion[0]<<endl<<endl;
 
+        rlutil::cls();
+        /*
+        cout<<"El valor de navegacion[0] es: "<<navegacion[0]<<endl<<endl;
+        */
+        rlutil::setColor(rlutil::color::BLACK);
+        rlutil::setBackgroundColor(rlutil::color::GREY);
+        rlutil::locate (40,6);
         cout<<"Card-Jitsu++"<<endl;
+        rlutil::locate (40,7);
         cout<<"-----------------------------------------"<<endl;
-        cout<<nombre_jugador[cont_jugadores-1]<<" Vs CPU"<<"         "<<"Ronda #"<<ronda<<endl;
+        rlutil::locate (40,8);
+        cout<<nombre_jugador[cont_jugadores-1]<<" Vs CPU"<<"                    "<<"Ronda #"<<ronda<<endl;
+        rlutil::locate (40,9);
         cout<<"1- Ver carta de desafio"<<endl;
+        rlutil::locate (40,10);
         cout<<"2- Ver cartas de elementos"<<endl;
         if(navegacion[1])
         {
@@ -207,8 +214,16 @@ void ColocarCartasDesafio(bool cartas_desafio[10], int desafios_elegidos[2])
 
     while(true)
     {
+        rlutil::setBackgroundColor(rlutil::color::WHITE);
+        rlutil::setColor(rlutil::color::BLACK);
+        rlutil::locate(35,8);
         cout<<"Desea un desafio aleatorio o desea seleccionar uno?"<<endl;
-        cout<<"1 - Aleatorio"<<endl<<"2 - Elegir desafio"<<endl;
+        rlutil::locate(50,10);
+        cout<<"1 - Aleatorio";
+        rlutil::locate(50,11);
+        cout<<"2 - Elegir desafio"<<endl;
+        rlutil::locate(44,13);
+        cout<<"Que modalidad desea jugar?--> ";
         cin>>seleccion;
 
         if(seleccion <= 2 && seleccion >= 1)
@@ -225,13 +240,16 @@ void ColocarCartasDesafio(bool cartas_desafio[10], int desafios_elegidos[2])
     if(seleccion == 1)
     {
         DesafioAleatorio(cartas_desafio, desafios_elegidos, 0);
+        rlutil::setBackgroundColor(rlutil::color::DARKGREY);
     }
     else if(seleccion == 2)
     {
         SeleccionarDesafio(cartas_desafio, desafios_elegidos, 0);
+        rlutil::setBackgroundColor(rlutil::color::GREY);
     }
 
     DesafioAleatorio(cartas_desafio, desafios_elegidos, 1);
+        rlutil::setBackgroundColor(rlutil::color::GREY);
 }
 
 
@@ -575,57 +593,32 @@ bool GanarRondasConsecutivas(int ronda_desafio, bool resultado)
     return ronda_desafio >= 2;
 }
 
-
-/*void DibujarCartasDeMano( std::array<int,60> mano_ordenada,string elemento[60], string color[60], int numero[60],int i){
-       if (color[mano_ordenada[i]] == "ROJO")
+void ColorearCarta(int carta_seleccionada,  string color[60])
+    {
+     if (color[carta_seleccionada] == "ROJO")
     {
         rlutil::setColor(rlutil::color::RED);
     }
-    else if (color[mano_ordenada[i]] == "VERDE")
+    else if (color[carta_seleccionada] == "VERDE")
     {
         rlutil::setColor(rlutil::color::GREEN);
     }
-    else if (color[mano_ordenada[i]]  == "AMARILLO")
+    else if (color[carta_seleccionada] == "AMARILLO")
     {
         rlutil::setColor(rlutil::color::YELLOW);
     }
-    else if(color[mano_ordenada[i]]  == "AZUL")
+    else if(color[carta_seleccionada]  == "AZUL")
     {
         rlutil::setColor(rlutil::color::BLUE);
     }
-    cout<<"+--------+            "<<endl;
-    cout<<"|"<<numero[mano_ordenada[i]]<<"       |"<<endl;
-    cout<<"|        |            "<<endl;
-    cout<<"|   ";
-    LogoCarta(elemento[mano_ordenada[i]],color[mano_ordenada[i]]);
-    cout<<"    |            "<<endl;
-    cout<<"|        |            "<<endl;
-    cout<<"|        |            "<<endl;
-    cout<<"|       "<<numero[mano_ordenada[i]]<<"|"<<endl;
-    cout<<"+--------+"<<endl;
-    rlutil::setColor(rlutil::color::WHITE);
 
-}*/
+    }
 
 
 void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada, string elemento[60], string color[60], int numero[60])
 {
-   if (color[carta_seleccionada[0]] == "ROJO")
-    {
-        rlutil::setColor(rlutil::color::RED);
-    }
-    else if (color[carta_seleccionada[0]] == "VERDE")
-    {
-        rlutil::setColor(rlutil::color::GREEN);
-    }
-    else if (color[carta_seleccionada[0]] == "AMARILLO")
-    {
-        rlutil::setColor(rlutil::color::YELLOW);
-    }
-    else if(color[carta_seleccionada[0]]  == "AZUL")
-    {
-        rlutil::setColor(rlutil::color::BLUE);
-    }
+   ColorearCarta(carta_seleccionada[0],  color);
+
     cout<<"tiraste # "<<numero[carta_seleccionada[0]]<<" "<<elemento[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]]<<"||"<<endl;
     cout<<"+--------+            "<<endl;
     cout<<"|"<<numero[carta_seleccionada[0]]<<"       |"<<endl;
@@ -637,23 +630,8 @@ void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada, string elem
     cout<<"|        |            "<<endl;
     cout<<"|       "<<numero[carta_seleccionada[0]]<<"|"<<endl;
     cout<<"+--------+"<<endl<<endl;
-    rlutil::setColor(rlutil::color::WHITE);
-    if (color[carta_seleccionada[1]] == "ROJO")
-    {
-        rlutil::setColor(rlutil::color::RED);
-    }
-    else if (color[carta_seleccionada[1]] == "VERDE")
-    {
-        rlutil::setColor(rlutil::color::GREEN);
-    }
-    else if (color[carta_seleccionada[1]] == "AMARILLO")
-    {
-        rlutil::setColor(rlutil::color::YELLOW);
-    }
-    else if(color[carta_seleccionada[1]]  == "AZUL")
-    {
-        rlutil::setColor(rlutil::color::BLUE);
-    }
+
+    ColorearCarta(carta_seleccionada[1],  color);
 
     cout<<"CPU tiro # "<<numero[carta_seleccionada[1]]<<" "<<elemento[carta_seleccionada[1]]<<" "<<color[carta_seleccionada[1]]<<"||"<<endl;
     cout<<"+--------+            "<<endl;
@@ -1028,7 +1006,7 @@ int MostrarMano(string elemento[60], string color[60], int numero[60], int mano[
 
             if(elemento[mano_ordenada[i]] == "NIEVE")
             {
-                /*DibujarCartasDeMano( mano_ordenada, elemento, color, numero, i);*/
+                ColorearCarta(mano_ordenada[i],  color);
                 carta_numero++;
                 nieve = true;
 
@@ -1064,7 +1042,7 @@ int MostrarMano(string elemento[60], string color[60], int numero[60], int mano[
 
             if(elemento[mano_ordenada[i]] == "FUEGO")
             {
-                /*DibujarCartasDeMano( mano_ordenada, elemento, color, numero, i);*/
+                ColorearCarta(mano_ordenada[i],  color);
                 carta_numero++;
                 fuego = true;
 
@@ -1099,7 +1077,7 @@ int MostrarMano(string elemento[60], string color[60], int numero[60], int mano[
         {
             if(elemento[mano_ordenada[i]] == "AGUA")
             {
-                /*DibujarCartasDeMano( mano_ordenada, elemento, color, numero, i);*/
+                ColorearCarta(mano_ordenada[i],  color);
                 carta_numero++;
 
                 if(seleccion)
@@ -1125,7 +1103,7 @@ int MostrarMano(string elemento[60], string color[60], int numero[60], int mano[
     {
         rlutil::anykey();
     }
-
+    rlutil::setColor (rlutil::color::WHITE);
     return cantidad_cartas;
 }
 
@@ -1189,11 +1167,11 @@ bool LaCartaEsMayor(int carta_a, int carta_b, string elemento[60], int numero[60
 
 void EmpezarRondaMenu(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano_jugador[60], int desafios_elegidos[2], string descripciones_cartas_desafio[10], int cantidad_cartas, int ronda, bool navegacion[2])
 {
-    /* Puede poner parte grafica aca */
     int modo;
-
-    cout<<"3- Robar carta elemento de la pila"<<endl;
-    cout<<endl<<"Que desea hacer?--> ";
+    rlutil::locate(40,11);
+    cout<<"3- Robar carta elemento de la pila";
+    rlutil::locate(40,12);
+    cout<<"Que desea hacer?--> ";
     cin>>modo;
     switch(modo)
     {
@@ -1230,11 +1208,11 @@ void EmpezarRondaMenu(string elemento[60], string color[60], int numero[60], boo
 
 void JugarRondaMenu(string elemento[60], string color[60], int cont_jugadores, int numero[60], bool mazo[60], int mano_jugador[60], int mano_cpu[60], int desafios_elegidos[2], string descripciones_cartas_desafio[10], int cont_desafios[2], int cantidad_cartas, bool navegacion[2], int hitos_partida[10], string nombre_jugador[10])
 {
-    /* Puede poner parte grafica aca */
     int modo;
-
-    cout<<"3- Jugar una carta"<<endl;
-    cout<<endl<<"Que desea hacer?--> ";
+    rlutil::locate(40,11);
+    cout<<"3- Jugar una carta";
+    rlutil::locate(40,12);
+    cout<<"Que desea hacer?--> ";
     cin>>modo;
     switch(modo)
     {
@@ -1622,7 +1600,7 @@ void SalirDelJuego()
     rlutil::locate(50,10);
     cout << "Hasta luego...." << endl;
     rlutil::locate(47,13);
-    cout << "Gracias por juegar  :)" << endl;
+    cout << "Gracias por jugar  :)" << endl;
     cout<<endl<<endl<<endl;
 }
 

@@ -27,7 +27,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1668474953 source:c:\users\mi pc\desktop\laboratorio 1\parcial 2 git\proyecto-cardjitsu\proyecto-cardjitsu\funciones.cpp
+1668739738 source:c:\users\mi pc\desktop\laboratorio 1\parcial 2 git\proyecto-cardjitsu\proyecto-cardjitsu\funciones.cpp
 	<cstdlib>
 	<iostream>
 	<cstdio>
@@ -38,7 +38,7 @@
 	"funciones.h"
 	"rlutil.h"
 
-1668461683 c:\users\mi pc\desktop\laboratorio 1\parcial 2 git\proyecto-cardjitsu\proyecto-cardjitsu\funciones.h
+1668739738 c:\users\mi pc\desktop\laboratorio 1\parcial 2 git\proyecto-cardjitsu\proyecto-cardjitsu\funciones.h
 	<cstdlib>
 	<iostream>
 	<cstdio>
@@ -61,7 +61,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1668472320 source:c:\users\mi pc\desktop\laboratorio 1\parcial 2 git\proyecto-cardjitsu\proyecto-cardjitsu\main.cpp
+1668734838 source:c:\users\mi pc\desktop\laboratorio 1\parcial 2 git\proyecto-cardjitsu\proyecto-cardjitsu\main.cpp
 	<cstdlib>
 	<iostream>
 	<cstdio>
@@ -117,7 +117,7 @@
 	"funciones.h"
 	"rlutil.h"
 
-1668729149 source:c:\users\aleja\onedrive\escritorio\juego\proyecto-cardjitsu\proyecto-cardjitsu\funciones.cpp
+1668737041 source:c:\users\aleja\onedrive\escritorio\juego\proyecto-cardjitsu\proyecto-cardjitsu\funciones.cpp
 	<cstdlib>
 	<iostream>
 	<cstdio>
@@ -128,7 +128,7 @@
 	"funciones.h"
 	"rlutil.h"
 
-1668650729 c:\users\aleja\onedrive\escritorio\juego\proyecto-cardjitsu\proyecto-cardjitsu\funciones.h
+1668736531 c:\users\aleja\onedrive\escritorio\juego\proyecto-cardjitsu\proyecto-cardjitsu\funciones.h
 	<cstdlib>
 	<iostream>
 	<cstdio>
@@ -151,7 +151,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1668484505 source:c:\users\aleja\onedrive\escritorio\juego\proyecto-cardjitsu\proyecto-cardjitsu\main.cpp
+1668735563 source:c:\users\aleja\onedrive\escritorio\juego\proyecto-cardjitsu\proyecto-cardjitsu\main.cpp
 	<cstdlib>
 	<iostream>
 	<cstdio>

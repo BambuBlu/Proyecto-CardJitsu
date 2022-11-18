@@ -24,7 +24,7 @@ void Modo(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugador[10])
     rlutil::locate(50,10);
     cout<<"1- Jugador VS CPU"<<endl;
     rlutil::locate(47,12);
-    cout<<"2- CPU VS CPU (COMING SOON)"<<endl;
+    cout<<"2- CPU VS CPU"<<endl;
     rlutil::locate(42,14);
     cout<<"Que modalidad desea jugar?--> ";
     cin>>modo;
@@ -107,6 +107,61 @@ void JugadorVsCpu(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugad
 
 void CpuVsCpu()
 {
+    string elemento[60]; string color[60]; string descripciones_cartas_desafio[10];
+    int numero[60]; int mano_cpu1[60]; int mano_cpu2[60]; int desafios_elegidos[2]; int cantidad_cartas = 0; int ronda = 1; int cont_desafios[2]; int hitos_partida[10];
+    bool mazo[60]; bool navegacion[2]; bool cartas_desafio[10]; bool cartas_desafio_ganadas[2];
+
+    ColocarMazo(mazo, mano_cpu1, mano_cpu2, cartas_desafio, cont_desafios, navegacion, hitos_partida, cartas_desafio_ganadas);
+    CargarMazo(elemento, color, numero);
+    CargarDesafio(descripciones_cartas_desafio);
+
+    DesafioAleatorio(cartas_desafio, desafios_elegidos, 0);
+    rlutil::setBackgroundColor(rlutil::color::BLACK);
+
+    DesafioAleatorio(cartas_desafio, desafios_elegidos, 1);
+    rlutil::setBackgroundColor(rlutil::color::BLACK);
+    for(int i = 0; i < 3; i++)
+    {
+        AgarrarCartaDelMazo(mazo, mano_cpu1);
+    }
+
+    for(int i = 0; i < 3; i++)
+    {
+        AgarrarCartaDelMazo(mazo, mano_cpu2);
+    }
+
+
+    while(navegacion[0])
+    {
+
+        rlutil::cls();
+        rlutil::setColor(rlutil::color::WHITE);
+        rlutil::setBackgroundColor(rlutil::color::BLACK);
+        rlutil::locate (40,6);
+        cout<<"Card-Jitsu++"<<endl;
+        rlutil::locate (40,7);
+        cout<<"-----------------------------------------"<<endl;
+        rlutil::locate (40,8);
+        cout<<"Cpu1 Vs Cpu2"<<"                    "<<"Ronda #"<<ronda<<endl<<endl;
+        rlutil::setColor(rlutil::color::WHITE);
+        cout<<"--Cartas en mano Cpu1--"<<endl<<endl;
+        cantidad_cartas = MostrarMano(elemento, color, numero, mano_cpu1, false, cantidad_cartas);
+        cout<<endl<<endl;
+        MostrarCartaDesafio(desafios_elegidos, descripciones_cartas_desafio, 0);
+        cout<<endl<<endl;
+        rlutil::setColor(rlutil::color::WHITE);
+        cout<<"--Cartas en mano Cpu2--"<<endl<<endl;
+        cantidad_cartas = MostrarMano(elemento, color, numero, mano_cpu2, false, cantidad_cartas);
+        cout<<endl<<endl;
+        MostrarCartaDesafio(desafios_elegidos, descripciones_cartas_desafio, 1);
+        cout<<endl<<endl;
+
+        rlutil::cls();
+
+        JugarRondasCpus(elemento, color, numero, mazo, mano_cpu1, mano_cpu2, desafios_elegidos, cont_desafios, navegacion, hitos_partida,cartas_desafio_ganadas);
+        ronda ++;
+
+    }
 
 }
 
@@ -362,7 +417,7 @@ void CartasJugadasJugadorCpu(int Puntos_Jugador[], string elemento[60], string c
     carta_seleccionada[1] = JugarCartaCpu(elemento, color, numero, mazo, mano_cpu, 1);
 
 
-    int resultado = ElGanadorEs(Puntos_Jugador, carta_seleccionada, cont_jugadores, mano_jugador, mano_cpu, elemento, color, numero, desafios_elegidos);
+    int resultado = ElGanadorEs(carta_seleccionada, mano_jugador, mano_cpu, elemento, color, numero, desafios_elegidos);
     int cartas_reservadas[3];
 
     bool combinacion_ganadora = false;
@@ -471,7 +526,7 @@ void CartasJugadasJugadorCpu(int Puntos_Jugador[], string elemento[60], string c
 }
 
 
-int ElGanadorEs(int Puntos_Jugador [], std::array<int,2>  carta_seleccionada,int cont_jugadores,int mano_jugador[60],int mano_cpu[60],string elemento[60], string color[60], int numero[60], int desafios_elegidos[2])
+int ElGanadorEs(std::array<int,2>  carta_seleccionada,int mano_jugador[60],int mano_cpu[60],string elemento[60], string color[60], int numero[60], int desafios_elegidos[2])
 {
     rlutil::anykey();
     rlutil::cls();
@@ -601,7 +656,7 @@ void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada, string elem
 {
    ColorearCarta(carta_seleccionada[0],  color);
 
-    cout<<"tiraste # "<<numero[carta_seleccionada[0]]<<" "<<elemento[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]]<<"||"<<endl;
+    cout<<"Esta en juego # "<<numero[carta_seleccionada[0]]<<" "<<elemento[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]]<<"||"<<endl;
     cout<<"+--------+            "<<endl;
     cout<<"|"<<numero[carta_seleccionada[0]]<<"       |"<<endl;
     cout<<"|        |            "<<endl;
@@ -615,7 +670,7 @@ void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada, string elem
 
     ColorearCarta(carta_seleccionada[1],  color);
 
-    cout<<"CPU tiro # "<<numero[carta_seleccionada[1]]<<" "<<elemento[carta_seleccionada[1]]<<" "<<color[carta_seleccionada[1]]<<"||"<<endl;
+    cout<<"Esta en juego # "<<numero[carta_seleccionada[1]]<<" "<<elemento[carta_seleccionada[1]]<<" "<<color[carta_seleccionada[1]]<<"||"<<endl;
     cout<<"+--------+            "<<endl;
     cout<<"|"<<numero[carta_seleccionada[1]]<<"       |"<<endl;
     cout<<"|        |            "<<endl;
@@ -1217,6 +1272,207 @@ void JugarRondaMenu(int Puntos_Jugador [10], string elemento[60], string color[6
             cout<<"Ingrese una opcion correcta";
             navegacion[1] = false;
             rlutil::anykey();
+    }
+}
+
+
+void JugarRondasCpus(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano_cpu1[60], int mano_cpu2[60],
+                     int desafios_elegidos[2], int cont_desafios[2], bool navegacion[2], int hitos_partida[10], bool cartas_desafio_ganadas[2])
+
+{
+    std::array<int,2> carta_seleccionada;
+
+    carta_seleccionada[0] = JugarCartasAutomatico(elemento, color, numero, mazo, mano_cpu1, 0);
+
+    carta_seleccionada[1] = JugarCartasAutomatico(elemento, color, numero, mazo, mano_cpu2, 1);
+
+
+    int resultado = ElGanadorEs( carta_seleccionada, mano_cpu1, mano_cpu2, elemento, color, numero, desafios_elegidos);
+    int cartas_reservadas[3];
+
+    bool combinacion_ganadora = false;
+
+    //empate
+    if (resultado == 0)
+    {
+        cout<<">>Empate, las cartas vuelven al mazo de cartas"<<endl<<endl;
+        DevolverPorEmpate(carta_seleccionada, mano_cpu1, mano_cpu2);
+        rlutil::anykey();
+    }
+    //gana player
+    else if(resultado == 1)
+    {
+        if(elemento[carta_seleccionada[0]] == elemento[carta_seleccionada[1]])
+        {
+            hitos_partida[4] += 5;
+        }
+        hitos_partida[3] += 1;
+        ColorearCarta(carta_seleccionada[0],  color);
+        cout<<">>"<<elemento[carta_seleccionada[0]]<<": #"<<numero[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]];
+        rlutil::setColor(rlutil::color::WHITE);
+        cout<<" le gana a ";
+        ColorearCarta(carta_seleccionada[1],  color);
+        cout<<elemento[carta_seleccionada[1]]<<": #"<<numero[carta_seleccionada[1]]<<" "<<color[carta_seleccionada[1]];
+        rlutil::setColor(rlutil::color::WHITE);
+        cout<<" ,Ganaste la ronda"<<endl<<endl;
+        rlutil::anykey();
+
+        RobarCartaGanada(carta_seleccionada[0], mano_cpu1);
+        RobarCartaGanada(carta_seleccionada[1], mano_cpu1);
+
+        cartas_desafio_ganadas[0] = cartas_desafio_ganadas[0] || VerificarCartaDesafio(desafios_elegidos[0], elemento, color, numero, carta_seleccionada, cont_desafios, 1, resultado);
+
+    }
+    //gana CPU
+    else if(resultado == -1)
+    {
+        if(elemento[carta_seleccionada[0]] == elemento[carta_seleccionada[1]])
+        {
+            hitos_partida[9] += 5;
+        }
+        hitos_partida[8] += 1;
+        ColorearCarta(carta_seleccionada[1],  color);
+        cout<<">>"<<elemento[carta_seleccionada[1]]<<": #"<<numero[carta_seleccionada[1]]<<" "<<color[carta_seleccionada[1]];
+        rlutil::setColor(rlutil::color::WHITE);
+        cout<<" le gana a ";
+        ColorearCarta(carta_seleccionada[0],  color);
+        cout<<elemento[carta_seleccionada[0]]<<": #"<<numero[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]];
+        rlutil::setColor(rlutil::color::WHITE);
+        cout<<" ,Perdiste la ronda"<<endl<<endl;
+        rlutil::anykey();
+
+        RobarCartaGanada(carta_seleccionada[0],mano_cpu2);
+        RobarCartaGanada(carta_seleccionada[1],mano_cpu2);
+
+        cartas_desafio_ganadas[1] = cartas_desafio_ganadas[1] || VerificarCartaDesafio(desafios_elegidos[1], elemento, color, numero, carta_seleccionada, cont_desafios, 0, resultado);
+    }
+
+
+    std::array<int,60> mano_ordenada_cpu1 = {OrdenarMano(elemento, numero, mano_cpu1)};
+    bool gano_cpu1 = cartas_desafio_ganadas[0] && CartasDeCombinacionElementos(elemento, color, mano_ordenada_cpu1, combinacion_ganadora, cartas_reservadas);
+
+    std::array<int,60> mano_ordenada_cpu2 = {OrdenarMano(elemento, numero, mano_cpu2)};
+    bool gano_cpu2 = cartas_desafio_ganadas[1] && CartasDeCombinacionElementos(elemento, color, mano_ordenada_cpu2, combinacion_ganadora, cartas_reservadas);
+
+
+    if(gano_cpu1)
+    {
+        hitos_partida[0] += 3;
+        if(cartas_desafio_ganadas[1])
+        {
+            hitos_partida[2] -= 1;
+        }
+
+        if(CartasDeCombinacionElementos(elemento, color, mano_ordenada_cpu2, combinacion_ganadora, cartas_reservadas))
+        {
+            hitos_partida[1] -= 1;
+        }
+
+        rlutil::cls();
+
+        HitoFinalCpus(hitos_partida, 0);
+
+        navegacion[0] = false;
+    }
+    else if(gano_cpu2)
+    {
+        hitos_partida[5] += 3;
+        if(cartas_desafio_ganadas[0])
+        {
+            hitos_partida[7] -= 1;
+        }
+
+        if(CartasDeCombinacionElementos(elemento, color, mano_ordenada_cpu1, combinacion_ganadora, cartas_reservadas))
+        {
+            hitos_partida[6] -= 1;
+        }
+
+        rlutil::cls();
+
+        HitoFinalCpus(hitos_partida, 1);
+
+        navegacion[0] = false;
+    }
+}
+
+
+int JugarCartasAutomatico(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano[60], int id)
+{
+
+    int card_id = AgarrarCartaDelMazo(mazo, mano);
+
+    switch(id)
+    {
+        case 0:
+            rlutil::setColor(rlutil::color::WHITE);
+            cout<<"--La carta levantada por Cpu1 es--"<<endl<<endl;
+            ColorearCarta(card_id,  color);
+            cout<<elemento[card_id]<<": #"<<numero[card_id]<<" "<<color[card_id]<<endl<<endl;
+            rlutil::anykey();
+            break;
+        case 1:
+            rlutil::setColor(rlutil::color::WHITE);
+            cout<<"--La carta levantada por Cpu2 es--"<<endl<<endl;
+            ColorearCarta(card_id,  color);
+            cout<<elemento[card_id]<<": #"<<numero[card_id]<<" "<<color[card_id]<<endl<<endl;
+            rlutil::anykey();
+            break;
+    }
+
+    std::array<int,60> mano_ordenada = {OrdenarMano(elemento, numero, mano)};
+
+    int carta_seleccionada;
+
+    carta_seleccionada = ObtenerSeleccionCartaCpu(mano_ordenada, elemento, color, numero, id, carta_seleccionada);
+
+    RetirarCartaPerdida(carta_seleccionada, mano);
+
+    return carta_seleccionada;
+}
+
+
+void HitoFinalCpus(int hitos_partida[10], int jugador)
+{
+    int hitos_resultado = 0;
+
+    switch(jugador)
+    {
+        case 0:
+            for(int i = 0; i < 5; i++)
+            {
+                hitos_resultado += hitos_partida[i];
+            }
+
+            cout<<"Card-Jitsu++"<<endl<<"-----------------------------------------"<<endl<<"HITO                                 Cpu1"<<endl<<"-----------------------------------------"<<endl;
+            cout<<"ganador de la partida: "<<hitos_partida[0]<<" PDV"<<endl;
+            cout<<"Combinacion elementos cumplido x contrario: "<<hitos_partida[1]<<" PDV"<<endl;
+            cout<<"Carta desafio cumplido x contrario: "<<hitos_partida[2]<<" PDV"<<endl;
+            cout<<"Rondas ganadas al adversario: "<<hitos_partida[3]<<" PDV"<<endl;
+            cout<<"Rondas ganadas al adversario con igual elemento: "<<hitos_partida[4]<<" PDV"<<endl;
+            cout<<"---------------------------------------------------"<<endl;
+            cout<<"TOTAL                                 "<<hitos_resultado<<" PDV"<<endl<<endl;
+            cout<<"Ganador Cpu1 con "<<hitos_resultado<<" puntos de victoria!!"<<endl;
+            rlutil::anykey();
+
+            break;
+        case 1:
+            for(int i = 5; i < 10; i++)
+            {
+                hitos_resultado += hitos_partida[i];
+            }
+
+            cout<<"Card-Jitsu++"<<endl<<"-----------------------------------------"<<endl<<"HITO                                 Cpu2"<<endl<<"-----------------------------------------"<<endl;
+            cout<<"ganador de la partida: "<<hitos_partida[5]<<" PDV"<<endl;
+            cout<<"Combinacion elementos cumplido x contrario: "<<hitos_partida[6]<<" PDV"<<endl;
+            cout<<"Carta desafio cumplido x contrario: "<<hitos_partida[7]<<" PDV"<<endl;
+            cout<<"Rondas ganadas al adversario: "<<hitos_partida[8]<<" PDV"<<endl;
+            cout<<"Rondas ganadas al adversario con igual elemento: "<<hitos_partida[9]<<" PDV"<<endl;
+            cout<<"---------------------------------------------------"<<endl;
+            cout<<"TOTAL                                 "<<hitos_resultado<<" PDV"<<endl<<endl;
+            cout<<"Ganador Cpu2 con "<<hitos_resultado<<" puntos de victoria!!"<<endl;
+            rlutil::anykey();
+
+            break;
     }
 }
 

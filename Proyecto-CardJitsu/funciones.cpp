@@ -50,10 +50,10 @@ void JugadorVsCpu(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugad
 
     string elemento[60]; string color[60]; string descripciones_cartas_desafio[10];
     int numero[60]; int mano_jugador[60]; int mano_cpu[60]; int desafios_elegidos[2]; int cantidad_cartas = 0; int ronda = 1; int cont_desafios[2]; int hitos_partida[10];
-    bool mazo[60]; bool navegacion[2]; bool cartas_desafio[10];
+    bool mazo[60]; bool navegacion[2]; bool cartas_desafio[10]; bool cartas_desafio_ganadas[2];
 
 
-    ColocarMazo(mazo, mano_jugador, mano_cpu, cartas_desafio, cont_desafios, navegacion, hitos_partida);
+    ColocarMazo(mazo, mano_jugador, mano_cpu, cartas_desafio, cont_desafios, navegacion, hitos_partida, cartas_desafio_ganadas);
     ColocarCartasDesafio(cartas_desafio, desafios_elegidos);
     CargarMazo(elemento, color, numero);
     CargarDesafio(descripciones_cartas_desafio);
@@ -103,7 +103,7 @@ void JugadorVsCpu(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugad
         }
         else
         {
-            JugarRondaMenu(elemento,  color, cont_jugadores, numero, mazo, mano_jugador, mano_cpu, desafios_elegidos, descripciones_cartas_desafio, cont_desafios, cantidad_cartas, navegacion, hitos_partida, nombre_jugador);
+            JugarRondaMenu(elemento,  color, cont_jugadores, numero, mazo, mano_jugador, mano_cpu, desafios_elegidos, descripciones_cartas_desafio, cont_desafios, cantidad_cartas, navegacion, hitos_partida, nombre_jugador, cartas_desafio_ganadas);
             ronda ++;
         }
 
@@ -185,7 +185,7 @@ void CargarDesafio(string descripciones_cartas_desafio[10])
 }
 
 
-void ColocarMazo(bool mazo[60], int mano_jugador1[60], int mano_jugador2[60], bool cartas_desafio[10], int cont_desafios[2], bool navegacion[2], int hitos_partida[10])
+void ColocarMazo(bool mazo[60], int mano_jugador1[60], int mano_jugador2[60], bool cartas_desafio[10], int cont_desafios[2], bool navegacion[2], int hitos_partida[10], bool cartas_desafio_ganadas[2])
 {
     for(int i = 0; i < 60; i++)
     {
@@ -204,6 +204,7 @@ void ColocarMazo(bool mazo[60], int mano_jugador1[60], int mano_jugador2[60], bo
     {
         cont_desafios[i] = 0;
         navegacion[i] = true;
+        cartas_desafio_ganadas[i] = false;
     }
 }
 
@@ -358,7 +359,8 @@ bool SeleccionarDesafioSiEsPosible(int id_desafio, int desafios_elegidos[2], int
 }
 
 
-void CartasJugadasJugadorCpu(string elemento[60], string color[60],int cont_jugadores, int numero[60], bool mazo[60], int mano_jugador[60], int mano_cpu[60], int cantidad_cartas, int desafios_elegidos[2], int cont_desafios[2], bool navegacion[2], int hitos_partida[10], string nombre_jugador[10])
+void CartasJugadasJugadorCpu(string elemento[60], string color[60],int cont_jugadores, int numero[60], bool mazo[60], int mano_jugador[60], int mano_cpu[60],
+                             int cantidad_cartas, int desafios_elegidos[2], int cont_desafios[2], bool navegacion[2], int hitos_partida[10], string nombre_jugador[10], bool cartas_desafio_ganadas[2])
 {
     std::array<int,2> carta_seleccionada;
 
@@ -369,8 +371,6 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60],int cont_juga
     int resultado = ElGanadorEs(carta_seleccionada, cont_jugadores, mano_jugador, mano_cpu, elemento, color, numero, desafios_elegidos);
     int cartas_reservadas[3];
 
-    bool gano_player = false;
-    bool gano_cpu = false;
     bool combinacion_ganadora = false;
 
     cout<<"El valor de resultado es: "<<resultado<<endl<<endl;
@@ -398,8 +398,8 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60],int cont_juga
 
         RobarCartaGanada(carta_seleccionada[1], mano_jugador);
 
-        gano_player = VerificarCartaDesafio(desafios_elegidos[0], elemento, color, numero, carta_seleccionada, cont_desafios, 1, resultado);
-        cout<<"El valor de gano_player es: "<<gano_player;
+        cartas_desafio_ganadas[0] = cartas_desafio_ganadas[0] || VerificarCartaDesafio(desafios_elegidos[0], elemento, color, numero, carta_seleccionada, cont_desafios, 1, resultado);
+        cout<<"El valor de cartas_desafio_ganadas[0] es: "<<cartas_desafio_ganadas[0];
 
     }
     //gana CPU
@@ -417,15 +417,15 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60],int cont_juga
 
         RobarCartaGanada(carta_seleccionada[0],mano_cpu);
 
-        gano_cpu = VerificarCartaDesafio(desafios_elegidos[1], elemento, color, numero, carta_seleccionada, cont_desafios, 0, resultado);
+        cartas_desafio_ganadas[1] = cartas_desafio_ganadas[1] || VerificarCartaDesafio(desafios_elegidos[1], elemento, color, numero, carta_seleccionada, cont_desafios, 0, resultado);
     }
 
 
     std::array<int,60> mano_ordenada_jugador = {OrdenarMano(elemento, numero, mano_jugador)};
-    gano_player = gano_player && CartasDeCombinacionElementos(elemento, color, mano_ordenada_jugador, combinacion_ganadora, cartas_reservadas);
+    bool gano_player = cartas_desafio_ganadas[0] && CartasDeCombinacionElementos(elemento, color, mano_ordenada_jugador, combinacion_ganadora, cartas_reservadas);
 
     std::array<int,60> mano_ordenada_cpu = {OrdenarMano(elemento, numero, mano_cpu)};
-    gano_cpu = gano_cpu && CartasDeCombinacionElementos(elemento, color, mano_ordenada_cpu, combinacion_ganadora, cartas_reservadas);
+    bool gano_cpu = cartas_desafio_ganadas[1] && CartasDeCombinacionElementos(elemento, color, mano_ordenada_cpu, combinacion_ganadora, cartas_reservadas);
 
     cout<<"El valor de gano_player es: "<<gano_player<<endl<<endl;
     rlutil::anykey();
@@ -436,7 +436,7 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60],int cont_juga
     if(gano_player)
     {
         hitos_partida[0] += 3;
-        if(VerificarCartaDesafio(desafios_elegidos[1], elemento, color, numero, carta_seleccionada, cont_desafios, 1, resultado))
+        if(cartas_desafio_ganadas[1])
         {
             hitos_partida[2] -= 1;
         }
@@ -458,7 +458,7 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60],int cont_juga
     else if(gano_cpu)
     {
         hitos_partida[5] += 3;
-        if(VerificarCartaDesafio(desafios_elegidos[0], elemento, color, numero, carta_seleccionada, cont_desafios, 0, resultado))
+        if(cartas_desafio_ganadas[0])
         {
             hitos_partida[7] -= 1;
         }
@@ -1206,7 +1206,8 @@ void EmpezarRondaMenu(string elemento[60], string color[60], int numero[60], boo
 }
 
 
-void JugarRondaMenu(string elemento[60], string color[60], int cont_jugadores, int numero[60], bool mazo[60], int mano_jugador[60], int mano_cpu[60], int desafios_elegidos[2], string descripciones_cartas_desafio[10], int cont_desafios[2], int cantidad_cartas, bool navegacion[2], int hitos_partida[10], string nombre_jugador[10])
+void JugarRondaMenu(string elemento[60], string color[60], int cont_jugadores, int numero[60], bool mazo[60], int mano_jugador[60], int mano_cpu[60], int desafios_elegidos[2],
+                    string descripciones_cartas_desafio[10], int cont_desafios[2], int cantidad_cartas, bool navegacion[2], int hitos_partida[10], string nombre_jugador[10], bool cartas_desafio_ganadas[2])
 {
     int modo;
     rlutil::locate(40,11);
@@ -1229,7 +1230,7 @@ void JugarRondaMenu(string elemento[60], string color[60], int cont_jugadores, i
             navegacion[1] = false;
             break;
         case 3:
-            CartasJugadasJugadorCpu(elemento, color, cont_jugadores, numero, mazo, mano_jugador, mano_cpu, cantidad_cartas, desafios_elegidos, cont_desafios, navegacion, hitos_partida, nombre_jugador);
+            CartasJugadasJugadorCpu(elemento, color, cont_jugadores, numero, mazo, mano_jugador, mano_cpu, cantidad_cartas, desafios_elegidos, cont_desafios, navegacion, hitos_partida, nombre_jugador, cartas_desafio_ganadas);
             cout<<"El valor de navegacion[0] es: "<<navegacion[0]<<endl<<endl;
             rlutil::anykey();
             navegacion[1] = true;

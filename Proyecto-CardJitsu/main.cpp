@@ -16,7 +16,7 @@ int main()
 {
     int opcion=0, cont_jugadores=1;
     string nombre_jugador[10]={};
-    int Puntos_Jugador[10]={1,2,3,4,5,6,7,8,9,10};
+    int Puntos_Jugador[10]={};
     int decision;
 
     rlutil::setBackgroundColor(rlutil::color::BLACK);

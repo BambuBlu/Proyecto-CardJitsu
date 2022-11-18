@@ -382,11 +382,17 @@ void CartasJugadasJugadorCpu(int Puntos_Jugador[], string elemento[60], string c
             hitos_partida[4] += 5;
         }
         hitos_partida[3] += 1;
-
-        cout<<">>"<<elemento[carta_seleccionada[0]]<<": #"<<numero[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]]<<" le gana a ";
-        cout<<elemento[carta_seleccionada[1]]<<": #"<<numero[carta_seleccionada[1]]<<" "<<color[carta_seleccionada[1]]<<" ,Ganaste la ronda"<<endl<<endl;
+        ColorearCarta(carta_seleccionada[0],  color);
+        cout<<">>"<<elemento[carta_seleccionada[0]]<<": #"<<numero[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]];
+        rlutil::setColor(rlutil::color::WHITE);
+        cout<<" le gana a ";
+        ColorearCarta(carta_seleccionada[1],  color);
+        cout<<elemento[carta_seleccionada[1]]<<": #"<<numero[carta_seleccionada[1]]<<" "<<color[carta_seleccionada[1]];
+        rlutil::setColor(rlutil::color::WHITE);
+        cout<<" ,Ganaste la ronda"<<endl<<endl;
         rlutil::anykey();
 
+        RobarCartaGanada(carta_seleccionada[0], mano_jugador);
         RobarCartaGanada(carta_seleccionada[1], mano_jugador);
 
         cartas_desafio_ganadas[0] = cartas_desafio_ganadas[0] || VerificarCartaDesafio(desafios_elegidos[0], elemento, color, numero, carta_seleccionada, cont_desafios, 1, resultado);
@@ -400,12 +406,18 @@ void CartasJugadasJugadorCpu(int Puntos_Jugador[], string elemento[60], string c
             hitos_partida[9] += 5;
         }
         hitos_partida[8] += 1;
-
-        cout<<">>"<<elemento[carta_seleccionada[1]]<<": #"<<numero[carta_seleccionada[1]]<<" "<<color[carta_seleccionada[1]]<<" le gana a ";
-        cout<<elemento[carta_seleccionada[0]]<<": #"<<numero[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]]<<" ,Perdiste la ronda"<<endl<<endl;
+        ColorearCarta(carta_seleccionada[1],  color);
+        cout<<">>"<<elemento[carta_seleccionada[1]]<<": #"<<numero[carta_seleccionada[1]]<<" "<<color[carta_seleccionada[1]];
+        rlutil::setColor(rlutil::color::WHITE);
+        cout<<" le gana a ";
+        ColorearCarta(carta_seleccionada[0],  color);
+        cout<<elemento[carta_seleccionada[0]]<<": #"<<numero[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]];
+        rlutil::setColor(rlutil::color::WHITE);
+        cout<<" ,Perdiste la ronda"<<endl<<endl;
         rlutil::anykey();
 
         RobarCartaGanada(carta_seleccionada[0],mano_cpu);
+        RobarCartaGanada(carta_seleccionada[1],mano_cpu);
 
         cartas_desafio_ganadas[1] = cartas_desafio_ganadas[1] || VerificarCartaDesafio(desafios_elegidos[1], elemento, color, numero, carta_seleccionada, cont_desafios, 0, resultado);
     }
@@ -1159,7 +1171,9 @@ void EmpezarRondaMenu(string elemento[60], string color[60], int numero[60], boo
 
                 int card_id = AgarrarCartaDelMazo(mazo, mano_jugador);
                 cout<<"--La carta levantada es--"<<endl<<endl;
+                ColorearCarta(card_id,  color);
                 cout<<elemento[card_id]<<": #"<<numero[card_id]<<" "<<color[card_id];
+                rlutil::setColor(rlutil::color::WHITE);
                 rlutil::anykey();
                 navegacion[1] = false;
                 break;

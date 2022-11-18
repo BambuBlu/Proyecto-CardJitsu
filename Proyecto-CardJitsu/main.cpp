@@ -18,6 +18,7 @@ int main()
     string nombre_jugador[10]={};
     int Puntos_Jugador[10]={};
     int decision;
+
     rlutil::setBackgroundColor(rlutil::color::BLACK);
     rlutil::cls();
     rlutil::setColor(rlutil::color::WHITE);

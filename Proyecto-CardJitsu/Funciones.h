@@ -32,6 +32,7 @@ bool GanarCartaMismoElemento(string elemento[], int carta_seleccionada0, int car
 bool GanarCartaMismoNumero(int numero[60], int carta_seleccionada0, int carta_seleccionada1, int numero_desafio);
 bool GanarRondasConsecutivas(int ronda_desafio, bool resultado);
 void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada,string elemento[], string color[], int numero[]);
+void ColorearCarta(int carta_seleccionada,  string color[]);
 int ElGanadorEs(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[],int cont_jugadores,int mano_jugador[],int mano_cpu[],string elemento[], string color[], int numero[], int desafios_elegidos[]);
 int ObtenerSeleccionCartaCpu(std::array<int,60> mano_ordenada, string elemento[], string color[], int numero[], int id, int carta_seleccionada);
 void EliminarCartasMano( int cartas_reservadas[], std::array<int,60> mano_ordenada, int mano_jugable[], int id);

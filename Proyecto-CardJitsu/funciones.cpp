@@ -519,57 +519,32 @@ bool GanarRondasConsecutivas(int ronda_desafio, bool resultado)
     return ronda_desafio == 2;
 }
 
-
-/*void DibujarCartasDeMano( std::array<int,60> mano_ordenada,string elemento[60], string color[60], int numero[60],int i){
-       if (color[mano_ordenada[i]] == "ROJO")
+void ColorearCarta(int carta_seleccionada,  string color[60])
+    {
+     if (color[carta_seleccionada] == "ROJO")
     {
         rlutil::setColor(rlutil::color::RED);
     }
-    else if (color[mano_ordenada[i]] == "VERDE")
+    else if (color[carta_seleccionada] == "VERDE")
     {
         rlutil::setColor(rlutil::color::GREEN);
     }
-    else if (color[mano_ordenada[i]]  == "AMARILLO")
+    else if (color[carta_seleccionada] == "AMARILLO")
     {
         rlutil::setColor(rlutil::color::YELLOW);
     }
-    else if(color[mano_ordenada[i]]  == "AZUL")
+    else if(color[carta_seleccionada]  == "AZUL")
     {
         rlutil::setColor(rlutil::color::BLUE);
     }
-    cout<<"+--------+            "<<endl;
-    cout<<"|"<<numero[mano_ordenada[i]]<<"       |"<<endl;
-    cout<<"|        |            "<<endl;
-    cout<<"|   ";
-    LogoCarta(elemento[mano_ordenada[i]],color[mano_ordenada[i]]);
-    cout<<"    |            "<<endl;
-    cout<<"|        |            "<<endl;
-    cout<<"|        |            "<<endl;
-    cout<<"|       "<<numero[mano_ordenada[i]]<<"|"<<endl;
-    cout<<"+--------+"<<endl;
-    rlutil::setColor(rlutil::color::WHITE);
 
-}*/
+    }
 
 
 void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada, string elemento[60], string color[60], int numero[60])
 {
-   if (color[carta_seleccionada[0]] == "ROJO")
-    {
-        rlutil::setColor(rlutil::color::RED);
-    }
-    else if (color[carta_seleccionada[0]] == "VERDE")
-    {
-        rlutil::setColor(rlutil::color::GREEN);
-    }
-    else if (color[carta_seleccionada[0]] == "AMARILLO")
-    {
-        rlutil::setColor(rlutil::color::YELLOW);
-    }
-    else if(color[carta_seleccionada[0]]  == "AZUL")
-    {
-        rlutil::setColor(rlutil::color::BLUE);
-    }
+   ColorearCarta(carta_seleccionada[0],  color);
+
     cout<<"tiraste # "<<numero[carta_seleccionada[0]]<<" "<<elemento[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]]<<"||"<<endl;
     cout<<"+--------+            "<<endl;
     cout<<"|"<<numero[carta_seleccionada[0]]<<"       |"<<endl;
@@ -581,23 +556,8 @@ void MostrarCartasEnfrentadas(std::array<int,2>  carta_seleccionada, string elem
     cout<<"|        |            "<<endl;
     cout<<"|       "<<numero[carta_seleccionada[0]]<<"|"<<endl;
     cout<<"+--------+"<<endl<<endl;
-    rlutil::setColor(rlutil::color::WHITE);
-    if (color[carta_seleccionada[1]] == "ROJO")
-    {
-        rlutil::setColor(rlutil::color::RED);
-    }
-    else if (color[carta_seleccionada[1]] == "VERDE")
-    {
-        rlutil::setColor(rlutil::color::GREEN);
-    }
-    else if (color[carta_seleccionada[1]] == "AMARILLO")
-    {
-        rlutil::setColor(rlutil::color::YELLOW);
-    }
-    else if(color[carta_seleccionada[1]]  == "AZUL")
-    {
-        rlutil::setColor(rlutil::color::BLUE);
-    }
+
+    ColorearCarta(carta_seleccionada[1],  color);
 
     cout<<"CPU tiro # "<<numero[carta_seleccionada[1]]<<" "<<elemento[carta_seleccionada[1]]<<" "<<color[carta_seleccionada[1]]<<"||"<<endl;
     cout<<"+--------+            "<<endl;
@@ -972,7 +932,7 @@ int MostrarMano(string elemento[60], string color[60], int numero[60], int mano[
 
             if(elemento[mano_ordenada[i]] == "NIEVE")
             {
-                /*DibujarCartasDeMano( mano_ordenada, elemento, color, numero, i);*/
+                ColorearCarta(mano_ordenada[i],  color);
                 carta_numero++;
                 nieve = true;
 
@@ -1008,7 +968,7 @@ int MostrarMano(string elemento[60], string color[60], int numero[60], int mano[
 
             if(elemento[mano_ordenada[i]] == "FUEGO")
             {
-                /*DibujarCartasDeMano( mano_ordenada, elemento, color, numero, i);*/
+                ColorearCarta(mano_ordenada[i],  color);
                 carta_numero++;
                 fuego = true;
 
@@ -1043,7 +1003,7 @@ int MostrarMano(string elemento[60], string color[60], int numero[60], int mano[
         {
             if(elemento[mano_ordenada[i]] == "AGUA")
             {
-                /*DibujarCartasDeMano( mano_ordenada, elemento, color, numero, i);*/
+                ColorearCarta(mano_ordenada[i],  color);
                 carta_numero++;
 
                 if(seleccion)
@@ -1069,7 +1029,7 @@ int MostrarMano(string elemento[60], string color[60], int numero[60], int mano[
     {
         rlutil::anykey();
     }
-
+    rlutil::setColor (rlutil::color::WHITE);
     return cantidad_cartas;
 }
 

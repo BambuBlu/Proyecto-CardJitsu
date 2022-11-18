@@ -85,8 +85,8 @@ void JugadorVsCpu(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugad
         /*
         cout<<"El valor de navegacion[0] es: "<<navegacion[0]<<endl<<endl;
         */
-        rlutil::setColor(rlutil::color::WHITE);
-        rlutil::setBackgroundColor(rlutil::color::DARKGREY);
+        rlutil::setColor(rlutil::color::BLACK);
+        rlutil::setBackgroundColor(rlutil::color::GREY);
         rlutil::locate (40,6);
         cout<<"Card-Jitsu++"<<endl;
         rlutil::locate (40,7);
@@ -242,11 +242,11 @@ void ColocarCartasDesafio(bool cartas_desafio[10], int desafios_elegidos[2])
     else if(seleccion == 2)
     {
         SeleccionarDesafio(cartas_desafio, desafios_elegidos, 0);
-        rlutil::setBackgroundColor(rlutil::color::DARKGREY);
+        rlutil::setBackgroundColor(rlutil::color::GREY);
     }
 
     DesafioAleatorio(cartas_desafio, desafios_elegidos, 1);
-        rlutil::setBackgroundColor(rlutil::color::DARKGREY);
+        rlutil::setBackgroundColor(rlutil::color::GREY);
 }
 
 
@@ -1152,7 +1152,6 @@ void EmpezarRondaMenu(string elemento[60], string color[60], int numero[60], boo
 
 void JugarRondaMenu(string elemento[60], string color[60],int Puntos_Jugador[10], int cont_jugadores, int numero[60], bool mazo[60], int mano_jugador[60], int mano_cpu[60], int desafios_elegidos[2], string descripciones_cartas_desafio[10], int cont_desafios[2], int cantidad_cartas, bool navegacion[2])
 {
-    /* Puede poner parte grafica aca */
     int modo;
     rlutil::locate(40,11);
     cout<<"3- Jugar una carta";

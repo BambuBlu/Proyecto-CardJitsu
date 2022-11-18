@@ -66,7 +66,7 @@ int main()
         switch (opcion){
             case 1:
                 rlutil::setBackgroundColor(rlutil::color::WHITE);
-                Modo(Puntos_Jugador,cont_jugadores);
+                Modo(Puntos_Jugador,cont_jugadores, nombre_jugador);
             break;
             case 2:
                 MejorPuntaje(nombre_jugador, cont_jugadores);

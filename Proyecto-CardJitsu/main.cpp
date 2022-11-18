@@ -84,14 +84,17 @@ int main()
                 break;
             case 0:
                 decision = Seguroquieressalir();
-                if (decision){
-                SalirDelJuego();
-                return 0;
+
+                if (decision)
+                {
+                    SalirDelJuego();
+                    return 0;
                 }
-                else{
-                    rlutil::cls;
+                else
+                {
+                    break;
                 }
-                break;
+
             default:
                 break;
         }

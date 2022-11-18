@@ -50,10 +50,10 @@ void JugadorVsCpu(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugad
 
     string elemento[60]; string color[60]; string descripciones_cartas_desafio[10];
     int numero[60]; int mano_jugador[60]; int mano_cpu[60]; int desafios_elegidos[2]; int cantidad_cartas = 0; int ronda = 1; int cont_desafios[2];
-    bool mazo[60]; bool ganador = true; bool agarrar_carta = true; bool cartas_desafio[10];
+    bool mazo[60]; bool navegacion[2]; bool cartas_desafio[10];
 
 
-    ColocarMazo(mazo, mano_jugador, mano_cpu, cartas_desafio, cont_desafios);
+    ColocarMazo(mazo, mano_jugador, mano_cpu, cartas_desafio, cont_desafios, navegacion);
     ColocarCartasDesafio(cartas_desafio, desafios_elegidos);
     CargarMazo(elemento, color, numero);
     CargarDesafio(descripciones_cartas_desafio);
@@ -75,25 +75,28 @@ void JugadorVsCpu(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugad
     cantidad_cartas = MostrarMano(elemento, color, numero, mano_jugador, false, cantidad_cartas);
     cout<<endl<<endl;
     MostrarCartaDesafio(desafios_elegidos, descripciones_cartas_desafio, 0);
+    cout<<endl;
+    MostrarCartaDesafio(desafios_elegidos, descripciones_cartas_desafio, 1);
 
-    while(ganador)
+    while(navegacion[0])
     {
         /* Puede poner parte grafica aca */
         /* Ojo que esta unido tambien a las rondas a empezar */
         rlutil::cls();
+        cout<<"El valor de navegacion[0] es: "<<navegacion[0]<<endl<<endl;
 
         cout<<"Card-Jitsu++"<<endl;
         cout<<"-----------------------------------------"<<endl;
         cout<<nombre_jugador[cont_jugadores-1]<<" Vs CPU"<<"         "<<"Ronda #"<<ronda<<endl;
         cout<<"1- Ver carta de desafio"<<endl;
         cout<<"2- Ver cartas de elementos"<<endl;
-        if(agarrar_carta)
+        if(navegacion[1])
         {
-            agarrar_carta = EmpezarRondaMenu(elemento, color, numero, mazo, mano_jugador, desafios_elegidos, descripciones_cartas_desafio, cantidad_cartas, ronda);
+            EmpezarRondaMenu(elemento, color, numero, mazo, mano_jugador, desafios_elegidos, descripciones_cartas_desafio, cantidad_cartas, ronda, navegacion);
         }
         else
         {
-            agarrar_carta = JugarRondaMenu(elemento,  color,Puntos_Jugador, cont_jugadores, numero, mazo, mano_jugador, mano_cpu, desafios_elegidos, descripciones_cartas_desafio, cont_desafios, cantidad_cartas, ronda, ganador);
+            JugarRondaMenu(elemento,  color, Puntos_Jugador, cont_jugadores, numero, mazo, mano_jugador, mano_cpu, desafios_elegidos, descripciones_cartas_desafio, cont_desafios, cantidad_cartas, navegacion);
             ronda ++;
         }
     }
@@ -173,7 +176,7 @@ void CargarDesafio(string descripciones_cartas_desafio[10])
 }
 
 
-void ColocarMazo(bool mazo[60], int mano_jugador1[60], int mano_jugador2[60], bool cartas_desafio[10], int cont_desafios[2])
+void ColocarMazo(bool mazo[60], int mano_jugador1[60], int mano_jugador2[60], bool cartas_desafio[10], int cont_desafios[2], bool navegacion[2])
 {
     for(int i = 0; i < 60; i++)
     {
@@ -190,12 +193,15 @@ void ColocarMazo(bool mazo[60], int mano_jugador1[60], int mano_jugador2[60], bo
     for(int i = 0; i < 2; i++)
     {
         cont_desafios[i] = 0;
+        navegacion[i] = true;
     }
 }
 
 
-void ColocarCartasDesafio(bool cartas_desafio[10], int desafios_elegidos[2], int seleccion)
+void ColocarCartasDesafio(bool cartas_desafio[10], int desafios_elegidos[2])
 {
+    int seleccion;
+
     while(true)
     {
         cout<<"Desea un desafio aleatorio o desea seleccionar uno?"<<endl;
@@ -331,7 +337,7 @@ bool SeleccionarDesafioSiEsPosible(int id_desafio, int desafios_elegidos[2], int
 }
 
 
-void CartasJugadasJugadorCpu(string elemento[60], string color[60], int Puntos_Jugador[10],int cont_jugadores, int numero[60], bool mazo[60], int mano_jugador[60], int mano_cpu[60], int cantidad_cartas, int desafios_elegidos[2], int cont_desafios[2], bool ganador)
+void CartasJugadasJugadorCpu(string elemento[60], string color[60], int Puntos_Jugador[10],int cont_jugadores, int numero[60], bool mazo[60], int mano_jugador[60], int mano_cpu[60], int cantidad_cartas, int desafios_elegidos[2], int cont_desafios[2], bool navegacion[2])
 {
     std::array<int,2> carta_seleccionada;
 
@@ -346,6 +352,9 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60], int Puntos_J
     bool gano_cpu = false;
     bool combinacion_ganadora = false;
 
+    cout<<"El valor de resultado es: "<<resultado<<endl<<endl;
+    rlutil::anykey();
+
     //empate
     if (resultado == 0)
     {
@@ -357,21 +366,23 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60], int Puntos_J
     else if(resultado == 1)
     {
         cout<<">>"<<elemento[carta_seleccionada[0]]<<": #"<<numero[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]]<<" le gana a ";
-        cout<<elemento[carta_seleccionada[1]]<<": #"<<numero[carta_seleccionada[1]]<<" "<<color[carta_seleccionada[1]]<<",Ganaste la ronda"<<endl<<endl;
+        cout<<elemento[carta_seleccionada[1]]<<": #"<<numero[carta_seleccionada[1]]<<" "<<color[carta_seleccionada[1]]<<" ,Ganaste la ronda"<<endl<<endl;
+        rlutil::anykey();
 
         RobarCartaGanada(carta_seleccionada[1], mano_jugador);
 
-        gano_player = VerificarCartaDesafio( desafios_elegidos[0], elemento, color, numero, carta_seleccionada, cont_desafios, 0);
+        gano_player = VerificarCartaDesafio(desafios_elegidos[0], elemento, color, numero, carta_seleccionada, cont_desafios, 0, resultado);
     }
     //gana CPU
     else if(resultado == -1)
     {
         cout<<">>"<<elemento[carta_seleccionada[1]]<<": #"<<numero[carta_seleccionada[1]]<<" "<<color[carta_seleccionada[1]]<<" le gana a ";
-        cout<<elemento[carta_seleccionada[0]]<<": #"<<numero[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]]<<",Ganaste la ronda"<<endl<<endl;
+        cout<<elemento[carta_seleccionada[0]]<<": #"<<numero[carta_seleccionada[0]]<<" "<<color[carta_seleccionada[0]]<<" ,Perdiste la ronda"<<endl<<endl;
+        rlutil::anykey();
 
         RobarCartaGanada(carta_seleccionada[0],mano_cpu);
 
-        gano_cpu = VerificarCartaDesafio( desafios_elegidos[1], elemento, color, numero, carta_seleccionada, cont_desafios, 1);
+        gano_cpu = VerificarCartaDesafio(desafios_elegidos[1], elemento, color, numero, carta_seleccionada, cont_desafios, 1, resultado);
     }
 
 
@@ -381,15 +392,29 @@ void CartasJugadasJugadorCpu(string elemento[60], string color[60], int Puntos_J
     std::array<int,60> mano_ordenada_cpu = {OrdenarMano(elemento, numero, mano_cpu)};
     gano_cpu = gano_cpu && CartasDeCombinacionElementos(elemento, color, mano_ordenada_cpu, combinacion_ganadora, cartas_reservadas);
 
+    cout<<"El valor de gano_player es: "<<gano_player<<endl<<endl;
+    rlutil::anykey();
+
+    cout<<"El valor de gano_cpu es: "<<gano_cpu<<endl<<endl;
+    rlutil::anykey();
+
     if(gano_player)
     {
         cout<<"Ganaste"<<endl;
-        ganador = false;
+        rlutil::anykey();
+
+        navegacion[0] = false;
+        cout<<"El valor de navegacion[0] es: "<<navegacion[0]<<endl<<endl;
+        rlutil::anykey();
     }
     else if(gano_cpu)
     {
         cout<<"Perdiste"<<endl;
-        ganador = false;
+        rlutil::anykey();
+
+        navegacion[0] = false;
+        cout<<"El valor de navegacion[0] es: "<<navegacion[0]<<endl<<endl;
+        rlutil::anykey();
     }
 }
 
@@ -401,10 +426,10 @@ int ElGanadorEs(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[10],in
     MostrarCartasEnfrentadas(carta_seleccionada, elemento, color, numero);
 
     int elemento_mayor = ElementoEsMayor(elemento[carta_seleccionada[0]], elemento[carta_seleccionada[1]]);
-    if (elemento_mayor == 0)
+    if(elemento_mayor == 0)
     {
         bool no_igual = numero[carta_seleccionada[0]] != numero[carta_seleccionada[1]];
-        return (-1 + 2 * (int)(carta_seleccionada[0]] > numero[carta_seleccionada[1])) * (int) no_igual;
+        return (-1 + 2 * (int)(carta_seleccionada[0] > numero[carta_seleccionada[1]])) * (int) no_igual;
     }
     else
     {
@@ -420,22 +445,22 @@ int ElementoEsMayor(string elementoA, string elementoB)
     }
     else if(elementoA == "FUEGO")
     {
-        return -1 + 2 * ((int) elementoB == "NIEVE");
+        return -1 + 2 * ((int) (elementoB == "NIEVE"));
     }
     else if(elementoA == "NIEVE")
     {
-        return -1 + 2 * ((int) elementoB == "AGUA");
+        return -1 + 2 * ((int) (elementoB == "AGUA"));
     }
     else if(elementoA == "AGUA")
     {
-        return -1 + 2 * ((int) elementoB == "FUEGO");
+        return -1 + 2 * ((int) (elementoB == "FUEGO"));
     }
 }
 
 
-bool VerificarCartaDesafio( int desafios_elegidos, string elemento[60], string color[60], int numero[60],std::array<int,2> carta_seleccionada, int cont_desafios[2], int id)
+bool VerificarCartaDesafio( int desafios_elegidos, string elemento[60], string color[60], int numero[60],std::array<int,2> carta_seleccionada, int cont_desafios[2], int id, bool resultado)
 {
-    switch(desafio_elegido)
+    switch(desafios_elegidos)
     {
         case 0:
             return GanarCartaElemento(elemento, carta_seleccionada[id], "NIEVE");
@@ -454,21 +479,21 @@ bool VerificarCartaDesafio( int desafios_elegidos, string elemento[60], string c
         case 7:
             return GanarCartaMismoElemento(color, carta_seleccionada[0], carta_seleccionada[1]);
         case 8:
-            return GanarCartaMismoNumero(int numero[60], carta_seleccionada[0], carta_seleccionada[1], cont_desafios[id]);
+            return GanarCartaMismoNumero(numero, carta_seleccionada[0], carta_seleccionada[1], cont_desafios[id]);
         case 9:
-            return GanarRondasConsecutivas(cont_desafio[id]);
+            return GanarRondasConsecutivas(cont_desafios[id], resultado);
     }
 }
 
-bool GanarCartaElemento(string elemento[60], int carta_seleccionada, string elemento)
+bool GanarCartaElemento(string elemento[60], int carta_seleccionada, string tipo_elemento)
 {
-    return elemento[carta_seleccionada] == elemento;
+    return elemento[carta_seleccionada] == tipo_elemento;
 }
 
 
-bool GanarCartaColor(string color[60], int carta_seleccionada, string color, int color_desafio)
+bool GanarCartaColor(string color[60], int carta_seleccionada, string tipo_color, int color_desafio)
 {
-    color_desafio += (int) (color[carta_seleccionada] == color);
+    color_desafio += (int) (color[carta_seleccionada] == tipo_color);
 
     return color_desafio == 2;
 }
@@ -487,7 +512,7 @@ bool GanarCartaMismoNumero(int numero[60], int carta_seleccionada0, int carta_se
 }
 
 
-bool GanarRondasConsecutivas(ronda_desafio)
+bool GanarRondasConsecutivas(int ronda_desafio, bool resultado)
 {
     ronda_desafio = (ronda_desafio + 1) * ((int) resultado);
 
@@ -607,38 +632,6 @@ void LogoCarta(string elemento,string color)
     cout<<logo;
 
 }
-
-
-void SiLosElementosSonIguales(std::array<int,2>  carta_seleccionada, int Puntos_Jugador[10],int mano_jugador[60], int mano_cpu[60],int cont_jugadores, string elemento[60], string color[60], int numero[60], int desafios_elegidos[2])
-{
-    if(numero[carta_seleccionada[0]] > numero[carta_seleccionada[1]])
-        {
-            cout<<">>Ganaste la ronda por mayor numero"<<endl<<endl;
-
-            Puntos_Jugador[cont_jugadores-1]+=5;
-            Puntos_Jugador[cont_jugadores-1]+=1;
-
-            RobarCartaGanada(carta_seleccionada[1], mano_jugador);
-
-            ronda_consecutiva++;
-            rlutil::anykey();
-        }
-        else if(numero[carta_seleccionada[0]] < numero[carta_seleccionada[1]])
-        {
-            cout<<">>Perdiste la ronda "<<endl<<endl;
-
-            RobarCartaGanada(carta_seleccionada[0],mano_cpu);
-
-            rlutil::anykey();
-
-
-        }
-        else
-        {
-
-        }
-}
-
 
 
 int JugarCartaJugador(string elemento[60], string color[60], int numero[60], int mano[60], int id, int cantidad_cartas)
@@ -1138,11 +1131,11 @@ bool LaCartaEsMayor(int carta_a, int carta_b, string elemento[60], int numero[60
 }
 
 
-bool EmpezarRondaMenu(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano_jugador[60], int desafios_elegidos[2], string descripciones_cartas_desafio[10], int cantidad_cartas, int ronda)
+void EmpezarRondaMenu(string elemento[60], string color[60], int numero[60], bool mazo[60], int mano_jugador[60], int desafios_elegidos[2], string descripciones_cartas_desafio[10], int cantidad_cartas, int ronda, bool navegacion[2])
 {
     /* Puede poner parte grafica aca */
     int modo;
-    bool agarrar_carta;
+
     cout<<"3- Robar carta elemento de la pila"<<endl;
     cout<<endl<<"Que desea hacer?--> ";
     cin>>modo;
@@ -1152,13 +1145,13 @@ bool EmpezarRondaMenu(string elemento[60], string color[60], int numero[60], boo
             rlutil::cls();
 
             MostrarCartaDesafio(desafios_elegidos, descripciones_cartas_desafio, 0);
-            agarrar_carta = true;
+            navegacion[1] = true;
             break;
         case 2:
             rlutil::cls();
 
             MostrarMano(elemento, color, numero, mano_jugador, false, cantidad_cartas);
-            agarrar_carta = true;
+            navegacion[1] = true;
             break;
         case 3:
             {
@@ -1168,23 +1161,22 @@ bool EmpezarRondaMenu(string elemento[60], string color[60], int numero[60], boo
                 cout<<"--La carta levantada es--"<<endl<<endl;
                 cout<<elemento[card_id]<<": #"<<numero[card_id]<<" "<<color[card_id];
                 rlutil::anykey();
-                agarrar_carta = false;
+                navegacion[1] = false;
                 break;
             }
         default:
             cout<<"Ingrese una opcion correcta";
-            agarrar_carta = true;
+            navegacion[1] = true;
             rlutil::anykey();
     }
-    return (agarrar_carta);
 }
 
 
-bool JugarRondaMenu(string elemento[60], string color[60],int Puntos_Jugador[10], int cont_jugadores, int numero[60], bool mazo[60], int mano_jugador[60], int mano_cpu[60], int desafios_elegidos[2], string descripciones_cartas_desafio[10], int cont_desafios[2], int cantidad_cartas)
+void JugarRondaMenu(string elemento[60], string color[60],int Puntos_Jugador[10], int cont_jugadores, int numero[60], bool mazo[60], int mano_jugador[60], int mano_cpu[60], int desafios_elegidos[2], string descripciones_cartas_desafio[10], int cont_desafios[2], int cantidad_cartas, bool navegacion[2])
 {
     /* Puede poner parte grafica aca */
     int modo;
-    bool agarrar_carta;
+
     cout<<"3- Jugar una carta"<<endl;
     cout<<endl<<"Que desea hacer?--> ";
     cin>>modo;
@@ -1194,24 +1186,25 @@ bool JugarRondaMenu(string elemento[60], string color[60],int Puntos_Jugador[10]
             rlutil::cls();
 
             MostrarCartaDesafio(desafios_elegidos, descripciones_cartas_desafio, 0);
-            agarrar_carta = false;
+            navegacion[1] = false;
             break;
         case 2:
             rlutil::cls();
 
             MostrarMano(elemento, color, numero, mano_jugador, false, cantidad_cartas);
-            agarrar_carta = false;
+            navegacion[1] = false;
             break;
         case 3:
-            CartasJugadasJugadorCpu(elemento, color,Puntos_Jugador, cont_jugadores, numero, mazo, mano_jugador, mano_cpu, cantidad_cartas, desafios_elegidos, cont_desafios, ganador);
-            agarrar_carta = true;
+            CartasJugadasJugadorCpu(elemento, color,Puntos_Jugador, cont_jugadores, numero, mazo, mano_jugador, mano_cpu, cantidad_cartas, desafios_elegidos, cont_desafios, navegacion);
+            cout<<"El valor de navegacion[0] es: "<<navegacion[0]<<endl<<endl;
+            rlutil::anykey();
+            navegacion[1] = true;
             break;
         default:
             cout<<"Ingrese una opcion correcta";
-            agarrar_carta = false;
+            navegacion[1] = false;
             rlutil::anykey();
     }
-    return (agarrar_carta);
 }
 
 

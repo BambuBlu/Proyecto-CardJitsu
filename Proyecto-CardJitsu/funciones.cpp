@@ -23,7 +23,7 @@ void Modo(int Puntos_Jugador[10],int cont_jugadores, string nombre_jugador[10])
     rlutil::setColor(rlutil::color::WHITE);
     rlutil::locate(50,10);
     cout<<"1- Jugador VS CPU"<<endl;
-    rlutil::locate(47,12);
+    rlutil::locate(50,12);
     cout<<"2- CPU VS CPU"<<endl;
     rlutil::locate(42,14);
     cout<<"Que modalidad desea jugar?--> ";
